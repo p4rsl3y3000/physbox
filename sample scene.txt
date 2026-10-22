@@ -1,0 +1,1235 @@
+{
+  "parts": [
+    {
+      "id": "part_1792701184382_754",
+      "name": "Block 1",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": -0.75,
+        "z": 3.25
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701195706_679",
+      "name": "Block 1 copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": -0.75,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701210375_183",
+      "name": "Cylinder 3",
+      "type": "cylinder",
+      "dimensions": {
+        "x": 2.5,
+        "y": 2.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": 0.25,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 0.7071067811865475,
+        "y": 0,
+        "z": 0,
+        "w": 0.7071067811865476
+      },
+      "isAnchored": false,
+      "color": 4674921
+    },
+    {
+      "id": "part_1792701399447_623",
+      "name": "Block 1 copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": -0.75,
+        "z": 3.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701425879_362",
+      "name": "Cylinder 3 copy",
+      "type": "cylinder",
+      "dimensions": {
+        "x": 2.5,
+        "y": 2.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": -6.25,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 1.1102230246251565e-16,
+        "y": 0.7071067811865475,
+        "z": 0.7071067811865476,
+        "w": 1.1102230246251565e-16
+      },
+      "isAnchored": false,
+      "color": 4674921
+    },
+    {
+      "id": "part_1792701425880_384",
+      "name": "Block 1 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": -5.25,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "w": 2.220446049250313e-16
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701425880_708",
+      "name": "Block 1 copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": -5.25,
+        "z": 3.25
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "w": 2.220446049250313e-16
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701425880_971",
+      "name": "Block 1 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": 0.75,
+        "y": -5.25,
+        "z": 3.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "w": 2.220446049250313e-16
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701497400_986",
+      "name": "Block 9",
+      "type": "block",
+      "dimensions": {
+        "x": 6.5,
+        "y": 5,
+        "z": 0.5
+      },
+      "position": {
+        "x": -2.25,
+        "y": -3,
+        "z": 4.25
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701527626_780",
+      "name": "Cylinder 3 copy",
+      "type": "cylinder",
+      "dimensions": {
+        "x": 2.5,
+        "y": 2.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": -5.25,
+        "y": 0.25,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 0.7071067811865475,
+        "y": 0,
+        "z": 0,
+        "w": 0.7071067811865476
+      },
+      "isAnchored": false,
+      "color": 4674921
+    },
+    {
+      "id": "part_1792701527627_241",
+      "name": "Block 1 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": -5.25,
+        "y": -0.75,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701527628_629",
+      "name": "Block 1 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": -5.25,
+        "y": -0.75,
+        "z": 3.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701527628_1",
+      "name": "Cylinder 3 copy copy",
+      "type": "cylinder",
+      "dimensions": {
+        "x": 2.5,
+        "y": 2.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": -5.25,
+        "y": -6.25,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 1.1102230246251565e-16,
+        "y": 0.7071067811865475,
+        "z": 0.7071067811865476,
+        "w": 1.1102230246251565e-16
+      },
+      "isAnchored": false,
+      "color": 4674921
+    },
+    {
+      "id": "part_1792701527628_607",
+      "name": "Block 1 copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": -5.25,
+        "y": -5.25,
+        "z": 2.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "w": 2.220446049250313e-16
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792701527628_284",
+      "name": "Block 1 copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 0.5,
+        "z": 0.5
+      },
+      "position": {
+        "x": -5.25,
+        "y": -5.25,
+        "z": 3.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 1,
+        "w": 2.220446049250313e-16
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792702456852_580",
+      "name": "Block 16",
+      "type": "block",
+      "dimensions": {
+        "x": 0.5,
+        "y": 1,
+        "z": 0.5
+      },
+      "position": {
+        "x": -5.25,
+        "y": -3,
+        "z": 3.75
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792702504206_749",
+      "name": "Wedge 17",
+      "type": "wedge",
+      "dimensions": {
+        "x": 16,
+        "y": 18.5,
+        "z": 4
+      },
+      "position": {
+        "x": 13.749999999999998,
+        "y": -3.5000000000000018,
+        "z": 2
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0.7071067811865477,
+        "w": -0.7071067811865474
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792702528688_118",
+      "name": "Sphere 18",
+      "type": "sphere",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": -14,
+        "y": -3.5,
+        "z": 1
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792702596478_974",
+      "name": "Block 19",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": -4.5,
+        "y": 7.5,
+        "z": 17
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": true,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792702605391_441",
+      "name": "Block 19 copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": -4.5,
+        "y": 10,
+        "z": 13.5
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792702608400_160",
+      "name": "Block 19 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": -1.5,
+        "y": 14,
+        "z": 15
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792702977220_630",
+      "name": "Cylinder 22",
+      "type": "cylinder",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 0.5,
+        "y": 10,
+        "z": 13.5
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    }
+  ],
+  "joints": [
+    {
+      "id": "joint_1792701286197680",
+      "type": "bearing",
+      "axis": "y",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701195706_679"
+      },
+      "b": {
+        "__ref": "part_1792701210375_183"
+      },
+      "mode": "motor",
+      "rpm": 0,
+      "torque": 20000,
+      "a0": 0,
+      "k1": "q",
+      "a1": 90,
+      "k2": "e",
+      "a2": -90,
+      "target": 0,
+      "lock": false,
+      "mKey1": "w",
+      "mSpeed1": 30,
+      "mKey2": "s",
+      "mSpeed2": -30,
+      "mActive": 0,
+      "name": "axle",
+      "refRel": {
+        "_x": 0.7071067811865475,
+        "_y": 0,
+        "_z": 0,
+        "_w": 0.7071067811865476
+      },
+      "lastRaw": -0.0018780182680774192,
+      "angUnw": -0.0018780182680775302,
+      "holdAng": 0,
+      "held": [],
+      "axle": {
+        "__ref": 75
+      },
+      "vis": {
+        "__ref": 74
+      },
+      "constraint": {
+        "__ref": 66
+      }
+    },
+    {
+      "id": "joint_1792701334113384",
+      "type": "bearing",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701184382_754"
+      },
+      "b": {
+        "__ref": "part_1792701195706_679"
+      },
+      "mode": "servo",
+      "rpm": 30,
+      "torque": 20000,
+      "a0": 0,
+      "k1": "a",
+      "a1": 90,
+      "k2": "d",
+      "a2": -90,
+      "target": 0,
+      "lock": true,
+      "mKey1": "",
+      "mSpeed1": 0,
+      "mKey2": "",
+      "mSpeed2": 0,
+      "mActive": 0,
+      "name": "turn l fwd",
+      "refRel": {
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_w": 1
+      },
+      "lastRaw": 0.01026446154927068,
+      "angUnw": 0.010264461549270671,
+      "holdAng": 0,
+      "held": [],
+      "axle": {
+        "__ref": 77
+      },
+      "vis": {
+        "__ref": 76
+      },
+      "constraint": {
+        "__ref": 67
+      }
+    },
+    {
+      "id": "joint_1792701407152873",
+      "type": "spring",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701399447_623"
+      },
+      "b": {
+        "__ref": "part_1792701184382_754"
+      },
+      "rest": 1,
+      "max": 4,
+      "k": 150,
+      "damp": 15,
+      "lockAxis": true,
+      "lockAxisOrigin": {
+        "__vec3": true,
+        "x": 0.75,
+        "y": -0.75,
+        "z": 4.75
+      },
+      "lockAxisDir": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "name": "Spring 3",
+      "line": {
+        "__ref": 79
+      },
+      "vis": {
+        "__ref": 78
+      },
+      "held": [],
+      "constraint": {
+        "__ref": 68
+      },
+      "lockConstraint": {
+        "__ref": 69
+      }
+    },
+    {
+      "id": "joint_17927014258804148",
+      "type": "bearing",
+      "axis": "y",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701425880_384"
+      },
+      "b": {
+        "__ref": "part_1792701425879_362"
+      },
+      "mode": "motor",
+      "rpm": 0,
+      "torque": 20000,
+      "a0": 0,
+      "k1": "q",
+      "a1": 90,
+      "k2": "e",
+      "a2": -90,
+      "target": 0,
+      "lock": false,
+      "mKey1": "s",
+      "mSpeed1": 30,
+      "mKey2": "w",
+      "mSpeed2": -30,
+      "refRel": {
+        "_x": 0.7071067811865475,
+        "_y": 4.598694340586184e-17,
+        "_z": 4.598694340586186e-17,
+        "_w": 0.7071067811865476
+      },
+      "lastRaw": 0.001634731591300176,
+      "angUnw": 0.001634731591300287,
+      "holdAng": 0,
+      "mActive": 0,
+      "name": "axle copy",
+      "held": [],
+      "axle": {
+        "__ref": 81
+      },
+      "vis": {
+        "__ref": 80
+      },
+      "constraint": {
+        "__ref": 70
+      }
+    },
+    {
+      "id": "joint_179270142588071547",
+      "type": "bearing",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701425880_708"
+      },
+      "b": {
+        "__ref": "part_1792701425880_384"
+      },
+      "mode": "servo",
+      "rpm": 30,
+      "torque": 20000,
+      "a0": 0,
+      "k1": "a",
+      "a1": 90,
+      "k2": "d",
+      "a2": -90,
+      "target": 0,
+      "lock": true,
+      "mKey1": "",
+      "mSpeed1": 0,
+      "mKey2": "",
+      "mSpeed2": 0,
+      "refRel": {
+        "_x": 0,
+        "_y": 0,
+        "_z": 0,
+        "_w": 1
+      },
+      "lastRaw": -0.010175406240622277,
+      "angUnw": -0.010175406240622277,
+      "holdAng": 0,
+      "mActive": 0,
+      "name": "turn r fwd ",
+      "held": [],
+      "axle": {
+        "__ref": 83
+      },
+      "vis": {
+        "__ref": 82
+      },
+      "constraint": {
+        "__ref": 71
+      }
+    },
+    {
+      "id": "joint_179270142588191125",
+      "type": "spring",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701425880_971"
+      },
+      "b": {
+        "__ref": "part_1792701425880_708"
+      },
+      "rest": 1,
+      "max": 4,
+      "k": 150,
+      "damp": 15,
+      "lockAxis": true,
+      "lockAxisOrigin": {
+        "__vec3": true,
+        "x": 0.75,
+        "y": -5.25,
+        "z": 4.75
+      },
+      "lockAxisDir": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "name": "Spring 3 copy",
+      "line": {
+        "__ref": 85
+      },
+      "vis": {
+        "__ref": 84
+      },
+      "held": [],
+      "constraint": {
+        "__ref": 72
+      },
+      "lockConstraint": {
+        "__ref": 73
+      }
+    },
+    {
+      "id": "joint_179270152762853403",
+      "type": "bearing",
+      "axis": "y",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701527627_241"
+      },
+      "b": {
+        "__ref": "part_1792701527626_780"
+      },
+      "mode": "motor",
+      "rpm": 0,
+      "torque": 20000,
+      "a0": 0,
+      "k1": "q",
+      "a1": 90,
+      "k2": "e",
+      "a2": -90,
+      "target": 0,
+      "lock": false,
+      "mKey1": "w",
+      "mSpeed1": 30,
+      "mKey2": "s",
+      "mSpeed2": -30,
+      "refRel": {
+        "_x": 0.7071067811865475,
+        "_y": 0,
+        "_z": 0,
+        "_w": 0.7071067811865476
+      },
+      "lastRaw": -0.006662446662360993,
+      "angUnw": -0.006662446662361104,
+      "holdAng": 0,
+      "mActive": 0,
+      "name": "axle copy",
+      "held": [],
+      "axle": {
+        "__ref": 87
+      },
+      "vis": {
+        "__ref": 86
+      },
+      "constraint": {
+        "__ref": 74
+      }
+    },
+    {
+      "id": "joint_179270152762856456",
+      "type": "bearing",
+      "axis": "y",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701527628_607"
+      },
+      "b": {
+        "__ref": "part_1792701527628_1"
+      },
+      "mode": "motor",
+      "rpm": 0,
+      "torque": 20000,
+      "a0": 0,
+      "k1": "q",
+      "a1": 90,
+      "k2": "e",
+      "a2": -90,
+      "target": 0,
+      "lock": false,
+      "mKey1": "s",
+      "mSpeed1": 30,
+      "mKey2": "w",
+      "mSpeed2": -30,
+      "refRel": {
+        "_x": 0.7071067811865475,
+        "_y": 4.598694340586184e-17,
+        "_z": 4.598694340586186e-17,
+        "_w": 0.7071067811865476
+      },
+      "lastRaw": 0.006930131145187407,
+      "angUnw": -6.276255176034379,
+      "holdAng": 0,
+      "mActive": 0,
+      "name": "axle copy copy",
+      "held": [],
+      "axle": {
+        "__ref": 89
+      },
+      "vis": {
+        "__ref": 88
+      },
+      "constraint": {
+        "__ref": 75
+      }
+    },
+    {
+      "id": "joint_1792701540910931",
+      "type": "spring",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701527628_629"
+      },
+      "b": {
+        "__ref": "part_1792701527627_241"
+      },
+      "rest": 1,
+      "max": 4,
+      "k": 150,
+      "damp": 15,
+      "lockAxis": true,
+      "lockAxisOrigin": {
+        "__vec3": true,
+        "x": -5.25,
+        "y": -0.75,
+        "z": 4.75
+      },
+      "lockAxisDir": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "name": "Spring 9",
+      "line": {
+        "__ref": 91
+      },
+      "vis": {
+        "__ref": 90
+      },
+      "held": [],
+      "constraint": {
+        "__ref": 76
+      },
+      "lockConstraint": {
+        "__ref": 77
+      }
+    },
+    {
+      "id": "joint_1792701545131209",
+      "type": "spring",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792701527628_284"
+      },
+      "b": {
+        "__ref": "part_1792701527628_607"
+      },
+      "rest": 1,
+      "max": 4,
+      "k": 150,
+      "damp": 15,
+      "lockAxis": true,
+      "lockAxisOrigin": {
+        "__vec3": true,
+        "x": -5.25,
+        "y": -5.25,
+        "z": 4.75
+      },
+      "lockAxisDir": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "name": "Spring 10",
+      "line": {
+        "__ref": 93
+      },
+      "vis": {
+        "__ref": 92
+      },
+      "held": [],
+      "constraint": {
+        "__ref": 78
+      },
+      "lockConstraint": {
+        "__ref": 79
+      }
+    },
+    {
+      "id": "joint_1792702553499744",
+      "type": "rope",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792702456852_580"
+      },
+      "b": {
+        "__ref": "part_1792702528688_118"
+      },
+      "len": 9,
+      "name": "Rope 11",
+      "line": {
+        "__ref": 95
+      },
+      "vis": {
+        "__ref": 94
+      },
+      "held": [],
+      "constraint": {
+        "__ref": 80
+      }
+    },
+    {
+      "id": "joint_1792702619493847",
+      "type": "rope",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792702596478_974"
+      },
+      "b": {
+        "__ref": "part_1792702605391_441"
+      },
+      "len": 6,
+      "name": "Rope 12",
+      "line": {
+        "__ref": 97
+      },
+      "vis": {
+        "__ref": 96
+      },
+      "held": [],
+      "constraint": {
+        "__ref": 81
+      }
+    },
+    {
+      "id": "joint_1792702961424411",
+      "type": "rope",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792702605391_441"
+      },
+      "b": {
+        "__ref": "part_1792702608400_160"
+      },
+      "len": 5,
+      "name": "Rope 13",
+      "constraint": {
+        "__ref": 82
+      },
+      "line": {
+        "__ref": 99
+      },
+      "vis": {
+        "__ref": 98
+      }
+    },
+    {
+      "id": "joint_1792702987420416",
+      "type": "spring",
+      "axis": "z",
+      "la": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "lb": {
+        "__vec3": true,
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "a": {
+        "__ref": "part_1792702608400_160"
+      },
+      "b": {
+        "__ref": "part_1792702977220_630"
+      },
+      "rest": 2,
+      "max": 4,
+      "k": 150,
+      "damp": 4,
+      "lockAxis": false,
+      "lockAxisOrigin": {
+        "__vec3": true,
+        "x": -1.5,
+        "y": 14,
+        "z": 15
+      },
+      "lockAxisDir": {
+        "__vec3": true,
+        "x": 0.423999152002544,
+        "y": -0.847998304005088,
+        "z": -0.317999364001908
+      },
+      "name": "Spring 14",
+      "constraint": {
+        "__ref": 83
+      },
+      "line": {
+        "__ref": 103
+      },
+      "vis": {
+        "__ref": 102
+      }
+    }
+  ],
+  "glues": [],
+  "welds": [],
+  "selectedObjectId": null,
+  "selectedJointId": null,
+  "extraSel": []
+}
