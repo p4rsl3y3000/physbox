@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>physBox</title>
     <!-- Tailwind CSS (precompiled, no CDN) -->
-    <style id="tailwind-compiled">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.pointer-events-auto{pointer-events:auto}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.bottom-4{bottom:1rem}.left-1\/2{left:50%}.left-4{left:1rem}.top-4{top:1rem}.z-10{z-index:10}.z-50{z-index:50}.m-3{margin:.75rem}.mx-1{margin-left:.25rem;margin-right:.25rem}.my-1{margin-top:.25rem}.mb-1,.my-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.ml-auto{margin-left:auto}.mr-1{margin-right:.25rem}.mr-2{margin-right:.5rem}.mt-2{margin-top:.5rem}.mt-2\.5{margin-top:.625rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-4{height:1rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-px{height:1px}.h-screen{height:100vh}.max-h-\[220px\]{max-height:220px}.min-h-\[140px\]{min-height:140px}.w-10{width:2.5rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-52{width:13rem}.w-64{width:16rem}.w-80{width:20rem}.w-full{width:100%}.w-px{width:1px}.w-screen{width:100vw}.flex-1{flex:1 1 0%}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.translate-y-2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-2{--tw-translate-y:0.5rem}.-rotate-90{--tw-rotate:-90deg}.-rotate-90,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-1\.5>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.375rem*var(--tw-space-x-reverse));margin-left:calc(.375rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem*var(--tw-space-x-reverse));margin-left:calc(.75rem*(1 - var(--tw-space-x-reverse)))}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-500\/50{border-color:rgba(59,130,246,.5)}.border-emerald-500\/50{border-color:rgba(16,185,129,.5)}.border-red-500\/30{border-color:rgba(239,68,68,.3)}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-700\/50{border-color:rgba(51,65,85,.5)}.border-slate-700\/80{border-color:rgba(51,65,85,.8)}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.bg-amber-600{--tw-bg-opacity:1;background-color:rgb(217 119 6/var(--tw-bg-opacity,1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-blue-600\/30{background-color:rgba(37,99,235,.3)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.bg-emerald-600\/30{background-color:rgba(5,150,105,.3)}.bg-red-600\/20{background-color:rgba(220,38,38,.2)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-800\/60{background-color:rgba(30,41,59,.6)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/85{background-color:rgba(15,23,42,.85)}.bg-slate-900\/90{background-color:rgba(15,23,42,.9)}.bg-slate-900\/95{background-color:rgba(15,23,42,.95)}.bg-slate-950\/40{background-color:rgba(2,6,23,.4)}.bg-slate-950\/60{background-color:rgba(2,6,23,.6)}.bg-transparent{background-color:transparent}.p-0{padding:0}.p-1{padding:.25rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:.5rem}.pt-2{padding-top:.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem}.text-lg,.text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-wider{letter-spacing:.05em}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-emerald-500\/80{color:rgba(16,185,129,.8)}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.accent-blue-600{accent-color:#2563eb}.accent-emerald-600{accent-color:#059669}.opacity-0{opacity:0}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-2xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-lg,.shadow-xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color)}.outline{outline-style:solid}.blur{--tw-blur:blur(8px)}.blur,.invert{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.invert{--tw-invert:invert(100%)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.hover\:border-red-500:hover{--tw-border-opacity:1;border-color:rgb(239 68 68/var(--tw-border-opacity,1))}.hover\:bg-amber-500:hover{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.hover\:bg-emerald-600:hover{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.hover\:bg-red-600:hover{--tw-bg-opacity:1;background-color:rgb(220 38 38/var(--tw-bg-opacity,1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85/var(--tw-bg-opacity,1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}</style>
+    <style id="tailwind-compiled">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.pointer-events-auto{pointer-events:auto}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.bottom-4{bottom:1rem}.left-1\/2{left:50%}.left-4{left:1rem}.top-4{top:1rem}.z-10{z-index:10}.z-50{z-index:50}.m-3{margin:.75rem}.mx-1{margin-left:.25rem;margin-right:.25rem}.my-1{margin-top:.25rem}.mb-1,.my-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.ml-auto{margin-left:auto}.mr-1{margin-right:.25rem}.mr-2{margin-right:.5rem}.mt-2{margin-top:.5rem}.mt-2\.5{margin-top:.625rem}.block{display:block}.flex{display:flex}.grid{display:grid}.hidden{display:none}.h-4{height:1rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-px{height:1px}.h-screen{height:100vh}.max-h-\[220px\]{max-height:220px}.min-h-\[140px\]{min-height:140px}.w-10{width:2.5rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-52{width:13rem}.w-64{width:16rem}.w-80{width:20rem}.w-full{width:100%}.w-px{width:1px}.w-screen{width:100vw}.flex-1{flex:1 1 0%}.-translate-x-1\/2{--tw-translate-x:-50%}.-translate-x-1\/2,.translate-y-2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.translate-y-2{--tw-translate-y:0.5rem}.-rotate-90{--tw-rotate:-90deg}.-rotate-90,.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-1\.5>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.375rem*var(--tw-space-x-reverse));margin-left:calc(.375rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem*var(--tw-space-x-reverse));margin-left:calc(.75rem*(1 - var(--tw-space-x-reverse)))}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-500\/50{border-color:rgba(59,130,246,.5)}.border-emerald-500\/50{border-color:rgba(16,185,129,.5)}.border-red-500\/30{border-color:rgba(239,68,68,.3)}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-700\/50{border-color:rgba(51,65,85,.5)}.border-slate-700\/80{border-color:rgba(51,65,85,.8)}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.bg-amber-600{--tw-bg-opacity:1;background-color:rgb(217 119 6/var(--tw-bg-opacity,1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-blue-600\/30{background-color:rgba(37,99,235,.3)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.bg-emerald-600\/30{background-color:rgba(5,150,105,.3)}.bg-red-600\/20{background-color:rgba(220,38,38,.2)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-800\/60{background-color:rgba(30,41,59,.6)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/85{background-color:rgba(15,23,42,.85)}.bg-slate-900\/90{background-color:rgba(15,23,42,.9)}.bg-slate-900\/95{
+background-color:rgba(15,23,42,.95)}.bg-slate-950\/40{background-color:rgba(2,6,23,.4)}.bg-slate-950\/60{background-color:rgba(2,6,23,.6)}.bg-transparent{background-color:transparent}.p-0{padding:0}.p-1{padding:.25rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:.5rem}.pt-2{padding-top:.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem}.text-lg,.text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-wider{letter-spacing:.05em}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-emerald-500\/80{color:rgba(16,185,129,.8)}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.accent-blue-600{accent-color:#2563eb}.accent-emerald-600{accent-color:#059669}.opacity-0{opacity:0}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-2xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-lg,.shadow-xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color)}.outline{outline-style:solid}.blur{--tw-blur:blur(8px)}.blur,.invert{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.invert{--tw-invert:invert(100%)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.hover\:border-red-500:hover{--tw-border-opacity:1;border-color:rgb(239 68 68/var(--tw-border-opacity,1))}.hover\:bg-amber-500:hover{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.hover\:bg-emerald-600:hover{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.hover\:bg-red-600:hover{--tw-bg-opacity:1;background-color:rgb(220 38 38/var(--tw-bg-opacity,1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85/var(--tw-bg-opacity,1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}</style>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Three.js -->
@@ -312,6 +313,34 @@
             n.mult(-this.L / 2, e.rj); e.rj.vadd(this.rB, e.rj);
         };
 
+        // Prismatic-style lock: keeps anchor B on the line through anchor A along a direction fixed
+        // in A's frame (so it follows A when A moves/tilts). Two two-sided equations, solved
+        // together with every other joint instead of fighting them by teleporting.
+        function AxisLock(a, b, la, lb, localDir, q0) {
+            CANNON.Constraint.call(this, a, b);
+            this.la = la; this.lb = lb; this.localDir = localDir; this.q0 = q0;
+            this.e1 = new CANNON.ContactEquation(a, b); this.e2 = new CANNON.ContactEquation(a, b);
+            [this.e1, this.e2].forEach(e => { e.minForce = -1e6; e.maxForce = 1e6; e.restitution = 0; this.equations.push(e); });
+            // 3 rotational equations (same scheme as CANNON.LockConstraint) keep B's orientation
+            // fixed relative to A, so the weight can slide along the axis but never twist or tilt.
+            this.r1 = new CANNON.RotationalEquation(a, b); this.r2 = new CANNON.RotationalEquation(a, b); this.r3 = new CANNON.RotationalEquation(a, b);
+            this.equations.push(this.r1, this.r2, this.r3);
+        }
+        AxisLock.prototype = Object.create(CANNON.Constraint.prototype);
+        AxisLock.prototype.update = function () {
+            const a = this.bodyA, b = this.bodyB;
+            const d = a.quaternion.vmult(this.localDir);
+            const ref = Math.abs(d.z) < 0.9 ? new CANNON.Vec3(0, 0, 1) : new CANNON.Vec3(1, 0, 0);
+            const u = d.cross(ref); u.normalize();
+            const v = d.cross(u); v.normalize();
+            this.e1.ni.copy(u); this.e2.ni.copy(v);
+            [this.e1, this.e2].forEach(e => { a.quaternion.vmult(this.la, e.ri); b.quaternion.vmult(this.lb, e.rj); });
+            const qt = a.quaternion.mult(this.q0), X = new CANNON.Vec3(1, 0, 0), Y = new CANNON.Vec3(0, 1, 0), Z = new CANNON.Vec3(0, 0, 1);
+            qt.vmult(X, this.r1.axisA); b.quaternion.vmult(Y, this.r1.axisB);
+            qt.vmult(Y, this.r2.axisA); b.quaternion.vmult(Z, this.r2.axisB);
+            qt.vmult(Z, this.r3.axisA); b.quaternion.vmult(X, this.r3.axisB);
+        };
+
         window.onload = function () {
             initThree();
             initCannon();
@@ -433,18 +462,19 @@
                 const vr = B.velocity.vadd(B.angularVelocity.cross(rB)).vsub(A.velocity.vadd(A.angularVelocity.cross(rA))).dot(d);
                 const F = j.k * (L - j.rest) + j.damp * vr;
                 A.applyForce(d.mult(F), pA); B.applyForce(d.mult(-F), pB);
-                // Lock weight to travel only along the original spring axis
-                if (j.lockAxis && j.lockAxisDir) {
-                    const toB = B.position.vsub(j.lockAxisOrigin);
-                    const t = toB.dot(j.lockAxisDir);
-                    const projected = j.lockAxisOrigin.vadd(j.lockAxisDir.clone().mult(t));
-                    B.position.copy(projected);
-                    // Kill any velocity component perpendicular to the axis
-                    const vPar = B.velocity.dot(j.lockAxisDir);
-                    B.velocity.set(j.lockAxisDir.x * vPar, j.lockAxisDir.y * vPar, j.lockAxisDir.z * vPar);
-                    B.angularVelocity.set(0, 0, 0);
-                }
             }));
+
+            world.addEventListener('postStep', () => {
+                for (const p of parts) {
+                    const b = p.body; if (b.mass <= 0) continue;
+                    if (!isFinite(b.position.x + b.position.y + b.position.z + b.quaternion.w)) {
+                        b.position.copy(p.initialPos); b.quaternion.set(p.initialQuat.x, p.initialQuat.y, p.initialQuat.z, p.initialQuat.w);
+                        b.velocity.set(0, 0, 0); b.angularVelocity.set(0, 0, 0); continue;
+                    }
+                    const v = b.velocity, vs = v.norm(); if (vs > MAX_BODY_SPEED) v.scale(MAX_BODY_SPEED / vs, v);
+                    const w = b.angularVelocity, ws = w.norm(); if (ws > MAX_BODY_SPEED) w.scale(MAX_BODY_SPEED / ws, w);
+                }
+            });
 
             const groundShape = new CANNON.Plane();
             const groundBody = new CANNON.Body({ mass: 0 });
@@ -453,7 +483,8 @@
         }
 
         const SUB_DT = 1 / 360;   // physics substep: 6 per 60fps frame keeps hinges rigid
-        const MAX_BEARING_MASS_RATIO = 6;
+        const MAX_BEARING_MASS_RATIO = 8;
+        const MAX_BODY_SPEED = 80;  // safety cap (units/s, rad/s) so one bad contact can't launch the scene
 
         function initGizmo() {
             const container = document.getElementById('gizmo-container');
@@ -650,7 +681,17 @@
         }
 
         function restoreState(snap) {
-            joints.forEach(j => { if (j.constraint) world.removeConstraint(j.constraint); });
+            // a rebuilt scene is a fresh edit-mode scene: leave any running/paused simulation
+            if (isSimulating || simStarted) {
+                isSimulating = false; simStarted = false;
+                const pi = document.getElementById('sim-play-icon'), pt = document.getElementById('sim-play-text'), pb = document.getElementById('sim-play-btn');
+                if (pi) pi.className = "fa-solid fa-play";
+                if (pt) pt.innerText = "Simulate [Space]";
+                if (pb) pb.className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow";
+            }
+            joints.forEach(j => { if (j.constraint) world.removeConstraint(j.constraint); removeAxisLock(j); if (j.vis) scene.remove(j.vis); });
+            welds.forEach(w => world.removeConstraint(w.c));
+            glues.forEach(g => { if (g.c) world.removeConstraint(g.c); });
             joints = []; glues = []; welds = [];
             parts.forEach(p => { scene.remove(p.mesh); if (p.boxHelper) scene.remove(p.boxHelper); world.remove(p.body); });
             parts = []; selectedObject = null; selectedJoint = null; extraSel = [];
@@ -680,11 +721,12 @@
             });
             refreshGlue(parts);
             snap.joints.forEach(jData => {
-                const partA = partMap.get(jData.a), partB = partMap.get(jData.b);
+                const refId = r => (r && typeof r === 'object' && r.__ref !== undefined) ? r.__ref : r;
+                const partA = partMap.get(refId(jData.a)), partB = partMap.get(refId(jData.b));
                 if (!partA || !partB) return;
                 const j = { id: jData.id, type: jData.type, axis: jData.axis, la: new CANNON.Vec3(jData.la ? jData.la.x : 0, jData.la ? jData.la.y : 0, jData.la ? jData.la.z : 0), lb: new CANNON.Vec3(jData.lb ? jData.lb.x : 0, jData.lb ? jData.lb.y : 0, jData.lb ? jData.lb.z : 0), a: partA, b: partB };
                 for (const key of Object.keys(jData)) {
-                    if (key === 'id' || key === 'type' || key === 'axis' || key === 'la' || key === 'lb' || key === 'a' || key === 'b' || key === 'constraint') continue;
+                    if (key === 'id' || key === 'type' || key === 'axis' || key === 'la' || key === 'lb' || key === 'a' || key === 'b' || key === 'constraint' || key === 'lockConstraint') continue;
                     const val = jData[key];
                     if (val && val.__vec3) j[key] = new CANNON.Vec3(val.x, val.y, val.z);
                     else if (val && val.__quat) j[key] = new CANNON.Quaternion(val.x, val.y, val.z, val.w);
@@ -704,8 +746,8 @@
             snap.extraSel.forEach(id => { const p = partMap.get(id); if (p) extraSel.push(p); });
             updateOutliner(); updateInspector();
         }
-        function undo() { if (undoStack.length === 0) return; redoStack.push(captureState()); const prev = undoStack.pop(); restoreState(prev); showToast("Undo"); }
-        function redo() { if (redoStack.length === 0) return; undoStack.push(captureState()); const next = redoStack.pop(); restoreState(next); showToast("Redo"); }
+        function undo() { if (simStarted) { resetPhysics(); showToast('Simulation reset - press Ctrl+Z again to undo an edit'); return; } if (undoStack.length === 0) return; redoStack.push(captureState()); const prev = undoStack.pop(); restoreState(prev); showToast("Undo"); }
+        function redo() { if (simStarted) { resetPhysics(); showToast('Simulation reset'); return; } if (redoStack.length === 0) return; undoStack.push(captureState()); const next = redoStack.pop(); restoreState(next); showToast("Redo"); }
 
         // ── Export / Import ─────────────────────────────────────────────────
         function exportBuild() {
@@ -781,6 +823,7 @@
 
         function buildJoint(j) {
             if (j.constraint) { world.removeConstraint(j.constraint); j.constraint = null; }
+            removeAxisLock(j);
             if (j.constraint) world.removeConstraint(j.constraint);
             const A = j.a.body, B = j.b.body;
             if (j.type === 'bearing') {
@@ -797,6 +840,23 @@
             }
             applyJointParams(j);
             world.addConstraint(j.constraint);
+            syncAxisLock(j);
+        }
+
+        function removeAxisLock(j) { if (j.lockConstraint) { world.removeConstraint(j.lockConstraint); j.lockConstraint = null; } }
+        // (Re)creates the spring's "lock weight to axis" constraint from the current layout:
+        // the axis is the line from anchor A to the weight B, stored in A's frame.
+        function syncAxisLock(j) {
+            removeAxisLock(j);
+            if (j.type !== 'spring' || !j.lockAxis) return;
+            const A = j.a.body, B = j.b.body;
+            const pA = A.position.vadd(A.quaternion.vmult(j.la)), pB = B.position.vadd(B.quaternion.vmult(j.lb));
+            let dir = pB.vsub(pA);
+            if (dir.norm() < 1e-4) dir = j.lockAxisDir ? j.lockAxisDir.clone() : new CANNON.Vec3(0, 0, -1);
+            dir.normalize();
+            j.lockConstraint = new AxisLock(A, B, j.la.clone(), j.lb.clone(), A.quaternion.inverse().vmult(dir), A.quaternion.inverse().mult(B.quaternion));
+            j.lockConstraint.collideConnected = false;
+            world.addConstraint(j.lockConstraint);
         }
 
         function applyJointParams(j) {
@@ -952,13 +1012,14 @@
                 c.setMotorSpeed(0);
             }
         }
-        function setJBool(k, v) { if (selectedJoint) { selectedJoint[k] = v; updateInspector(); } }
+        function setJBool(k, v) { if (selectedJoint) { selectedJoint[k] = v; if (k === 'lockAxis') syncAxisLock(selectedJoint); updateInspector(); } }
         function captureKey(field) { keyCaptureField = field; updateInspector(); }
         function setJMode(v) { if (selectedJoint) { selectedJoint.mode = v; applyJointParams(selectedJoint); updateInspector(); } }
 
         function removeJoint(j) {
             pushUndo();
             if (j.constraint) world.removeConstraint(j.constraint);
+            removeAxisLock(j);
             scene.remove(j.vis);
             joints = joints.filter(x => x !== j);
             if (selectedJoint === j) selectedJoint = null;
@@ -1415,46 +1476,40 @@
             const y2 = Math.max(start.y, current.y);
 
             const selected = [];
-            const box3 = new THREE.Box3();
-            const corners = [
-                new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(),
-                new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()
-            ];
-
+            camera.updateMatrixWorld();
             const camInverse = new THREE.Matrix4().copy(camera.matrixWorld).invert();
+            const W = window.innerWidth, H = window.innerHeight;
+            const v = new THREE.Vector3();
+            // screen position of a world point, or null if it is behind the camera
+            const toScreen = (wp) => {
+                v.copy(wp).applyMatrix4(camInverse);
+                if (v.z >= -camera.near) return null;       // view space looks down -Z
+                v.copy(wp).project(camera);
+                return { x: (v.x * 0.5 + 0.5) * W, y: (-v.y * 0.5 + 0.5) * H };
+            };
+            const inRect = (p) => p.x >= x1 && p.x <= x2 && p.y >= y1 && p.y <= y2;
+
             parts.forEach(p => {
                 if (!p.mesh) return;
                 p.mesh.updateMatrixWorld();
-                box3.setFromObject(p.mesh);
-                const min = box3.min, max = box3.max;
-                corners[0].set(min.x, min.y, min.z);
-                corners[1].set(max.x, min.y, min.z);
-                corners[2].set(min.x, max.y, min.z);
-                corners[3].set(max.x, max.y, min.z);
-                corners[4].set(min.x, min.y, max.z);
-                corners[5].set(max.x, min.y, max.z);
-                corners[6].set(min.x, max.y, max.z);
-                corners[7].set(max.x, max.y, max.z);
+                const d = p.dimensions, hx = d.x / 2, hy = d.y / 2, hz = d.z / 2;
 
-                let fullyInside = true;
-                for (const c of corners) {
-                    // World-space corner
-                    c.applyMatrix4(p.mesh.matrixWorld);
-                    // If the corner is behind the camera it can't be on-screen inside the box
-                    c.applyMatrix4(camInverse);
-                    if (c.z < 0) { fullyInside = false; break; }
-                    // Project to screen
-                    c.applyMatrix4(camera.projectionMatrix);
-                    if (c.w < 0) { fullyInside = false; break; }
-                    c.x /= c.w; c.y /= c.w;
-                    const sx = (c.x * 0.5 + 0.5) * window.innerWidth;
-                    const sy = (-(c.y * 0.5) + 0.5) * window.innerHeight;
-                    if (sx < x1 || sx > x2 || sy < y1 || sy > y2) {
-                        fullyInside = false;
-                        break;
+                // Selected when the object's centre is inside the box, or the whole object is
+                // inside it. (Centre test is what makes drag-select work at close range, where
+                // big objects stick out past the box / the screen.)
+                const centre = toScreen(p.mesh.position);
+                let hit = !!(centre && inRect(centre));
+
+                if (!hit) {
+                    let all = true;
+                    for (let i = 0; i < 8 && all; i++) {
+                        const wp = new THREE.Vector3((i & 1 ? hx : -hx), (i & 2 ? hy : -hy), (i & 4 ? hz : -hz)).applyMatrix4(p.mesh.matrixWorld);
+                        const sp = toScreen(wp);
+                        if (!sp || !inRect(sp)) all = false;
                     }
+                    hit = all;
                 }
-                if (fullyInside) selected.push(p);
+                if (hit) selected.push(p);
             });
 
             if (shiftKey) {
@@ -1749,7 +1804,7 @@
                 if (!map.has(j.a) || !map.has(j.b)) return;
                 const n = {};
                 for (const key of Object.keys(j)) {
-                    if (['id', 'constraint', 'vis', 'axle', 'line', 'held', 'a', 'b', 'name', 'mActive'].includes(key)) continue;
+                    if (['id', 'constraint', 'lockConstraint', 'vis', 'axle', 'line', 'held', 'a', 'b', 'name', 'mActive'].includes(key)) continue;
                     const v = j[key];
                     n[key] = v instanceof CANNON.Vec3 ? v.clone() : v;
                 }
@@ -1774,14 +1829,19 @@
         // While simulating, the lighter side of every bearing is given at least 1/N of the
         // heavier side's mass (restored on Reset) so the hinge stays rigid.
         function clampBearingMasses() {
-            for (let pass = 0; pass < 4; pass++) joints.forEach(j => {
-                if (j.type !== 'bearing') return;
-                const A = j.a.body, B = j.b.body;
-                if (A.mass <= 0 || B.mass <= 0) return;
-                const lo = A.mass < B.mass ? j.a : j.b, hi = lo === j.a ? j.b : j.a;
-                const want = hi.body.mass / MAX_BEARING_MASS_RATIO;
-                if (lo.body.mass < want) { lo.body.mass = want; lo.body.updateMassProperties(); lo._massClamped = true; }
-            });
+            const links = [];
+            joints.forEach(j => { if (j.type === 'bearing' || j.lockConstraint) links.push([j.a, j.b]); });
+            welds.forEach(w => links.push([w.a, w.b]));
+            for (let pass = 0; pass < 20; pass++) {
+                let changed = false;
+                links.forEach(([a, b]) => {
+                    if (a.body.mass <= 0 || b.body.mass <= 0) return;
+                    const lo = a.body.mass < b.body.mass ? a : b, hi = lo === a ? b : a;
+                    const want = hi.body.mass / MAX_BEARING_MASS_RATIO;
+                    if (lo.body.mass < want - 1e-9) { lo.body.mass = want; lo.body.updateMassProperties(); lo._massClamped = true; changed = true; }
+                });
+                if (!changed) break;
+            }
         }
         function restoreClampedMasses() {
             parts.forEach(p => {
