@@ -1,0 +1,1941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Physics Studio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Cannon.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            user-select: none;
+            background-color: #1e1e24;
+            color: #e2e8f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.6);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(51, 65, 85, 0.8);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(71, 85, 105, 1);
+        }
+        .blender-input {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+            color: #f8fafc;
+            border-radius: 0.375rem;
+            padding: 0.25rem 0.5rem;
+            font-size: 0.875rem;
+            outline: none;
+        }
+        .blender-input:focus {
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 1px #3b82f6;
+        }
+        .gizmo-container {
+            position: absolute;
+            top: 70px;
+            right: 320px;
+            width: 110px;
+            height: 110px;
+            z-index: 10;
+            pointer-events: auto;
+        }
+        .marquee-box {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border: 2px solid #3b82f6;
+            background: rgba(59, 130, 246, 0.15);
+            pointer-events: none;
+            z-index: 40;
+            display: none;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body class="flex flex-col h-screen w-screen overflow-hidden select-none">
+
+    <!-- Canvas Wrapper -->
+    <div id="canvas-container"></div>
+    <div id="marquee-box" class="marquee-box"></div>
+
+    <!-- Interactive Orientation Gizmo -->
+    <div id="gizmo-container" class="gizmo-container"></div>
+
+    <!-- Top Toolbar -->
+    <header class="relative z-10 flex items-center justify-between px-4 py-2.5 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
+        <div class="flex items-center space-x-3">
+            <div class="flex items-center space-x-2 text-blue-500 font-black text-lg tracking-wider">
+                <i class="fa-solid fa-cube text-xl"></i>
+                <span>PHYSICS<span class="text-white font-light">STUDIO</span></span>
+            </div>
+        </div>
+
+        <!-- Mode & Simulation Controls -->
+        <div class="flex items-center space-x-2 bg-slate-950/60 p-1 rounded-lg border border-slate-800">
+            <button id="mode-obj-btn" onclick="setInteractionMode('object')" class="px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 bg-blue-600 text-white shadow">
+                <i class="fa-solid fa-shapes"></i>
+                <span>Object Mode [Tab]</span>
+            </button>
+            <button id="mode-face-btn" onclick="setInteractionMode('face')" class="px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
+                <i class="fa-solid fa-vector-square"></i>
+                <span>Face Mode [Tab]</span>
+            </button>
+
+            <div class="h-4 w-px bg-slate-800 mx-1"></div>
+
+            <button id="sim-play-btn" onclick="toggleSimulation()" class="px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow">
+                <i class="fa-solid fa-play" id="sim-play-icon"></i>
+                <span id="sim-play-text">Simulate [Space]</span>
+            </button>
+            <button onclick="resetPhysics()" class="px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span>Reset</span>
+            </button>
+        </div>
+            <button onclick="exportBuild()" class="px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center space-x-1.5" title="Export build to .txt">
+                <i class="fa-solid fa-download"></i>
+                <span>Export</span>
+            </button>
+            <button onclick="document.getElementById('import-file').click()" class="px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center space-x-1.5" title="Import build from .txt">
+                <i class="fa-solid fa-upload"></i>
+                <span>Import</span>
+            </button>
+            <input type="file" id="import-file" accept=".txt,.json" style="display: none" onchange="importBuild(event)">
+
+        <!-- Quick Creation Button -->
+        <div class="flex items-center space-x-2">
+            <button onclick="openAddMenuAtCenter()" class="px-3 py-1.5 rounded-md bg-slate-800 hover:bg-slate-700 text-xs font-medium text-slate-200 border border-slate-700 transition flex items-center space-x-1.5">
+                <i class="fa-solid fa-plus text-blue-400"></i>
+                <span>Add Object [Shift+A]</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Overlay Grid -->
+    <div class="relative flex-1 flex pointer-events-none z-10">
+
+        <!-- Left Panel: Controls Cheat Sheet -->
+        <aside class="w-64 m-3 p-3 bg-slate-900/85 backdrop-blur-md border border-slate-800 rounded-xl shadow-2xl pointer-events-auto flex flex-col justify-between text-xs space-y-3">
+            <div>
+                <div class="flex items-center justify-between pb-2 border-b border-slate-800 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                    <span>Controls & Shortcuts</span>
+                    <i class="fa-solid fa-keyboard"></i>
+                </div>
+                <div class="mt-2.5 space-y-2 text-slate-300">
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Orbit View</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">MMB Drag</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Pan View</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Shift + MMB</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Zoom</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Scroll</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Add Menu</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Shift + A</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Move / Extrude</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">G</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Lock Axis / Plane</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">X/Y/Z / Shift+X/Y/Z</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Toggle Grid Snap</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Shift + Tab</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">90° Snap Rotate</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">R / T / Y</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Toggle Mode</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Tab</kbd></div>
+                    <div class="flex justify-between items-center"><span class="text-slate-400">Delete Selected</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Del / X</kbd></div>
+                </div>
+            </div>
+
+            <div>
+                <div class="pb-2 border-b border-slate-800 text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">
+                    <span>Numpad Views</span>
+                </div>
+                <div class="grid grid-cols-2 gap-1 text-[11px]">
+                    <button onclick="alignCameraView('front')" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 1: Front</button>
+                    <button onclick="alignCameraView('right')" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 3: Right</button>
+                    <button onclick="alignCameraView('top')" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 7: Top</button>
+                    <button onclick="resetCameraFocus()" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 0: Focus</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Center Notification Overlay -->
+        <div id="transform-hud" class="hidden absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-900/90 border border-blue-500/50 text-blue-300 rounded-full shadow-2xl text-xs font-mono flex items-center space-x-3 backdrop-blur-md">
+            <span id="transform-hud-text">TRANSFORM MODE ACTIVE</span>
+            <span class="text-slate-500">|</span>
+            <span class="text-slate-400 text-[11px]">Left-Click / Enter to Confirm, Right-Click / Esc to Cancel</span>
+        </div>
+
+        <!-- Right Panel: Outliner & Properties -->
+        <aside class="w-80 m-3 ml-auto bg-slate-900/85 backdrop-blur-md border border-slate-800 rounded-xl shadow-2xl pointer-events-auto flex flex-col overflow-hidden">
+            <!-- Outliner Header -->
+            <div class="px-3 py-2 bg-slate-950/60 border-b border-slate-800 font-bold text-xs text-slate-400 uppercase tracking-wider flex justify-between items-center">
+                <span>Scene Outliner</span>
+                <i class="fa-solid fa-layer-group"></i>
+            </div>
+
+            <!-- Outliner Item List -->
+            <div id="outliner-list" class="flex-1 overflow-y-auto p-2 space-y-1 text-xs border-b border-slate-800 min-h-[140px] max-h-[220px]">
+                <div class="text-slate-500 italic text-center py-4">No objects in scene</div>
+            </div>
+
+            <!-- Inspector Header -->
+            <div class="px-3 py-2 bg-slate-950/60 border-b border-slate-800 font-bold text-xs text-slate-400 uppercase tracking-wider flex justify-between items-center">
+                <span>Properties Inspector</span>
+                <i class="fa-solid fa-sliders"></i>
+            </div>
+
+            <!-- Inspector Details -->
+            <div id="inspector-content" class="flex-1 overflow-y-auto p-3 space-y-3 text-xs text-slate-300">
+                <div class="text-slate-500 italic text-center py-6">Select an object to inspect properties</div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Context Add Menu (Shift + A) -->
+    <div id="add-menu" class="hidden fixed z-50 w-52 bg-slate-900/95 border border-slate-700/80 rounded-xl shadow-2xl backdrop-blur-md py-1.5 text-xs text-slate-200">
+        <div class="px-3 py-1 font-bold text-[10px] text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1 flex items-center justify-between">
+            <span>Add Menu</span>
+            <span class="text-[9px] text-slate-500">Shift + A</span>
+        </div>
+        
+        <!-- Primitives Category -->
+        <div class="px-3 py-1 text-[10px] font-bold text-blue-400 uppercase tracking-wider">Mesh Primitives</div>
+        <button onclick="createPrimitive('block')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+            <span><i class="fa-solid fa-cube w-4 text-center mr-2"></i> Block</span>
+        </button>
+        <button onclick="createPrimitive('wedge')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+            <span><i class="fa-solid fa-play -rotate-90 w-4 text-center mr-2"></i> Wedge (Ramp)</span>
+        </button>
+        <button onclick="createPrimitive('sphere')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+            <span><i class="fa-solid fa-globe w-4 text-center mr-2"></i> Sphere</span>
+        </button>
+        <button onclick="createPrimitive('cylinder')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+            <span><i class="fa-solid fa-database w-4 text-center mr-2"></i> Cylinder</span>
+        </button>
+
+        <div class="h-px bg-slate-800 my-1"></div>
+
+        <!-- Mechanical Joints Category -->
+        <div class="px-3 py-1 text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Mechanical Joints</div>
+        <button onclick="createJoint('bearing')" class="w-full text-left px-4 py-1.5 hover:bg-emerald-600 hover:text-white flex items-center justify-between transition">
+            <span><i class="fa-solid fa-arrows-spin w-4 text-center mr-2"></i> Bearing (2 parts)</span>
+        </button>
+        <button onclick="createJoint('spring')" class="w-full text-left px-4 py-1.5 hover:bg-emerald-600 hover:text-white flex items-center justify-between transition">
+            <span><i class="fa-solid fa-coil-spring w-4 text-center mr-2"></i> Spring (2 parts)</span>
+        </button>
+        <button onclick="createJoint('rope')" class="w-full text-left px-4 py-1.5 hover:bg-emerald-600 hover:text-white flex items-center justify-between transition">
+            <span><i class="fa-solid fa-link w-4 text-center mr-2"></i> Rope (2 parts)</span>
+        </button>
+    </div>
+
+    <script>
+        let scene, camera, renderer, raycaster, mousePos;
+        let gizmoScene, gizmoCamera, gizmoRenderer;
+        let world;
+        let parts = [];
+        let undoStack = [], redoStack = [], MAX_UNDO = 50;
+        let joints = [];
+        let welds = [], glues = [], groupStart = [], simStarted = false, keyCaptureField = null, extraSel = [];
+        let selectedJoint = null, simAcc = 0, extrudeT0 = 0, lastT = 0;
+        let selectedObject = null;
+        let interactionMode = 'object';
+        let isSimulating = false;
+        let snapToGrid = true;
+        let gridSize = 0.5;
+        // Joint two-click placement state
+        let jointPlacementMode = null;   // 'bearing' | 'spring' | 'rope' | null
+        let jointPlacementPartA = null;  // first clicked part
+        
+        let isTransforming = false;
+        let transformMode = null;
+        let initialTransformPos = new THREE.Vector3();
+        let initialDimensions = new THREE.Vector3();
+        let grabWorldOffset = new THREE.Vector3();
+        let grabRayPlaneIntersect = new THREE.Vector3();
+        let lockedAxis = null;
+        let selectedFaceInfo = null;
+        
+        let guideLineMesh = null;
+        let faceHighlightMesh = null;
+        let sharedGridTexture = generateGridTexture();
+
+        let isOrbiting = false, isPanning = false;
+        let previousMousePosition = { x: 0, y: 0 };
+        let cameraTarget = new THREE.Vector3(0, 0, 1);
+        let cameraRadius = 15;
+        let cameraTheta = Math.PI / 4;
+        let cameraPhi = Math.PI / 3.5;
+        
+        let currentMouseScreenPos = new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2);
+
+        window.addEventListener('mousemove', (e) => {
+            currentMouseScreenPos.set(e.clientX, e.clientY);
+            if (isTransforming) {
+                updateTransformation(e);
+            }
+        });
+
+        function OffsetDistance(a, b, la, lb, L) {
+            CANNON.Constraint.call(this, a, b);
+            this.la = la; this.lb = lb; this.L = L;
+            const e = this.eq = new CANNON.ContactEquation(a, b);
+            e.minForce = -1e6; e.maxForce = 0; // only pulls (never pushes) -> rope behaviour
+            this.equations.push(e);
+            this.rA = new CANNON.Vec3(); this.rB = new CANNON.Vec3(); this.n = new CANNON.Vec3();
+        }
+        OffsetDistance.prototype = Object.create(CANNON.Constraint.prototype);
+        OffsetDistance.prototype.update = function () {
+            const a = this.bodyA, b = this.bodyB, e = this.eq, n = this.n;
+            a.quaternion.vmult(this.la, this.rA); b.quaternion.vmult(this.lb, this.rB);
+            b.position.vadd(this.rB).vsub(a.position.vadd(this.rA), n);
+            if (n.norm() < 1e-6) n.set(1, 0, 0); else n.normalize();
+            e.ni.copy(n);
+            n.mult(this.L / 2, e.ri); e.ri.vadd(this.rA, e.ri);
+            n.mult(-this.L / 2, e.rj); e.rj.vadd(this.rB, e.rj);
+        };
+
+        window.onload = function () {
+            initThree();
+            initCannon();
+            initGizmo();
+            createFloorGrid();
+            setupEventListeners();
+            
+            const defaultBlock = createPrimitive('block', new THREE.Vector3(0, 0, 1), new THREE.Vector3(2, 2, 2), 0x3b82f6, true);
+            selectObject(defaultBlock);
+
+            animate();
+        };
+
+        function generateGridTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            
+            ctx.fillStyle = '#1e293b';
+            ctx.fillRect(0, 0, 256, 256);
+            
+            ctx.strokeStyle = '#334155';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(0, 0, 256, 256);
+
+            ctx.strokeStyle = '#0f172a';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(128, 0); ctx.lineTo(128, 256);
+            ctx.moveTo(0, 128); ctx.lineTo(256, 128);
+            ctx.stroke();
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.wrapS = THREE.RepeatWrapping;
+            texture.wrapT = THREE.RepeatWrapping;
+            return texture;
+        }
+
+        function initThree() {
+            const container = document.getElementById('canvas-container');
+            
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0x1e1e24);
+
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.up.set(0, 0, 1);
+            updateCameraPosition();
+
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            container.appendChild(renderer.domElement);
+
+            raycaster = new THREE.Raycaster();
+            mousePos = new THREE.Vector2();
+
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(20, 20, 30);
+            dirLight.castShadow = true;
+            dirLight.shadow.mapSize.width = 2048;
+            dirLight.shadow.mapSize.height = 2048;
+            dirLight.shadow.camera.near = 0.5;
+            dirLight.shadow.camera.far = 100;
+            const d = 15;
+            dirLight.shadow.camera.left = -d;
+            dirLight.shadow.camera.right = d;
+            dirLight.shadow.camera.top = d;
+            dirLight.shadow.camera.bottom = -d;
+            scene.add(dirLight);
+
+            const lineMat = new THREE.LineBasicMaterial({ color: 0xffff00, linewidth: 2 });
+            const lineGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0)]);
+            guideLineMesh = new THREE.Line(lineGeom, lineMat);
+            guideLineMesh.visible = false;
+            scene.add(guideLineMesh);
+
+            const faceGroup = new THREE.Group();
+            const mkGeom = () => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(3 * 400), 3)); g.setDrawRange(0, 0); return g; };
+            const fm = new THREE.Mesh(mkGeom(), new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.45, depthTest: false }));
+            const fl = new THREE.LineLoop(mkGeom(), new THREE.LineBasicMaterial({ color: 0x7dd3fc, depthTest: false }));
+            [fm, fl].forEach(o => { o.frustumCulled = false; o.renderOrder = 11; faceGroup.add(o); });
+            faceHighlightMesh = faceGroup;
+            faceHighlightMesh.visible = false;
+            scene.add(faceHighlightMesh);
+        }
+
+        function initCannon() {
+            world = new CANNON.World();
+            world.gravity.set(0, 0, -9.82);
+            world.broadphase = new CANNON.NaiveBroadphase();
+            world.solver.iterations = 20;
+            world.addEventListener('preStep', () => joints.forEach(j => {
+                if (j.type === 'bearing' && j.constraint) servoStep(j);
+            if (j.type === 'bearing' && j.mode === 'motor' && j.constraint) {
+                const c = j.constraint;
+                const max = Math.max(Math.abs(j.rpm), Math.abs(j.mSpeed1 || 0), Math.abs(j.mSpeed2 || 0)) * Math.PI / 30;
+                if (j.mActive === 1 && j.mSpeed1) c.setMotorSpeed(-Math.max(-max, Math.min(max, j.mSpeed1 * Math.PI / 30)));
+                else if (j.mActive === 2 && j.mSpeed2) c.setMotorSpeed(-Math.max(-max, Math.min(max, j.mSpeed2 * Math.PI / 30)));
+                else c.setMotorSpeed(-j.rpm * Math.PI / 30);
+            }
+                if (j.type !== 'spring') return;
+                const A = j.a.body, B = j.b.body, rA = A.quaternion.vmult(j.la), rB = B.quaternion.vmult(j.lb);
+                const pA = A.position.vadd(rA), pB = B.position.vadd(rB), d = pB.vsub(pA), L = d.norm();
+                if (L < 1e-4) return;
+                d.mult(1 / L, d);
+                const vr = B.velocity.vadd(B.angularVelocity.cross(rB)).vsub(A.velocity.vadd(A.angularVelocity.cross(rA))).dot(d);
+                const F = j.k * (L - j.rest) + j.damp * vr;
+                A.applyForce(d.mult(F), pA); B.applyForce(d.mult(-F), pB);
+                // Lock weight to travel only along the original spring axis
+                if (j.lockAxis && j.lockAxisDir) {
+                    const toB = B.position.vsub(j.lockAxisOrigin);
+                    const t = toB.dot(j.lockAxisDir);
+                    const projected = j.lockAxisOrigin.vadd(j.lockAxisDir.clone().mult(t));
+                    B.position.copy(projected);
+                    // Kill any velocity component perpendicular to the axis
+                    const vPar = B.velocity.dot(j.lockAxisDir);
+                    B.velocity.set(j.lockAxisDir.x * vPar, j.lockAxisDir.y * vPar, j.lockAxisDir.z * vPar);
+                    B.angularVelocity.set(0, 0, 0);
+                }
+            }));
+
+            const groundShape = new CANNON.Plane();
+            const groundBody = new CANNON.Body({ mass: 0 });
+            groundBody.addShape(groundShape);
+            world.addBody(groundBody);
+        }
+
+        function initGizmo() {
+            const container = document.getElementById('gizmo-container');
+            gizmoScene = new THREE.Scene();
+            gizmoCamera = new THREE.OrthographicCamera(-2, 2, 2, -2, 0.1, 10);
+            gizmoCamera.position.set(0, 0, 5);
+
+            gizmoRenderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            gizmoRenderer.setSize(110, 110);
+            container.appendChild(gizmoRenderer.domElement);
+
+            const axesHelper = new THREE.AxesHelper(1.2);
+            gizmoScene.add(axesHelper);
+        }
+
+        function createFloorGrid() {
+            const gridGroup = new THREE.Group();
+            const gridHelper = new THREE.GridHelper(40, 40, 0x475569, 0x334155);
+            gridHelper.rotation.x = Math.PI / 2;
+            gridGroup.add(gridHelper);
+
+            // Red X axis line
+            const xMat = new THREE.LineBasicMaterial({ color: 0xef4444, linewidth: 2 });
+            const xGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-20, 0, 0.01), new THREE.Vector3(20, 0, 0.01)]);
+            gridGroup.add(new THREE.Line(xGeom, xMat));
+
+            // Green Y axis line
+            const yMat = new THREE.LineBasicMaterial({ color: 0x22c55e, linewidth: 2 });
+            const yGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, -20, 0.01), new THREE.Vector3(0, 20, 0.01)]);
+            gridGroup.add(new THREE.Line(yGeom, yMat));
+
+            scene.add(gridGroup);
+        }
+
+        function createWedgeGeometry(d) {
+            const hx = d.x / 2, hy = d.y / 2, hz = d.z / 2;
+            const P = [[-hx,-hy,-hz],[hx,-hy,-hz],[hx,hy,-hz],[-hx,hy,-hz],[hx,hy,hz],[-hx,hy,hz]];
+            const T = [[0,3,2],[0,2,1],[3,5,4],[3,4,2],[0,1,4],[0,4,5],[0,5,3],[1,2,4]];
+            const pos = []; T.forEach(t => t.forEach(i => pos.push(...P[i])));
+            const g = new THREE.BufferGeometry();
+            g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+            g.computeVertexNormals();
+            const n = g.attributes.normal, uv = [];
+            for (let i = 0; i < n.count; i++) {
+                const ax = Math.abs(n.getX(i)), ay = Math.abs(n.getY(i)), az = Math.abs(n.getZ(i));
+                const x = pos[i*3], y = pos[i*3+1], z = pos[i*3+2];
+                uv.push(...(ax >= ay && ax >= az ? [y, z] : ay >= az ? [x, z] : [x, y]));
+            }
+            g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+            return g;
+        }
+
+        function makeGeometry(type, d) {
+            if (type === 'sphere') { const g = new THREE.SphereGeometry(0.5, 32, 24); g.scale(d.x, d.y, d.z); return g; }
+            if (type === 'cylinder') { const g = new THREE.CylinderGeometry(0.5, 0.5, 1, 32); g.rotateX(Math.PI / 2); g.scale(d.x, d.y, d.z); return g; }
+            if (type === 'wedge') return createWedgeGeometry(d);
+            return new THREE.BoxGeometry(d.x, d.y, d.z);
+        }
+
+        function makeShape(type, d) {
+            const hx = d.x / 2, hy = d.y / 2, hz = d.z / 2, V = (x, y, z) => new CANNON.Vec3(x, y, z), eq = (a, b) => Math.abs(a - b) < 1e-3;
+            if (type === 'sphere') {
+                if (eq(d.x, d.y) && eq(d.y, d.z)) return new CANNON.Sphere(hx);
+                const N = 12, M = 6, v = [V(0, 0, hz)], f = [];
+                for (let k = 1; k <= M; k++) { const t = Math.PI * k / (M + 1); for (let j = 0; j < N; j++) { const a = j / N * Math.PI * 2; v.push(V(hx * Math.sin(t) * Math.cos(a), hy * Math.sin(t) * Math.sin(a), hz * Math.cos(t))); } }
+                v.push(V(0, 0, -hz));
+                const R = (k, j) => 1 + k * N + (j % N);
+                for (let j = 0; j < N; j++) f.push([0, R(0, j), R(0, j + 1)]);
+                for (let k = 0; k < M - 1; k++) for (let j = 0; j < N; j++) f.push([R(k, j), R(k + 1, j), R(k + 1, j + 1), R(k, j + 1)]);
+                for (let j = 0; j < N; j++) f.push([v.length - 1, R(M - 1, j + 1), R(M - 1, j)]);
+                return new CANNON.ConvexPolyhedron(v, f);
+            }
+            if (type === 'cylinder') {
+                if (eq(d.x, d.y)) return new CANNON.Cylinder(hx, hx, d.z, 16);
+                const N = 16, v = [], f = [], idx = [...Array(N).keys()];
+                for (const z of [hz, -hz]) for (let j = 0; j < N; j++) { const a = j / N * Math.PI * 2; v.push(V(hx * Math.cos(a), hy * Math.sin(a), z)); }
+                f.push(idx.slice()); f.push(idx.map(i => N + i).reverse());
+                for (let j = 0; j < N; j++) { const j1 = (j + 1) % N; f.push([j, N + j, N + j1, j1]); }
+                return new CANNON.ConvexPolyhedron(v, f);
+            }
+            if (type === 'wedge') return new CANNON.ConvexPolyhedron(
+                [V(-hx,-hy,-hz), V(hx,-hy,-hz), V(hx,hy,-hz), V(-hx,hy,-hz), V(hx,hy,hz), V(-hx,hy,hz)],
+                [[0,3,2,1],[3,5,4,2],[0,1,4,5],[0,5,3],[1,2,4]]);
+            return new CANNON.Box(V(hx, hy, hz));
+        }
+
+        function createPrimitive(type, position = new THREE.Vector3(0,0,1), dimensions = new THREE.Vector3(2,2,2), color = 0x3b82f6, isAnchored = false) {
+            let geometry, shape;
+
+            if (type === 'block') {
+                geometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z);
+                shape = new CANNON.Box(new CANNON.Vec3(dimensions.x / 2, dimensions.y / 2, dimensions.z / 2));
+            } else if (type === 'sphere') {
+                const radius = dimensions.x / 2;
+                geometry = new THREE.SphereGeometry(radius, 32, 32);
+                shape = new CANNON.Sphere(radius);
+            } else if (type === 'cylinder') {
+                const radius = dimensions.x / 2;
+                const height = dimensions.z;
+                geometry = new THREE.CylinderGeometry(radius, radius, height, 32);
+                geometry.rotateX(Math.PI / 2);
+                shape = new CANNON.Cylinder(radius, radius, height, 16);
+            } else if (type === 'wedge') {
+                geometry = createWedgeGeometry(dimensions);
+                shape = new CANNON.Box(new CANNON.Vec3(dimensions.x / 2, dimensions.y / 2, dimensions.z / 2));
+            }
+
+            geometry = makeGeometry(type, dimensions);
+            shape = makeShape(type, dimensions);
+            const material = new THREE.MeshStandardMaterial({
+                color: color,
+                map: sharedGridTexture,
+                roughness: 0.4,
+                metalness: 0.1
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+            mesh.position.copy(position);
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            scene.add(mesh);
+
+            const boxHelper = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)), new THREE.LineBasicMaterial({ color: 0x94a3b8 }));
+            boxHelper.visible = false; boxHelper.update = () => {};
+            mesh.add(boxHelper);
+
+            const mass = isAnchored ? 0 : dimensions.x * dimensions.y * dimensions.z;
+            const body = new CANNON.Body({
+                mass: mass,
+                position: new CANNON.Vec3(position.x, position.y, position.z)
+            });
+            body.addShape(shape);
+            world.addBody(body);
+
+            const partObj = {
+                id: 'part_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+                name: type.charAt(0).toUpperCase() + type.slice(1) + ' ' + (parts.length + 1),
+                type: type,
+                mesh: mesh,
+                
+                body: body,
+                dimensions: dimensions.clone(),
+                color: color,
+                isAnchored: isAnchored,
+                boxHelper: boxHelper,
+                initialPos: position.clone(),
+                initialQuat: mesh.quaternion.clone(),
+                initialDim: dimensions.clone()
+            };
+
+            mesh.userData.partObj = partObj;
+            body.part = partObj;
+            
+            pushUndo();
+            parts.push(partObj);
+            refreshGlue([partObj]);
+
+            updateOutliner();
+            return partObj;
+        }
+
+        // ── Undo / Redo state capture ───────────────────────────────────────
+        function captureState() {
+            return {
+                parts: parts.map(p => ({
+                    id: p.id, name: p.name, type: p.type,
+                    dimensions: { x: p.dimensions.x, y: p.dimensions.y, z: p.dimensions.z },
+                    position: { x: p.mesh.position.x, y: p.mesh.position.y, z: p.mesh.position.z },
+                    quaternion: { x: p.mesh.quaternion.x, y: p.mesh.quaternion.y, z: p.mesh.quaternion.z, w: p.mesh.quaternion.w },
+                    isAnchored: p.isAnchored, color: p.color
+                })),
+                joints: joints.map(j => {
+                    const copy = {};
+                    for (const key of Object.keys(j)) {
+                        const val = j[key];
+                        if (val instanceof CANNON.Vec3) copy[key] = { __vec3: true, x: val.x, y: val.y, z: val.z };
+                        else if (val instanceof CANNON.Quaternion) copy[key] = { __quat: true, x: val.x, y: val.y, z: val.z, w: val.w };
+                        else if (val && typeof val === 'object' && val.id) copy[key] = { __ref: val.id };
+                        else copy[key] = val;
+                    }
+                    return copy;
+                }),
+                glues: glues.map(g => [g.a.id, g.b.id]),
+                welds: welds.map(w => [w.a.id, w.b.id]),
+                selectedObjectId: selectedObject ? selectedObject.id : null,
+                selectedJointId: selectedJoint ? selectedJoint.id : null,
+                extraSel: extraSel.map(p => p.id)
+            };
+        }
+        function pushUndo() {
+            undoStack.push(captureState());
+            if (undoStack.length > MAX_UNDO) undoStack.shift();
+            redoStack = [];
+        }
+
+        function restoreState(snap) {
+            joints.forEach(j => { if (j.constraint) world.removeConstraint(j.constraint); });
+            joints = []; glues = []; welds = [];
+            parts.forEach(p => { scene.remove(p.mesh); if (p.boxHelper) scene.remove(p.boxHelper); world.remove(p.body); });
+            parts = []; selectedObject = null; selectedJoint = null; extraSel = [];
+            const partMap = new Map();
+            snap.parts.forEach(pData => {
+                const position = new THREE.Vector3(pData.position.x, pData.position.y, pData.position.z);
+                const dimensions = new THREE.Vector3(pData.dimensions.x, pData.dimensions.y, pData.dimensions.z);
+                const quat = new THREE.Quaternion(pData.quaternion.x, pData.quaternion.y, pData.quaternion.z, pData.quaternion.w);
+                let geometry, shape;
+                if (pData.type === 'block') { geometry = new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z); shape = new CANNON.Box(new CANNON.Vec3(dimensions.x / 2, dimensions.y / 2, dimensions.z / 2)); }
+                else if (pData.type === 'sphere') { const r = dimensions.x / 2; geometry = new THREE.SphereGeometry(r, 32, 32); shape = new CANNON.Sphere(r); }
+                else if (pData.type === 'cylinder') { const r = dimensions.x / 2; geometry = new THREE.CylinderGeometry(r, r, dimensions.z, 32); geometry.rotateX(Math.PI / 2); shape = new CANNON.Cylinder(r, r, dimensions.z, 16); }
+                else if (pData.type === 'wedge') { geometry = createWedgeGeometry(dimensions); shape = new CANNON.Box(new CANNON.Vec3(dimensions.x / 2, dimensions.y / 2, dimensions.z / 2)); }
+                geometry = makeGeometry(pData.type, dimensions); shape = makeShape(pData.type, dimensions);
+                const material = new THREE.MeshStandardMaterial({ color: pData.color, map: sharedGridTexture, roughness: 0.4, metalness: 0.1 });
+                const mesh = new THREE.Mesh(geometry, material);
+                mesh.position.copy(position); mesh.quaternion.copy(quat);
+                mesh.castShadow = true; mesh.receiveShadow = true; scene.add(mesh);
+                const boxHelper = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)), new THREE.LineBasicMaterial({ color: 0x94a3b8 }));
+                boxHelper.visible = false; boxHelper.update = () => {}; mesh.add(boxHelper);
+                const mass = pData.isAnchored ? 0 : dimensions.x * dimensions.y * dimensions.z;
+                const body = new CANNON.Body({ mass: mass, position: new CANNON.Vec3(position.x, position.y, position.z) });
+                body.quaternion.copy(new CANNON.Quaternion(quat.x, quat.y, quat.z, quat.w));
+                body.addShape(shape); world.addBody(body);
+                const partObj = { id: pData.id, name: pData.name, type: pData.type, mesh, body, dimensions: dimensions.clone(), color: pData.color, isAnchored: pData.isAnchored, boxHelper, initialPos: position.clone(), initialQuat: quat.clone(), initialDim: dimensions.clone() };
+                mesh.userData.partObj = partObj; body.part = partObj; parts.push(partObj); partMap.set(pData.id, partObj);
+            });
+            refreshGlue(parts);
+            snap.joints.forEach(jData => {
+                const partA = partMap.get(jData.a), partB = partMap.get(jData.b);
+                if (!partA || !partB) return;
+                const j = { id: jData.id, type: jData.type, axis: jData.axis, la: new CANNON.Vec3(jData.la ? jData.la.x : 0, jData.la ? jData.la.y : 0, jData.la ? jData.la.z : 0), lb: new CANNON.Vec3(jData.lb ? jData.lb.x : 0, jData.lb ? jData.lb.y : 0, jData.lb ? jData.lb.z : 0), a: partA, b: partB };
+                for (const key of Object.keys(jData)) {
+                    if (key === 'id' || key === 'type' || key === 'axis' || key === 'la' || key === 'lb' || key === 'a' || key === 'b' || key === 'constraint') continue;
+                    const val = jData[key];
+                    if (val && val.__vec3) j[key] = new CANNON.Vec3(val.x, val.y, val.z);
+                    else if (val && val.__quat) j[key] = new CANNON.Quaternion(val.x, val.y, val.z, val.w);
+                    else if (val && val.__ref) j[key] = partMap.get(val.__ref);
+                    else j[key] = val;
+                }
+                if (j.type === 'bearing') Object.assign(j, { mode: j.mode || 'motor', rpm: j.rpm !== undefined ? j.rpm : 30, torque: j.torque !== undefined ? j.torque : 20000, a0: j.a0 !== undefined ? j.a0 : 0, k1: j.k1 || '', a1: j.a1 !== undefined ? j.a1 : 90, k2: j.k2 || '', a2: j.a2 !== undefined ? j.a2 : -90, target: j.target !== undefined ? j.target : 0, lock: j.lock !== undefined ? j.lock : false, mKey1: j.mKey1 || '', mSpeed1: j.mSpeed1 !== undefined ? j.mSpeed1 : 0, mKey2: j.mKey2 || '', mSpeed2: j.mSpeed2 !== undefined ? j.mSpeed2 : 0, mActive: 0 });
+                else if (j.type === 'rope') { j.len = j.len !== undefined ? j.len : 3; }
+                else { j.rest = j.rest !== undefined ? j.rest : 2; j.max = j.max !== undefined ? j.max : 4; j.k = j.k !== undefined ? j.k : 150; j.damp = j.damp !== undefined ? j.damp : 4; j.lockAxis = j.lockAxis !== undefined ? j.lockAxis : false; }
+                j.name = jData.name || (j.type.charAt(0).toUpperCase() + j.type.slice(1) + ' ' + (joints.length + 1));
+                buildJoint(j); makeJointVisual(j); joints.push(j);
+            });
+            snap.glues.forEach(([idA, idB]) => { const a = partMap.get(idA), b = partMap.get(idB); if (a && b) { const c = new CANNON.LockConstraint(a.body, b.body, { maxForce: 1e6 }); c.collideConnected = false; world.addConstraint(c); glues.push({ a, b, c }); } });
+            snap.welds.forEach(([idA, idB]) => { const a = partMap.get(idA), b = partMap.get(idB); if (a && b && a !== b && !isConnected(a, b) && !(a.isAnchored && b.isAnchored)) { const c = new CANNON.LockConstraint(a.body, b.body, { maxForce: 1e6 }); c.collideConnected = false; world.addConstraint(c); welds.push({ a, b, c }); } });
+            if (snap.selectedObjectId) { const p = partMap.get(snap.selectedObjectId); if (p) selectObject(p); }
+            if (snap.selectedJointId) { const j = joints.find(j => j.id === snap.selectedJointId); if (j) selectJoint(j); }
+            snap.extraSel.forEach(id => { const p = partMap.get(id); if (p) extraSel.push(p); });
+            updateOutliner(); updateInspector();
+        }
+        function undo() { if (undoStack.length === 0) return; redoStack.push(captureState()); const prev = undoStack.pop(); restoreState(prev); showToast("Undo"); }
+        function redo() { if (redoStack.length === 0) return; undoStack.push(captureState()); const next = redoStack.pop(); restoreState(next); showToast("Redo"); }
+
+        // ── Export / Import ─────────────────────────────────────────────────
+        function exportBuild() {
+            const snap = captureState();
+            const data = JSON.stringify(snap, null, 2);
+            const blob = new Blob([data], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'physics-studio-build.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('Build exported to physics-studio-build.txt');
+        }
+
+        function importBuild(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const snap = JSON.parse(e.target.result);
+                    // Basic validation
+                    if (!snap.parts || !Array.isArray(snap.parts)) throw new Error('Invalid build file');
+                    restoreState(snap);
+                    showToast('Build imported successfully');
+                } catch (err) {
+                    showToast('Import failed: ' + err.message);
+                    console.error(err);
+                }
+                event.target.value = ''; // reset input
+            };
+            reader.readAsText(file);
+        }
+
+        // Enter two-click joint placement mode. The user then clicks part A, then part B.
+        function createJoint(type) {
+            jointPlacementMode = type;
+            jointPlacementPartA = null;
+            document.getElementById('add-menu').classList.add('hidden');
+            showToast(`Joint placement: click the anchor part (A), then the other part (B). Press Escape to cancel.`);
+        }
+
+        // Create a joint between two already-existing parts (without moving them).
+        function createJointBetween(type, partA, partB) {
+            pushUndo();
+            const j = { id: 'joint_' + Date.now() + Math.floor(Math.random() * 999), type, axis: 'z', la: new CANNON.Vec3(), lb: new CANNON.Vec3(), a: partA, b: partB };
+            if (type === 'bearing') {
+                j.la.set(0, 0, 0);
+                j.lb.set(0, 0, 0);
+                Object.assign(j, { mode: 'motor', rpm: 30, torque: 20000, a0: 0, k1: 'q', a1: 90, k2: 'e', a2: -90, target: 0, lock: false, mKey1: '', mSpeed1: 0, mKey2: '', mSpeed2: 0, mActive: 0 });
+            } else if (type === 'rope') {
+                j.len = 3;
+            } else {
+                // spring
+                Object.assign(j, { rest: 2, max: 4, k: 150, damp: 4, lockAxis: false });
+                // Record the original world axis from anchor (A) to weight (B) so the weight
+                // can be constrained to travel only along this line.
+                const origin = partA.body.position.clone();
+                const dir = partB.body.position.clone().vsub(origin);
+                if (dir.norm() > 1e-6) dir.normalize();
+                j.lockAxisOrigin = origin;
+                j.lockAxisDir = dir;
+            }
+            j.name = type.charAt(0).toUpperCase() + type.slice(1) + ' ' + (joints.length + 1);
+            buildJoint(j); makeJointVisual(j); joints.push(j);
+            glues = glues.filter(g => !jointLinked(g.a, g.b));
+            selectJoint(j);
+            showToast(`Added ${type} between "${partA.name}" and "${partB.name}".`);
+        }
+
+        function buildJoint(j) {
+            if (j.constraint) world.removeConstraint(j.constraint);
+            const A = j.a.body, B = j.b.body;
+            if (j.type === 'bearing') {
+                const ax = new CANNON.Vec3(j.axis === 'x' ? 1 : 0, j.axis === 'y' ? 1 : 0, j.axis === 'z' ? 1 : 0);
+                const pA = A.position.vadd(A.quaternion.vmult(j.la)), invB = B.quaternion.inverse();
+                j.constraint = new CANNON.HingeConstraint(A, B, {
+                    pivotA: j.la.clone(), axisA: ax.clone(),
+                    pivotB: invB.vmult(pA.vsub(B.position)), axisB: invB.vmult(A.quaternion.vmult(ax))
+                });
+                j.constraint.collideConnected = false;
+                // Stiffen the hinge so the bearing resists flex / bend under load
+                j.constraint.equations.forEach(eq => {
+                    eq.stiffness = 1e7;
+                    eq.relaxation = 0;
+                });
+                j.refRel = bodyQuat(A).invert().multiply(bodyQuat(B)); j.lastRaw = 0; j.angUnw = 0; j.holdAng = 0; j.held = []; j.mActive = 0;
+            } else {
+                j.constraint = new OffsetDistance(A, B, j.la, j.lb, 1);
+            }
+            applyJointParams(j);
+            world.addConstraint(j.constraint);
+        }
+
+        function applyJointParams(j) {
+            const c = j.constraint; if (!c) return;
+            if (j.type === 'bearing') {
+                if (j.mode === 'free') c.disableMotor();
+                else { c.enableMotor(); c.setMotorMaxForce(j.torque); c.setMotorSpeed(j.mode === 'motor' ? -j.rpm * Math.PI / 30 : 0); }
+            } else if (j.type === 'rope') {
+                j.len = Math.max(0.1, j.len); c.L = j.len;
+            } else {
+                j.rest = Math.max(0, j.rest); j.max = Math.max(j.max, j.rest + 0.05); c.L = j.max;
+            }
+        }
+
+        function makeJointVisual(j) {
+            const g = new THREE.Group();
+            if (j.type === 'bearing') {
+                j.axle = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0x10b981, depthTest: false }));
+                j.axle.renderOrder = 10; g.add(j.axle);
+            } else {
+                const pts = []; for (let i = 0; i < 42; i++) pts.push(new THREE.Vector3());
+                j.line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: j.type === 'rope' ? 0xfbbf24 : 0x34d399, depthTest: false }));
+                j.line.frustumCulled = false; j.line.renderOrder = 10; g.add(j.line);
+            }
+            scene.add(g); j.vis = g;
+        }
+
+        function updateJointVisuals() {
+            joints.forEach(j => {
+                const A = j.a.body, B = j.b.body, pA = A.position.vadd(A.quaternion.vmult(j.la));
+                if (j.type === 'bearing') {
+                    const ax = A.quaternion.vmult(new CANNON.Vec3(j.axis === 'x' ? 1 : 0, j.axis === 'y' ? 1 : 0, j.axis === 'z' ? 1 : 0));
+                    j.axle.position.set(pA.x, pA.y, pA.z);
+                    j.axle.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(ax.x, ax.y, ax.z));
+                    return;
+                }
+                const pB = B.position.vadd(B.quaternion.vmult(j.lb));
+                const a = new THREE.Vector3(pA.x, pA.y, pA.z), d = new THREE.Vector3(pB.x, pB.y, pB.z).sub(a), L = d.length();
+                const u = d.clone().divideScalar(L || 1);
+                const perp = new THREE.Vector3().crossVectors(u, Math.abs(u.z) > 0.9 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 0, 1)).normalize();
+                const arr = j.line.geometry.attributes.position, N = arr.count;
+                for (let i = 0; i < N; i++) {
+                    const t = i / (N - 1), p = a.clone().addScaledVector(d, t);
+                    if (j.type === 'spring' && i > 0 && i < N - 1) p.addScaledVector(perp, (i % 2 ? 1 : -1) * 0.18);
+                    if (j.type === 'rope') p.z -= Math.max(0, j.len - L) * 1.4 * t * (1 - t);
+                    arr.setXYZ(i, p.x, p.y, p.z);
+                }
+                arr.needsUpdate = true;
+                if (j.type === 'rope') j.line.material.color.setHex(L >= j.len - 0.02 ? 0xf97316 : 0xfbbf24);
+            });
+        }
+
+        function insideLocal(p, q, eps) {
+            const h = p.dimensions, hx = h.x / 2, hy = h.y / 2, hz = h.z / 2;
+            if (p.type === 'sphere') return Math.hypot(q.x / hx, q.y / hy, q.z / hz) <= 1 + eps / Math.min(hx, hy, hz);
+            if (p.type === 'cylinder') return Math.hypot(q.x / hx, q.y / hy) <= 1 + eps / Math.min(hx, hy) && Math.abs(q.z) <= hz + eps;
+            if (Math.abs(q.x) > hx + eps || Math.abs(q.y) > hy + eps || Math.abs(q.z) > hz + eps) return false;
+            if (p.type === 'wedge') return (-hz * q.y + hy * q.z) / Math.hypot(hz, hy) <= eps;
+            return true;
+        }
+        function distToLocal(p, q) {
+            const h = p.dimensions, hx = h.x / 2, hy = h.y / 2, hz = h.z / 2;
+            if (p.type === 'sphere') return Math.max(q.length() - hx, 0);
+            if (p.type === 'cylinder') return Math.hypot(Math.max(Math.hypot(q.x, q.y) - hx, 0), Math.max(Math.abs(q.z) - hz, 0));
+            return Math.hypot(Math.max(Math.abs(q.x) - hx, 0), Math.max(Math.abs(q.y) - hy, 0), Math.max(Math.abs(q.z) - hz, 0));
+        }
+        function samplePoints(p) {
+            const h = p.dimensions, pts = [];
+            for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) for (let k = 0; k < 5; k++) {
+                const q = new THREE.Vector3((i / 2 - 1) * h.x / 2, (j / 2 - 1) * h.y / 2, (k / 2 - 1) * h.z / 2);
+                if (insideLocal(p, q, 1e-3)) pts.push(q);
+            }
+            if (p.type === 'cylinder') for (const z of [-1, 0, 1]) for (let i = 0; i < 16; i++) { const a = i / 16 * Math.PI * 2; pts.push(new THREE.Vector3(Math.cos(a) * h.x / 2, Math.sin(a) * h.y / 2, z * h.z / 2)); }
+            if (p.type === 'sphere') for (let i = 0; i < 200; i++) { const y = 1 - 2 * (i + 0.5) / 200, r = Math.sqrt(1 - y * y), a = i * 2.399963; pts.push(new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r).multiply(new THREE.Vector3(h.x / 2, h.y / 2, h.z / 2))); }
+            return pts;
+        }
+        // true if two parts' surfaces touch (within eps) or one is inside the other
+        function touching(a, b, eps = 0.04) {
+            a.mesh.updateMatrixWorld(true); b.mesh.updateMatrixWorld(true);
+            if (a.type === 'sphere' || b.type === 'sphere') {
+                const [s, o] = a.type === 'sphere' ? [a, b] : [b, a];
+                const round = s.dimensions.x === s.dimensions.y && s.dimensions.y === s.dimensions.z && (o.type !== 'cylinder' || o.dimensions.x === o.dimensions.y);
+                if (o.type !== 'wedge' && round && distToLocal(o, o.mesh.worldToLocal(s.mesh.position.clone())) <= s.dimensions.x / 2 + eps) return true;
+            }
+            const test = (p, q) => samplePoints(p).some(s => insideLocal(q, q.mesh.worldToLocal(p.mesh.localToWorld(s.clone())), eps));
+            return test(a, b) || test(b, a);
+        }
+        function isConnected(a, b) {
+            const same = (x) => (x.a === a && x.b === b) || (x.a === b && x.b === a);
+            return joints.some(same) || welds.some(same);
+        }
+        function weld(a, b) {
+            if (a === b || isConnected(a, b) || (a.isAnchored && b.isAnchored)) return false;
+            const c = new CANNON.LockConstraint(a.body, b.body, { maxForce: 1e6 });
+            c.collideConnected = false;
+            world.addConstraint(c); welds.push({ a, b, c });
+            return true;
+        }
+        function clearWelds() { welds.forEach(w => world.removeConstraint(w.c)); welds = []; }
+        function dropWeldsFor(p) {
+            glues = glues.filter(g => g.a !== p && g.b !== p);
+            welds.filter(w => w.a === p || w.b === p).forEach(w => world.removeConstraint(w.c));
+            welds = welds.filter(w => w.a !== p && w.b !== p);
+        }
+        function jointLinked(a, b) { return joints.some(j => (j.a === a && j.b === b) || (j.a === b && j.b === a)); }
+        function hasGlue(a, b) { return glues.some(g => (g.a === a && g.b === b) || (g.a === b && g.b === a)); }
+        // every part attached (directly or through a chain) to p, plus bearing partners
+        function groupOf(p) {
+            const seen = new Set([p]), stack = [p];
+            while (stack.length) {
+                const c = stack.pop(), nb = [];
+                glues.forEach(g => { if (g.a === c) nb.push(g.b); else if (g.b === c) nb.push(g.a); });
+                joints.forEach(j => { if (j.type === 'bearing') { if (j.a === c) nb.push(j.b); else if (j.b === c) nb.push(j.a); } });
+                nb.forEach(x => { if (!seen.has(x)) { seen.add(x); stack.push(x); } });
+            }
+            return [...seen];
+        }
+        // attachment is NOT applied while building (parts move independently); it is worked out when Simulate starts
+        function refreshGlue() {}
+        function detectGlues() {
+            glues = [];
+            for (let i = 0; i < parts.length; i++) for (let j = i + 1; j < parts.length; j++) {
+                if (!jointLinked(parts[i], parts[j]) && touching(parts[i], parts[j])) glues.push({ a: parts[i], b: parts[j] });
+            }
+        }
+        function detachSelected() {
+            if (!selectedObject) return;
+            glues = glues.filter(g => g.a !== selectedObject && g.b !== selectedObject);
+            updateInspector(); showToast('Detached from neighbouring parts');
+        }
+
+        function bodyQuat(b) { return new THREE.Quaternion(b.quaternion.x, b.quaternion.y, b.quaternion.z, b.quaternion.w); }
+        // every bearing tracks its angle; a locked bearing is held rigid, a servo drives toward its target
+        function servoStep(j) {
+            const rel = bodyQuat(j.a.body).invert().multiply(bodyQuat(j.b.body));
+            const d = j.refRel.clone().invert().multiply(rel);
+            const dot = (j.axis === 'x' ? d.x : j.axis === 'y' ? d.y : d.z), sg = d.w < 0 ? -1 : 1;
+            const raw = 2 * Math.atan2(sg * dot, sg * d.w);
+            let dl = raw - j.lastRaw; dl = Math.atan2(Math.sin(dl), Math.cos(dl));
+            j.angUnw += dl; j.lastRaw = raw;
+            if (j.mode !== 'servo') return;
+            const c = j.constraint, max = Math.abs(j.rpm) * Math.PI / 30, active = j.held.length ? j.held[j.held.length - 1] : 0;
+            if (active) {
+                const err = (active === 1 ? j.a1 : j.a2) * Math.PI / 180 - j.angUnw;   // slows down smoothly, stops at the angle
+                c.setMotorMaxForce(j.torque);
+                c.setMotorSpeed(-Math.max(-max, Math.min(max, 6 * err)));
+                j.holdAng = j.angUnw;
+            } else if (j.lock) {                                                       // idle + lock option: rigid hold
+                c.setMotorMaxForce(1e5);
+                c.setMotorSpeed(-6 * (j.holdAng - j.angUnw));
+            } else {                                                                   // idle: just stops turning
+                c.setMotorMaxForce(j.torque);
+                c.setMotorSpeed(0);
+            }
+        }
+        function setJBool(k, v) { if (selectedJoint) { selectedJoint[k] = v; updateInspector(); } }
+        function captureKey(field) { keyCaptureField = field; updateInspector(); }
+        function setJMode(v) { if (selectedJoint) { selectedJoint.mode = v; applyJointParams(selectedJoint); updateInspector(); } }
+
+        function removeJoint(j) {
+            pushUndo();
+            if (j.constraint) world.removeConstraint(j.constraint);
+            scene.remove(j.vis);
+            joints = joints.filter(x => x !== j);
+            if (selectedJoint === j) selectedJoint = null;
+            updateOutliner(); updateInspector();
+        }
+
+        function selectJoint(j) { selectObject(null); selectedJoint = j; updateOutliner(); updateInspector(); }
+        function selectJointById(id) { const j = joints.find(x => x.id === id); if (j) selectJoint(j); }
+        function setJ(k, v) {
+            const j = selectedJoint; if (!j) return;
+            j[k] = parseFloat(v) || 0;
+            applyJointParams(j); updateInspector();
+        }
+        function setJAxis(v) { if (selectedJoint) { selectedJoint.axis = v; buildJoint(selectedJoint); } }
+
+        function jointInspectorHTML(j) {
+            const lbl = 'text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1';
+            const num = (l, k, s) => `<div><label class="${lbl}">${l}</label><input type="number" step="${s}" value="${j[k]}" onchange="setJ('${k}', this.value)" class="w-full blender-input" /></div>`;
+            let body = '';
+            if (j.type === 'bearing') {
+                const keyBtn = (l, f) => `<div><label class="${lbl}">${l}</label><button onclick="captureKey('${f}')" class="w-full blender-input text-left">${keyCaptureField === f ? 'Press a key... (Esc = none)' : (j[f] || 'none').toUpperCase()}</button></div>`;
+                body = `<div><label class="${lbl}">Mode</label><select onchange="setJMode(this.value)" class="w-full blender-input">`
+                    + [['motor', 'Motor (constant speed)'], ['free', 'Free spin'], ['servo', 'Servo (keys, smooth angle)']].map(([v, t]) => `<option value="${v}" ${j.mode === v ? 'selected' : ''}>${t}</option>`).join('') + `</select></div>`
+                    + `<div><label class="${lbl}">Rotation axis (on base)</label><select onchange="setJAxis(this.value)" class="w-full blender-input">${['x','y','z'].map(a => `<option ${j.axis === a ? 'selected' : ''}>${a}</option>`).join('')}</select></div>`;
+                if (j.mode === 'motor') body += num('Rotation speed (RPM, negative = reverse)', 'rpm', 5) + num('Motor max torque', 'torque', 10)
+                + keyBtn('Motor hotkey 1', 'mKey1') + num('Speed 1 (RPM)', 'mSpeed1', 5) + keyBtn('Motor hotkey 2', 'mKey2') + num('Speed 2 (RPM)', 'mSpeed2', 5)
+                + `<div class="text-[10px] text-slate-500">While simulating, hold a motor hotkey to override speed.</div>`;
+                else if (j.mode === 'servo') body += keyBtn('Key 1 (hold to turn)', 'k1') + num('Key 1 angle (deg)', 'a1', 5) + keyBtn('Key 2 (hold to turn)', 'k2') + num('Key 2 angle (deg)', 'a2', 5)
+                    + num('Max turn speed (RPM)', 'rpm', 5) + num('Servo max torque', 'torque', 10)
+                    + `<div class="flex items-center justify-between"><span>Lock when idle (rigid hold)</span><input type="checkbox" ${j.lock ? 'checked' : ''} onchange="setJBool('lock', this.checked)" class="h-4 w-4 accent-emerald-600" /></div>`
+                    + `<div class="text-[10px] text-slate-500">While simulating, hold a key to turn toward its angle; release to stop.</div>`;
+                else body += `<div class="text-[10px] text-slate-500">Spins freely - nothing drives it.</div>`;
+            } else if (j.type === 'rope') {
+                body = num('Rope length', 'len', 0.5);
+            } else {
+                body = num('Desired length', 'rest', 0.5) + num('Max length', 'max', 0.5) + num('Pull force (stiffness)', 'k', 10) + num('Damping', 'damp', 1)
+                    + `<div class="flex items-center justify-between"><span>Lock weight to axis</span><input type="checkbox" ${j.lockAxis ? 'checked' : ''} onchange="setJBool('lockAxis', this.checked)" class="h-4 w-4 accent-emerald-600" /></div>`;
+            }
+            return `<div class="space-y-3"><div class="font-bold text-emerald-400 text-sm">${j.name}</div>${body}
+                <div class="grid grid-cols-2 gap-1">
+                    <button onclick="selectObjectById('${j.a.id}')" class="py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700">Select ${j.a.name}</button>
+                    <button onclick="selectObjectById('${j.b.id}')" class="py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700">Select ${j.b.name}</button>
+                </div>
+                <button onclick="removeJoint(selectedJoint)" class="w-full py-1.5 rounded bg-red-600/20 hover:bg-red-600 border border-red-500/30 text-red-300 hover:text-white font-semibold">Remove joint (keeps parts)</button></div>`;
+        }
+
+        function alignCameraView(view) {
+            if (view === 'front') { cameraTheta = -Math.PI / 2; cameraPhi = Math.PI / 2; }
+            if (view === 'right') { cameraTheta = 0; cameraPhi = Math.PI / 2; }
+            if (view === 'top') { cameraTheta = 0; cameraPhi = 0.001; }
+            updateCameraPosition();
+        }
+
+        function resetCameraFocus() {
+            if (selectedObject) cameraTarget.copy(selectedObject.mesh.position);
+            else cameraTarget.set(0, 0, 1);
+            cameraRadius = 15;
+            cameraTheta = Math.PI / 4;
+            cameraPhi = Math.PI / 3.5;
+            updateCameraPosition();
+        }
+
+        function setInteractionMode(mode) {
+            interactionMode = mode;
+            document.getElementById('mode-obj-btn').className = mode === 'object' ? 
+                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 bg-blue-600 text-white shadow" : 
+                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
+            document.getElementById('mode-face-btn').className = mode === 'face' ? 
+                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 bg-blue-600 text-white shadow" : 
+                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
+            
+            if (mode === 'object' && faceHighlightMesh) faceHighlightMesh.visible = false;
+            showToast(`Switched to ${mode.toUpperCase()} Mode`);
+        }
+
+        function startTransformation(mode) {
+            if (!selectedObject) return;
+            isTransforming = true;
+            transformMode = mode;
+            lockedAxis = null;
+            initialTransformPos.copy(selectedObject.mesh.position);
+            initialDimensions.copy(selectedObject.dimensions);
+            groupStart = mode === 'translate' ? moveSet().map(p => ({ p, pos: p.mesh.position.clone() })) : [];
+
+            mousePos.x = (currentMouseScreenPos.x / window.innerWidth) * 2 - 1;
+            mousePos.y = -(currentMouseScreenPos.y / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mousePos, camera);
+
+            const camDir = camera.getWorldDirection(new THREE.Vector3()).negate();
+            const movePlane = new THREE.Plane().setFromNormalAndCoplanarPoint(camDir, initialTransformPos);
+            
+            if (raycaster.ray.intersectPlane(movePlane, grabRayPlaneIntersect)) {
+                grabWorldOffset.subVectors(initialTransformPos, grabRayPlaneIntersect);
+            } else {
+                grabWorldOffset.set(0, 0, 0);
+            }
+
+            if (mode === 'extrude' && selectedFaceInfo) { const t0 = axisParam(selectedFaceInfo); extrudeT0 = t0 === null ? 0 : t0; }
+            document.getElementById('transform-hud').classList.remove('hidden');
+            document.getElementById('transform-hud-text').innerText = mode === 'translate' ? "MOVE / TRANSLATE" : "EXTRUDE FACE";
+        }
+
+        function confirmTransformation() {
+            if (!isTransforming || !selectedObject) return;
+            pushUndo();
+
+            selectedObject.initialPos.copy(selectedObject.mesh.position);
+            selectedObject.initialQuat.copy(selectedObject.mesh.quaternion);
+            selectedObject.initialDim.copy(selectedObject.dimensions);
+            const moved = groupStart.length ? groupStart.map(g => g.p) : [selectedObject];
+            moved.forEach(p => { p.initialPos.copy(p.mesh.position); p.initialQuat.copy(p.mesh.quaternion); p.initialDim.copy(p.dimensions); });
+            groupStart = [];
+            refreshGlue(moved);
+
+            isTransforming = false;
+            lockedAxis = null;
+            guideLineMesh.visible = false;
+            document.getElementById('transform-hud').classList.add('hidden');
+            showToast("Transformation confirmed.");
+        }
+
+        function cancelTransformation() {
+            if (!isTransforming || !selectedObject) return;
+            pushUndo();
+            selectedObject.mesh.position.copy(initialTransformPos);
+            selectedObject.body.position.copy(initialTransformPos);
+            groupStart.forEach(g => { g.p.mesh.position.copy(g.pos); g.p.body.position.copy(g.pos); });
+            groupStart = [];
+            updateObjectDimensions(selectedObject, initialDimensions);
+
+            isTransforming = false;
+            lockedAxis = null;
+            guideLineMesh.visible = false;
+            document.getElementById('transform-hud').classList.add('hidden');
+            showToast("Transformation cancelled.");
+        }
+
+        function snapValue(val, step = gridSize) {
+            return Math.round(val / step) * step;
+        }
+
+        function setLockedAxis(axis) {
+            lockedAxis = axis;
+            guideLineMesh.visible = true;
+
+            const currentPos = selectedObject.mesh.position;
+            const points = [];
+
+            if (axis === 'x') {
+                points.push(new THREE.Vector3(currentPos.x - 100, currentPos.y, currentPos.z), new THREE.Vector3(currentPos.x + 100, currentPos.y, currentPos.z));
+                guideLineMesh.material.color.setHex(0xef4444);
+            } else if (axis === 'y') {
+                points.push(new THREE.Vector3(currentPos.x, currentPos.y - 100, currentPos.z), new THREE.Vector3(currentPos.x, currentPos.y + 100, currentPos.z));
+                guideLineMesh.material.color.setHex(0x22c55e);
+            } else if (axis === 'z') {
+                points.push(new THREE.Vector3(currentPos.x, currentPos.y, currentPos.z - 100), new THREE.Vector3(currentPos.x, currentPos.y, currentPos.z + 100));
+                guideLineMesh.material.color.setHex(0x3b82f6);
+            } else {
+                guideLineMesh.visible = false;
+            }
+
+            if (guideLineMesh.visible) {
+                guideLineMesh.geometry.setFromPoints(points);
+            }
+
+            mousePos.x = (currentMouseScreenPos.x / window.innerWidth) * 2 - 1;
+            mousePos.y = -(currentMouseScreenPos.y / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mousePos, camera);
+
+            let planeNorm = new THREE.Vector3();
+            if (axis === 'x' || axis === 'y') planeNorm.set(0, 0, 1);
+            else if (axis === 'z') planeNorm.set(1, 0, 0);
+            else if (axis === 'shiftX') planeNorm.set(1, 0, 0);
+            else if (axis === 'shiftY') planeNorm.set(0, 1, 0);
+            else if (axis === 'shiftZ') planeNorm.set(0, 0, 1);
+
+            const axisPlane = new THREE.Plane().setFromNormalAndCoplanarPoint(planeNorm, currentPos);
+            const intersectPoint = new THREE.Vector3();
+            if (raycaster.ray.intersectPlane(axisPlane, intersectPoint)) {
+                grabWorldOffset.subVectors(currentPos, intersectPoint);
+            }
+
+            showToast(`Lock Mode: ${axis.toUpperCase()}`);
+        }
+
+        function updateTransformation(e) {
+            if (!isTransforming || !selectedObject) return;
+
+            mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mousePos.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mousePos, camera);
+
+            if (transformMode === 'translate') {
+                let newPos = new THREE.Vector3();
+
+                if (lockedAxis) {
+                    let planeNorm = new THREE.Vector3();
+                    
+                    if (lockedAxis === 'x' || lockedAxis === 'y') planeNorm.set(0, 0, 1);
+                    else if (lockedAxis === 'z') planeNorm.set(1, 0, 0);
+                    else if (lockedAxis === 'shiftX') planeNorm.set(1, 0, 0);
+                    else if (lockedAxis === 'shiftY') planeNorm.set(0, 1, 0);
+                    else if (lockedAxis === 'shiftZ') planeNorm.set(0, 0, 1);
+
+                    const axisPlane = new THREE.Plane().setFromNormalAndCoplanarPoint(planeNorm, initialTransformPos);
+                    const intersectPoint = new THREE.Vector3();
+                    raycaster.ray.intersectPlane(axisPlane, intersectPoint);
+
+                    newPos.copy(initialTransformPos);
+
+                    if (lockedAxis === 'x') newPos.x = intersectPoint.x + grabWorldOffset.x;
+                    else if (lockedAxis === 'y') newPos.y = intersectPoint.y + grabWorldOffset.y;
+                    else if (lockedAxis === 'z') newPos.z = intersectPoint.z + grabWorldOffset.z;
+                    else if (lockedAxis === 'shiftX') { newPos.y = intersectPoint.y + grabWorldOffset.y; newPos.z = intersectPoint.z + grabWorldOffset.z; }
+                    else if (lockedAxis === 'shiftY') { newPos.x = intersectPoint.x + grabWorldOffset.x; newPos.z = intersectPoint.z + grabWorldOffset.z; }
+                    else if (lockedAxis === 'shiftZ') { newPos.x = intersectPoint.x + grabWorldOffset.x; newPos.y = intersectPoint.y + grabWorldOffset.y; }
+                } else {
+                    const camDir = camera.getWorldDirection(new THREE.Vector3()).negate();
+                    const movePlane = new THREE.Plane().setFromNormalAndCoplanarPoint(camDir, initialTransformPos);
+                    const intersectPoint = new THREE.Vector3();
+                    if (raycaster.ray.intersectPlane(movePlane, intersectPoint)) {
+                        newPos.copy(intersectPoint).add(grabWorldOffset);
+                    } else {
+                        newPos.copy(initialTransformPos);
+                    }
+                }
+
+                if (snapToGrid) {
+                    const d = selectedObject.dimensions;
+                    // Snap so the object stays face-aligned to the grid even when its
+                    // scale (dimensions) is fractional on an axis. We snap the near-face
+                    // position (pos - half) to the grid, then restore the half offset.
+                    // Whole-number dimensions that are multiples of gridSize are unaffected.
+                    newPos.x = snapValue(newPos.x - d.x / 2) + d.x / 2;
+                    newPos.y = snapValue(newPos.y - d.y / 2) + d.y / 2;
+                    newPos.z = snapValue(newPos.z - d.z / 2) + d.z / 2;
+                }
+
+                const dv = newPos.clone().sub(initialTransformPos);
+                groupStart.forEach(g => { const q = g.pos.clone().add(dv); g.p.mesh.position.copy(q); g.p.body.position.copy(q); });
+            } else if (transformMode === 'extrude' && selectedFaceInfo) {
+                const f = selectedFaceInfo, t = axisParam(f);
+                if (t !== null) {
+                    const delta = t - extrudeT0, d0 = initialDimensions, nd = d0.clone(), ls = new THREE.Vector3();
+                    const sn = v => Math.max(0.2, snapToGrid ? snapValue(v) : v);
+                    const type = selectedObject.type;
+                    if (f.kind === 'radial') {
+                        const v = sn(d0.x + delta);
+                        if (type === 'cylinder') { nd.x = nd.y = v; } else nd.set(v, v, v);
+                        ls.copy(f.localNormal).multiplyScalar((v - d0.x) / 2);
+                    } else if (f.kind === 'slope') {
+                        const nz = sn(d0.z + delta / f.localNormal.z), s = nz / d0.z;
+                        nd.z = nz; nd.y = d0.y * s;
+                        ls.set(0, -(nd.y - d0.y) / 2, (nz - d0.z) / 2);
+                    } else {
+                        nd[f.axis] = sn(d0[f.axis] + delta);
+                        ls.copy(f.localNormal).multiplyScalar((nd[f.axis] - d0[f.axis]) / 2);
+                    }
+                    const newPos = initialTransformPos.clone().add(ls.applyQuaternion(selectedObject.mesh.quaternion));
+                    selectedObject.mesh.position.copy(newPos);
+                    selectedObject.body.position.copy(newPos);
+                    updateObjectDimensions(selectedObject, nd);
+                }
+            }
+
+            updateInspector();
+        }
+
+        // Closest point on the face's normal axis to the mouse ray (distance along the outward normal).
+        function axisParam(f) {
+            const o = raycaster.ray.origin, r = raycaster.ray.direction, d = f.worldNormal, w = f.facePoint.clone().sub(o);
+            const b = d.dot(r), den = 1 - b * b;
+            if (den < 0.01) return null;
+            return (b * r.dot(w) - d.dot(w)) / den;
+        }
+
+        function boxFace(part, axis, s, wp) {
+            const h = { x: part.dimensions.x / 2, y: part.dimensions.y / 2, z: part.dimensions.z / 2 };
+            const o = { x: ['y', 'z'], y: ['x', 'z'], z: ['x', 'y'] }[axis];
+            const n = new THREE.Vector3(); n[axis] = s;
+            const poly = [[-1, -1], [1, -1], [1, 1], [-1, 1]].map(([u, v]) => {
+                const p = new THREE.Vector3(); p[axis] = s * h[axis]; p[o[0]] = u * h[o[0]]; p[o[1]] = v * h[o[1]];
+                return p.addScaledVector(n, 0.006);
+            });
+            return { part, kind: 'axis', axis, localNormal: n, poly, tris: [poly[0], poly[1], poly[2], poly[0], poly[2], poly[3]],
+                     worldNormal: n.clone().applyQuaternion(part.mesh.quaternion).normalize(), facePoint: wp.clone() };
+        }
+
+        function updateFaceHighlightOverlay(e) {
+            if (!faceHighlightMesh || interactionMode !== 'face' || isSimulating || isTransforming) {
+                if (faceHighlightMesh) faceHighlightMesh.visible = false;
+                return;
+            }
+            mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mousePos.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            raycaster.setFromCamera(mousePos, camera);
+            let best = null;
+            parts.forEach(p => {
+                p.mesh.updateMatrixWorld(true);
+                const r = raycaster.ray.clone().applyMatrix4(new THREE.Matrix4().copy(p.mesh.matrixWorld).invert());
+                const h = p.dimensions.clone().multiplyScalar(0.5);
+                const pt = r.intersectBox(new THREE.Box3(h.clone().negate(), h), new THREE.Vector3());
+                if (!pt) return;
+                const wp = pt.clone().applyMatrix4(p.mesh.matrixWorld), dist = wp.distanceTo(raycaster.ray.origin);
+                if (!best || dist < best.dist) best = { p, pt, h, wp, dist };
+            });
+            parts.forEach(p => { if (p.boxHelper) p.boxHelper.visible = p === selectedObject || extraSel.includes(p) || (best && p === best.p); });
+            if (!best) { faceHighlightMesh.visible = false; selectedFaceInfo = null; return; }
+            const q = best.pt, rx = Math.abs(q.x) / best.h.x, ry = Math.abs(q.y) / best.h.y, rz = Math.abs(q.z) / best.h.z;
+            const axis = rx >= ry && rx >= rz ? 'x' : ry >= rz ? 'y' : 'z';
+            const f = boxFace(best.p, axis, q[axis] >= 0 ? 1 : -1, best.wp);
+            const set = (o, arr) => { const a = o.geometry.attributes.position; arr.forEach((v, i) => a.setXYZ(i, v.x, v.y, v.z)); a.needsUpdate = true; o.geometry.setDrawRange(0, arr.length); };
+            set(faceHighlightMesh.children[0], f.tris); set(faceHighlightMesh.children[1], f.poly);
+            faceHighlightMesh.position.copy(best.p.mesh.position);
+            faceHighlightMesh.quaternion.copy(best.p.mesh.quaternion);
+            faceHighlightMesh.visible = true;
+            selectedFaceInfo = f;
+        }
+
+        function updateCameraPosition() {
+            cameraPhi = Math.max(0.01, Math.min(Math.PI - 0.01, cameraPhi));
+
+            camera.position.x = cameraTarget.x + cameraRadius * Math.sin(cameraPhi) * Math.cos(cameraTheta);
+            camera.position.y = cameraTarget.y + cameraRadius * Math.sin(cameraPhi) * Math.sin(cameraTheta);
+            camera.position.z = cameraTarget.z + cameraRadius * Math.cos(cameraPhi);
+            
+            camera.up.set(0, 0, 1);
+            camera.lookAt(cameraTarget);
+        }
+
+        function handleLeftClickSelect(e) {
+            if (isTransforming) {
+                confirmTransformation();
+                return;
+            }
+
+            // Joint two-click placement: click part A, then part B
+            if (jointPlacementMode) {
+                mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
+                mousePos.y = -(e.clientY / window.innerHeight) * 2 + 1;
+                raycaster.setFromCamera(mousePos, camera);
+                const targetMeshes = parts.map(p => p.mesh);
+                const intersects = raycaster.intersectObjects(targetMeshes, false);
+
+                if (intersects.length > 0) {
+                    const hitPart = intersects[0].object.userData.partObj;
+                    if (!jointPlacementPartA) {
+                        // First click: anchor part (A)
+                        jointPlacementPartA = hitPart;
+                        showToast(`Part A selected: "${hitPart.name}". Now click part B.`);
+                    } else if (hitPart !== jointPlacementPartA) {
+                        // Second click: other part (B) — create the joint
+                        createJointBetween(jointPlacementMode, jointPlacementPartA, hitPart);
+                        jointPlacementMode = null;
+                        jointPlacementPartA = null;
+                    } else {
+                        showToast("Part A and Part B must be different parts.");
+                    }
+                }
+                return;
+            }
+
+            mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
+            mousePos.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+            raycaster.setFromCamera(mousePos, camera);
+            const targetMeshes = parts.map(p => p.mesh);
+            const intersects = raycaster.intersectObjects(targetMeshes, false);
+
+            if (intersects.length > 0) {
+                const hitMesh = intersects[0].object;
+                if (e.shiftKey) toggleSelect(hitMesh.userData.partObj); else selectObject(hitMesh.userData.partObj);
+            } else if (!e.shiftKey) {
+                selectObject(null);
+            }
+        }
+
+        // parts that move together: glued parts only. Bearing partners are NOT dragged
+        // along, so each half of a bearing can be selected and moved independently.
+        function moveSet() {
+            const list = selectionList();
+            const s = new Set(list);
+            const stack = [...list];
+            while (stack.length) {
+                const c = stack.pop();
+                glues.forEach(g => {
+                    const nb = g.a === c ? g.b : g.b === c ? g.a : null;
+                    if (nb && !s.has(nb)) { s.add(nb); stack.push(nb); }
+                });
+            }
+            return [...s];
+        }
+        function selectionList() { return selectedObject ? [...extraSel, selectedObject] : []; }
+        function groupOfMany(list) { const s = new Set(); list.forEach(p => groupOf(p).forEach(x => s.add(x))); return [...s]; }
+        function setSelection(list) {
+            selectObject(list.length ? list[list.length - 1] : null);
+            extraSel = list.slice(0, -1);
+            extraSel.forEach(p => { p.mesh.material.emissive.setHex(0x1e293b); if (p.boxHelper) p.boxHelper.visible = true; });
+            if (list.length > 1) showToast(`${list.length} parts selected - move/rotate/delete act on all`);
+            updateOutliner(); updateInspector();
+        }
+        function toggleSelect(p) {
+            const list = selectionList(), i = list.indexOf(p);
+            if (i >= 0) list.splice(i, 1); else list.push(p);
+            setSelection(list);
+        }
+
+        function selectObject(partObj) {
+            extraSel.forEach(p => { if (p.mesh) { p.mesh.material.emissive.setHex(0x000000); if (p.boxHelper) p.boxHelper.visible = false; } });
+            extraSel = [];
+            selectedJoint = null;
+            if (selectedObject && selectedObject.mesh) {
+                selectedObject.mesh.material.emissive.setHex(0x000000);
+                if (selectedObject.boxHelper) selectedObject.boxHelper.visible = false;
+            }
+
+            selectedObject = partObj;
+
+            if (selectedObject) {
+                selectedObject.mesh.material.emissive.setHex(0x1e293b);
+                if (selectedObject.boxHelper) {
+                    selectedObject.boxHelper.visible = true;
+                    selectedObject.boxHelper.update();
+                }
+            }
+
+            updateOutliner();
+            updateInspector();
+        }
+
+        // Drag-select (marquee) state
+        let isMarquee = false;
+        let marqueeStart = { x: 0, y: 0 };
+        let marqueeCurrent = { x: 0, y: 0 };
+        const MARQUEE_THRESHOLD = 5;
+
+        // Marquee selection: project each part's world-space bounding box to screen and
+        // select the parts whose entire bounding box falls inside the drag rectangle.
+        function doMarqueeSelect(start, current, shiftKey) {
+            const x1 = Math.min(start.x, current.x);
+            const y1 = Math.min(start.y, current.y);
+            const x2 = Math.max(start.x, current.x);
+            const y2 = Math.max(start.y, current.y);
+
+            const selected = [];
+            const box3 = new THREE.Box3();
+            const corners = [
+                new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(),
+                new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()
+            ];
+
+            const camInverse = new THREE.Matrix4().getInverse(camera.matrixWorld);
+            parts.forEach(p => {
+                if (!p.mesh) return;
+                p.mesh.updateMatrixWorld();
+                box3.setFromObject(p.mesh);
+                const min = box3.min, max = box3.max;
+                corners[0].set(min.x, min.y, min.z);
+                corners[1].set(max.x, min.y, min.z);
+                corners[2].set(min.x, max.y, min.z);
+                corners[3].set(max.x, max.y, min.z);
+                corners[4].set(min.x, min.y, max.z);
+                corners[5].set(max.x, min.y, max.z);
+                corners[6].set(min.x, max.y, max.z);
+                corners[7].set(max.x, max.y, max.z);
+
+                let fullyInside = true;
+                for (const c of corners) {
+                    // World-space corner
+                    c.applyMatrix4(p.mesh.matrixWorld);
+                    // If the corner is behind the camera it can't be on-screen inside the box
+                    c.applyMatrix4(camInverse);
+                    if (c.z < 0) { fullyInside = false; break; }
+                    // Project to screen
+                    c.applyMatrix4(camera.projectionMatrix);
+                    if (c.w < 0) { fullyInside = false; break; }
+                    c.x /= c.w; c.y /= c.w;
+                    const sx = (c.x * 0.5 + 0.5) * window.innerWidth;
+                    const sy = (-(c.y * 0.5) + 0.5) * window.innerHeight;
+                    if (sx < x1 || sx > x2 || sy < y1 || sy > y2) {
+                        fullyInside = false;
+                        break;
+                    }
+                }
+                if (fullyInside) selected.push(p);
+            });
+
+            if (shiftKey) {
+                const merged = [...new Set([...selectionList(), ...selected])];
+                setSelection(merged);
+            } else {
+                setSelection(selected);
+            }
+        }
+
+        function setupEventListeners() {
+            const container = document.getElementById('canvas-container');
+
+            container.addEventListener('mousedown', (e) => {
+                if (e.button === 1) {
+                    if (e.shiftKey) isPanning = true;
+                    else isOrbiting = true;
+                    previousMousePosition = { x: e.clientX, y: e.clientY };
+                } else if (e.button === 0) {
+                    if (isTransforming) {
+                        // Left-click during a transform confirms the change (same as before marquee was added)
+                        handleLeftClickSelect(e);
+                    } else {
+                        // Start a potential marquee drag; the actual selection happens on mouseup
+                        // so we can distinguish a click from a drag.
+                        isMarquee = true;
+                        marqueeStart = { x: e.clientX, y: e.clientY };
+                        marqueeCurrent = { x: e.clientX, y: e.clientY };
+                        const mb = document.getElementById('marquee-box');
+                        mb.style.display = 'block';
+                        mb.style.left = e.clientX + 'px';
+                        mb.style.top = e.clientY + 'px';
+                        mb.style.width = '0px';
+                        mb.style.height = '0px';
+                    }
+                } else if (e.button === 2 && isTransforming) {
+                    cancelTransformation();
+                }
+            });
+
+            window.addEventListener('mouseup', (e) => {
+                isOrbiting = false;
+                isPanning = false;
+                if (e.button === 0 && isMarquee) {
+                    const dx = Math.abs(e.clientX - marqueeStart.x);
+                    const dy = Math.abs(e.clientY - marqueeStart.y);
+                    document.getElementById('marquee-box').style.display = 'none';
+                    isMarquee = false;
+                    if (dx > MARQUEE_THRESHOLD || dy > MARQUEE_THRESHOLD) {
+                        doMarqueeSelect(marqueeStart, marqueeCurrent, e.shiftKey);
+                    } else {
+                        handleLeftClickSelect(e);
+                    }
+                }
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                // Update the live marquee box while dragging with LMB.
+                if (isMarquee) {
+                    marqueeCurrent = { x: e.clientX, y: e.clientY };
+                    const mb = document.getElementById('marquee-box');
+                    const x = Math.min(marqueeStart.x, marqueeCurrent.x);
+                    const y = Math.min(marqueeStart.y, marqueeCurrent.y);
+                    const w = Math.abs(marqueeCurrent.x - marqueeStart.x);
+                    const h = Math.abs(marqueeCurrent.y - marqueeStart.y);
+                    mb.style.left = x + 'px';
+                    mb.style.top = y + 'px';
+                    mb.style.width = w + 'px';
+                    mb.style.height = h + 'px';
+                }
+
+                const deltaX = e.clientX - previousMousePosition.x;
+                const deltaY = e.clientY - previousMousePosition.y;
+
+                if (isOrbiting) {
+                    cameraTheta -= deltaX * 0.008;
+                    cameraPhi -= deltaY * 0.008;
+                    updateCameraPosition();
+                } else if (isPanning) {
+                    const panSpeed = 0.015;
+                    const right = new THREE.Vector3().crossVectors(camera.up, camera.getWorldDirection(new THREE.Vector3())).normalize();
+                    const up = camera.up;
+
+                    cameraTarget.addScaledVector(right, deltaX * panSpeed);
+                    cameraTarget.addScaledVector(up, deltaY * panSpeed);
+                    updateCameraPosition();
+                }
+
+                previousMousePosition = { x: e.clientX, y: e.clientY };
+
+                if (interactionMode === 'face' && !isTransforming) {
+                    updateFaceHighlightOverlay(e);
+                }
+            });
+
+            container.addEventListener('wheel', (e) => {
+                cameraRadius += e.deltaY * 0.01;
+                cameraRadius = Math.max(2, Math.min(100, cameraRadius));
+                updateCameraPosition();
+            });
+
+            container.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) return;
+
+                const key = e.key.toLowerCase();
+
+                if (keyCaptureField && selectedJoint) {
+                    e.preventDefault();
+                    selectedJoint[keyCaptureField] = e.key === 'Escape' ? '' : key;
+                    keyCaptureField = null; updateInspector();
+                    return;
+                }
+                if (e.ctrlKey && key === 'z' && !e.altKey) {
+                    if (e.shiftKey) { e.preventDefault(); redo(); } else { e.preventDefault(); undo(); }
+                    return;
+                }
+                if (key === 'escape' && jointPlacementMode) {
+                    e.preventDefault();
+                    jointPlacementMode = null;
+                    jointPlacementPartA = null;
+                    showToast("Joint placement cancelled.");
+                    return;
+                }
+                if (isSimulating) {
+                    let hit = false;
+                    joints.forEach(j => {
+                        if (j.type === 'bearing' && j.mode === 'servo') [[j.k1, 1], [j.k2, 2]].forEach(([k, n]) => {
+                            if (k && key === k) { hit = true; if (!j.held.includes(n)) j.held.push(n); }
+                        });
+                            if (j.type === 'bearing' && j.mode === 'motor') [[j.mKey1, 1], [j.mKey2, 2]].forEach(([k, n]) => {
+                                if (k && key === k) { hit = true; j.mActive = n; }
+                            });
+                    });
+                    if (hit) { e.preventDefault(); return; }
+                }
+                if (key === 'r' && simStarted && !isSimulating && !isTransforming) {
+                    resetPhysics(); showToast('Simulation reset');
+                    return;
+                }
+
+                if (e.shiftKey && key === 'a') {
+                    e.preventDefault();
+                    openAddMenuAtMouse();
+                } else if (e.shiftKey && e.key === 'Tab') {
+                    e.preventDefault();
+                    snapToGrid = !snapToGrid;
+                    showToast(snapToGrid ? "Grid Snapping: ENABLED" : "Grid Snapping: DISABLED");
+                } else if (e.key === 'Tab') {
+                    e.preventDefault();
+                    setInteractionMode(interactionMode === 'object' ? 'face' : 'object');
+                } else if (e.code === 'Space') {
+                    e.preventDefault();
+                    toggleSimulation();
+                } else if (key === 'g') {
+                    if (interactionMode === 'face' && selectedFaceInfo) {
+                        selectObject(selectedFaceInfo.part);
+                        startTransformation('extrude');
+                    } else if (selectedObject) {
+                        startTransformation('translate');
+                    }
+                } else if (isTransforming) {
+                    if (key === 'x') setLockedAxis(e.shiftKey ? 'shiftX' : 'x');
+                    else if (key === 'y') setLockedAxis(e.shiftKey ? 'shiftY' : 'y');
+                    else if (key === 'z') setLockedAxis(e.shiftKey ? 'shiftZ' : 'z');
+                    else if (e.key === 'Enter') confirmTransformation();
+                    else if (e.key === 'Escape') cancelTransformation();
+                } else if (selectedJoint && !isTransforming) {
+                    if (key === 'delete' || key === 'x') removeJoint(selectedJoint);
+                } else if (selectedObject && !isTransforming) {
+                    if (key === 'r') rotateSelectedObject('x', e.shiftKey ? -Math.PI / 2 : Math.PI / 2);
+                    else if (key === 't') rotateSelectedObject('y', e.shiftKey ? -Math.PI / 2 : Math.PI / 2);
+                    else if (key === 'y') rotateSelectedObject('z', e.shiftKey ? -Math.PI / 2 : Math.PI / 2);
+                    else if (key === 'delete' || key === 'x') deleteSelectedObject();
+                }
+                
+                if (e.code === 'Numpad1') alignCameraView('front');
+                if (e.code === 'Numpad3') alignCameraView('right');
+                if (e.code === 'Numpad7') alignCameraView('top');
+                if (e.code === 'Numpad0' || e.code === 'NumpadDecimal') resetCameraFocus();
+            });
+
+            window.addEventListener('keyup', (e) => {
+                const key = e.key.toLowerCase();
+                joints.forEach(j => { 
+                    if (j.held) { if (key === j.k1) j.held = j.held.filter(n => n !== 1); if (key === j.k2) j.held = j.held.filter(n => n !== 2); }
+                    if ((j.mKey1 && key === j.mKey1) || (j.mKey2 && key === j.mKey2)) j.mActive = 0;
+                });
+            });
+            window.addEventListener('blur', () => joints.forEach(j => { j.held = []; }));
+
+            window.addEventListener('click', (e) => {
+                const addMenu = document.getElementById('add-menu');
+                if (!addMenu.contains(e.target)) {
+                    addMenu.classList.add('hidden');
+                }
+            });
+        }
+
+        function updateObjectDimensions(partObj, newDimensions) {
+            pushUndo();
+            partObj.dimensions.copy(newDimensions);
+
+            partObj.mesh.geometry.dispose();
+            partObj.mesh.geometry = makeGeometry(partObj.type, newDimensions);
+
+            if (partObj.bboxMesh) {
+                partObj.bboxMesh.geometry.dispose();
+                partObj.bboxMesh.geometry = new THREE.BoxGeometry(newDimensions.x, newDimensions.y, newDimensions.z);
+            }
+
+            if (partObj.boxHelper) {
+                partObj.boxHelper.geometry.dispose(); partObj.boxHelper.geometry = new THREE.EdgesGeometry(new THREE.BoxGeometry(newDimensions.x, newDimensions.y, newDimensions.z));
+            }
+
+            partObj.body.shapes.length = 0; partObj.body.shapeOffsets.length = 0; partObj.body.shapeOrientations.length = 0;
+            partObj.body.addShape(makeShape(partObj.type, newDimensions));
+            partObj.body.computeAABB();
+        }
+
+        function rotateSelectedObject(axis, angle) {
+            if (!selectedObject) return;
+            pushUndo();
+
+            const q = new THREE.Quaternion();
+            if (axis === 'x') q.setFromAxisAngle(new THREE.Vector3(1, 0, 0), angle);
+            if (axis === 'y') q.setFromAxisAngle(new THREE.Vector3(0, 1, 0), angle);
+            if (axis === 'z') q.setFromAxisAngle(new THREE.Vector3(0, 0, 1), angle);
+
+            const pivot = selectedObject.mesh.position.clone(), grp = moveSet();
+            grp.forEach(p => {
+                const np = pivot.clone().add(p.mesh.position.clone().sub(pivot).applyQuaternion(q));
+                p.mesh.position.copy(np); p.body.position.copy(np);
+                p.mesh.quaternion.premultiply(q); p.body.quaternion.copy(p.mesh.quaternion);
+                p.initialPos.copy(np); p.initialQuat.copy(p.mesh.quaternion);
+            });
+            refreshGlue(grp);
+
+            updateInspector();
+            showToast(`Rotated 90° on ${axis.toUpperCase()} Axis`);
+        }
+
+        function openAddMenuAtMouse() {
+            const menu = document.getElementById('add-menu');
+            menu.style.left = `${Math.min(currentMouseScreenPos.x, window.innerWidth - 220)}px`;
+            menu.style.top = `${Math.min(currentMouseScreenPos.y, window.innerHeight - 300)}px`;
+            menu.classList.remove('hidden');
+        }
+
+        function openAddMenuAtCenter() {
+            currentMouseScreenPos.set(window.innerWidth / 2, window.innerHeight / 2);
+            openAddMenuAtMouse();
+        }
+
+        function toggleSimulation() {
+            isSimulating = !isSimulating;
+            const playIcon = document.getElementById('sim-play-icon');
+            const playText = document.getElementById('sim-play-text');
+            const playBtn = document.getElementById('sim-play-btn');
+
+            if (isSimulating) {
+                if (!simStarted) {
+                    joints.forEach(j => buildJoint(j));
+                    clearWelds();
+                    detectGlues();
+                    glues.forEach(g => weld(g.a, g.b));
+                    if (glues.length) showToast(`${glues.length} touching pair(s) attached for the simulation`);
+                    simStarted = true;
+                }
+                playIcon.className = "fa-solid fa-pause";
+                playText.innerText = "Pause [Space]";
+                playBtn.className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-amber-600 hover:bg-amber-500 text-white shadow";
+                
+                parts.forEach(p => {
+                    if (!p.isAnchored) p.body.type = CANNON.Body.DYNAMIC;
+                });
+            } else {
+                playIcon.className = "fa-solid fa-play";
+                playText.innerText = simStarted ? "Resume [Space] | R = Reset" : "Simulate [Space]";
+                playBtn.className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow";
+            }
+        }
+
+        function resetPhysics() {
+            isSimulating = false;
+            simStarted = false;
+            clearWelds(); glues = [];
+            document.getElementById('sim-play-icon').className = "fa-solid fa-play";
+            document.getElementById('sim-play-text').innerText = "Simulate [Space]";
+            document.getElementById('sim-play-btn').className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow";
+
+            parts.forEach(p => {
+                p.body.velocity.set(0, 0, 0);
+                p.body.angularVelocity.set(0, 0, 0);
+                p.body.force.set(0, 0, 0); p.body.torque.set(0, 0, 0);
+                
+                p.mesh.position.copy(p.initialPos);
+                p.mesh.quaternion.copy(p.initialQuat);
+                p.body.position.copy(p.initialPos);
+                p.body.quaternion.copy(p.initialQuat);
+
+                if (p.dimensions && !p.dimensions.equals(p.initialDim)) {
+                    updateObjectDimensions(p, p.initialDim.clone());
+                }
+
+                if (p.boxHelper) p.boxHelper.update();
+            });
+            showToast("Physics simulation reset.");
+        }
+
+        function deleteSelectedObject() {
+            pushUndo();
+            const list = selectionList();
+            if (!list.length) return;
+            list.forEach(p => {
+                joints.filter(j => j.a === p || j.b === p).forEach(removeJoint);
+                dropWeldsFor(p);
+                scene.remove(p.mesh);
+                if (p.boxHelper) scene.remove(p.boxHelper);
+                world.remove(p.body);
+            });
+            parts = parts.filter(p => !list.includes(p));
+            extraSel = []; selectedObject = null;
+
+            updateOutliner();
+            updateInspector();
+            showToast(list.length > 1 ? `${list.length} objects deleted.` : "Object deleted.");
+        }
+
+        function updateOutliner() {
+            const container = document.getElementById('outliner-list');
+            if (parts.length === 0 && joints.length === 0) {
+                container.innerHTML = `<div class="text-slate-500 italic text-center py-4">No objects in scene</div>`;
+                return;
+            }
+
+            let html = '';
+
+            parts.forEach(p => {
+                const isSel = selectedObject === p || extraSel.includes(p);
+                html += `
+                    <div onclick="selectObjectById('${p.id}', event)" class="flex items-center justify-between px-2.5 py-1.5 rounded cursor-pointer transition ${isSel ? 'bg-blue-600/30 border border-blue-500/50 text-white' : 'hover:bg-slate-800 text-slate-300'}">
+                        <div class="flex items-center space-x-2 truncate">
+                            <i class="fa-solid fa-cube text-blue-400 text-xs"></i>
+                            <span class="truncate">${p.name}</span>
+                        </div>
+                        <span class="text-[10px] text-slate-500 uppercase">${p.type}</span>
+                    </div>
+                `;
+            });
+
+            joints.forEach(j => {
+                html += `
+                    <div onclick="selectJointById('${j.id}')" class="flex items-center justify-between px-2.5 py-1.5 rounded cursor-pointer border ${selectedJoint === j ? 'bg-emerald-600/30 border-emerald-500/50 text-white' : 'text-slate-400 bg-slate-950/40 border-slate-800'}">
+                        <div class="flex items-center space-x-2 truncate">
+                            <i class="fa-solid fa-link text-emerald-400 text-xs"></i>
+                            <span class="truncate">${j.name}</span>
+                        </div>
+                        <span class="text-[10px] text-emerald-500/80 uppercase">Joint</span>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function selectObjectById(id, ev) {
+            const found = parts.find(p => p.id === id);
+            if (found) { if (ev && ev.shiftKey) toggleSelect(found); else selectObject(found); }
+        }
+
+        function updateInspector() {
+            const container = document.getElementById('inspector-content');
+            if (selectedJoint) { container.innerHTML = jointInspectorHTML(selectedJoint); return; }
+
+            if (!selectedObject) {
+                container.innerHTML = `<div class="text-slate-500 italic text-center py-6">Select an object to inspect properties</div>`;
+                return;
+            }
+
+            const p = selectedObject;
+            const pos = p.mesh.position;
+            const dim = p.dimensions;
+
+            container.innerHTML = `
+                <div class="space-y-3">
+                    <div>
+                        <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Object Name</label>
+                        <input type="text" value="${p.name}" onchange="selectedObject.name=this.value; updateOutliner();" class="w-full blender-input" />
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Position (X, Y, Z)</label>
+                        <div class="grid grid-cols-3 gap-1">
+                            <input type="number" step="0.5" value="${pos.x.toFixed(2)}" onchange="updatePos('x', this.value)" class="blender-input text-center" />
+                            <input type="number" step="0.5" value="${pos.y.toFixed(2)}" onchange="updatePos('y', this.value)" class="blender-input text-center" />
+                            <input type="number" step="0.5" value="${pos.z.toFixed(2)}" onchange="updatePos('z', this.value)" class="blender-input text-center" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Dimensions (W, L, H)</label>
+                        <div class="grid grid-cols-3 gap-1">
+                            <input type="number" step="0.5" min="0.1" value="${dim.x.toFixed(2)}" onchange="updateDim('x', this.value)" class="blender-input text-center" />
+                            <input type="number" step="0.5" min="0.1" value="${dim.y.toFixed(2)}" onchange="updateDim('y', this.value)" class="blender-input text-center" />
+                            <input type="number" step="0.5" min="0.1" value="${dim.z.toFixed(2)}" onchange="updateDim('z', this.value)" class="blender-input text-center" />
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-2 border-t border-slate-800">
+                        <span class="text-xs font-medium text-slate-300">Anchor In Physics World</span>
+                        <input type="checkbox" ${p.isAnchored ? 'checked' : ''} onchange="toggleAnchor(this.checked)" class="h-4 w-4 rounded accent-blue-600 bg-slate-900 border-slate-700" />
+                    </div>
+
+                    ${glues.some(g => g.a === p || g.b === p) ? `<button onclick="detachSelected()" class="w-full mt-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition font-semibold text-xs"><i class="fa-solid fa-link-slash mr-1"></i>Detach from attached parts</button>` : ''}
+                    <button onclick="deleteSelectedObject()" class="w-full mt-2 py-1.5 rounded bg-red-600/20 hover:bg-red-600 border border-red-500/30 hover:border-red-500 text-red-300 hover:text-white transition font-semibold text-xs flex items-center justify-center space-x-1">
+                        <i class="fa-solid fa-trash-can"></i>
+                        <span>Delete Object</span>
+                    </button>
+                </div>
+            `;
+        }
+
+        function updatePos(axis, val) {
+            if (!selectedObject) return;
+            const dv = parseFloat(val) - selectedObject.mesh.position[axis], grp = moveSet();
+            grp.forEach(p => { p.mesh.position[axis] += dv; p.body.position[axis] += dv; p.initialPos[axis] = p.mesh.position[axis]; });
+            refreshGlue(grp);
+        }
+
+        function updateDim(axis, val) {
+            if (!selectedObject) return;
+            const newDim = selectedObject.dimensions.clone();
+            newDim[axis] = Math.max(0.1, parseFloat(val));
+            updateObjectDimensions(selectedObject, newDim);
+            selectedObject.initialDim.copy(newDim);
+            refreshGlue([selectedObject]);
+        }
+
+        function toggleAnchor(checked) {
+            if (!selectedObject) return;
+            selectionList().forEach(p => {
+                p.isAnchored = checked;
+                p.body.mass = checked ? 0 : p.dimensions.x * p.dimensions.y * p.dimensions.z;
+                p.body.updateMassProperties();
+                p.body.type = checked ? CANNON.Body.STATIC : CANNON.Body.DYNAMIC;
+                p.body.velocity.set(0, 0, 0);
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.className = "fixed bottom-4 left-4 z-50 bg-slate-900/90 text-slate-200 border border-slate-700 px-3.5 py-2 rounded-lg shadow-xl text-xs backdrop-blur-md transition-all duration-300 opacity-0 transform translate-y-2";
+            toast.innerText = msg;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-2');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const now = performance.now(), dt = Math.min(0.1, (now - (lastT || now)) / 1000); lastT = now;
+
+            if (isSimulating) {
+                simAcc += dt;
+                while (simAcc >= 1 / 60) { world.step(1 / 60); simAcc -= 1 / 60; }
+
+                parts.forEach(p => {
+                    p.mesh.position.copy(p.body.position);
+                    p.mesh.quaternion.copy(p.body.quaternion);
+                });
+            }
+
+            updateJointVisuals();
+
+            if (gizmoCamera && camera) {
+                gizmoCamera.quaternion.copy(camera.quaternion);
+                gizmoRenderer.render(gizmoScene, gizmoCamera);
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
