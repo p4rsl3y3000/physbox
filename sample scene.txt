@@ -505,6 +505,374 @@
       },
       "isAnchored": false,
       "color": 3900150
+    },
+    {
+      "id": "part_1792734631862_720",
+      "name": "Block 23",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 11.5,
+        "y": 15,
+        "z": 1
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734636299_85",
+      "name": "Block 23 copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 10.5,
+        "y": 12,
+        "z": 1
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734640859_71",
+      "name": "Block 23 copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 9,
+        "y": 15.5,
+        "z": 1
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734640860_273",
+      "name": "Block 23 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 8,
+        "y": 12.5,
+        "z": 1
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734656467_187",
+      "name": "Block 23 copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 11.5,
+        "y": 15,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734656468_272",
+      "name": "Block 23 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 10.5,
+        "y": 12,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734656469_73",
+      "name": "Block 23 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 9,
+        "y": 15.5,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734656469_834",
+      "name": "Block 23 copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 8,
+        "y": 12.5,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734659651_973",
+      "name": "Block 23 copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 7.5,
+        "y": 18,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734659652_265",
+      "name": "Block 23 copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 6.5,
+        "y": 15,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734659653_886",
+      "name": "Block 23 copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 5,
+        "y": 18.5,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734659653_444",
+      "name": "Block 23 copy copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 4,
+        "y": 15.5,
+        "z": 4
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734665245_914",
+      "name": "Block 23 copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 9,
+        "y": 17,
+        "z": 7
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734665245_517",
+      "name": "Block 23 copy copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 8,
+        "y": 14,
+        "z": 7
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734665246_496",
+      "name": "Block 23 copy copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 6.5,
+        "y": 17.5,
+        "z": 7
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
+    },
+    {
+      "id": "part_1792734665247_866",
+      "name": "Block 23 copy copy copy copy copy",
+      "type": "block",
+      "dimensions": {
+        "x": 2,
+        "y": 2,
+        "z": 2
+      },
+      "position": {
+        "x": 5.5,
+        "y": 14.5,
+        "z": 7
+      },
+      "quaternion": {
+        "x": 0,
+        "y": 0,
+        "z": 0,
+        "w": 1
+      },
+      "isAnchored": false,
+      "color": 3900150
     }
   ],
   "joints": [
@@ -552,18 +920,19 @@
         "_z": 0,
         "_w": 0.7071067811865476
       },
-      "lastRaw": -0.0018780182680774192,
-      "angUnw": -0.0018780182680775302,
+      "lastRaw": 0.00014790892544646881,
+      "angUnw": 0.00014790892544646795,
       "holdAng": 0,
       "held": [],
       "axle": {
-        "__ref": 75
+        "__ref": 77
       },
       "vis": {
-        "__ref": 74
+        "__ref": 76
       },
+      "freeIdle": true,
       "constraint": {
-        "__ref": 66
+        "__ref": 46
       }
     },
     {
@@ -610,18 +979,19 @@
         "_z": 0,
         "_w": 1
       },
-      "lastRaw": 0.01026446154927068,
-      "angUnw": 0.010264461549270671,
+      "lastRaw": 0.0033365202588481304,
+      "angUnw": 0.0033365202588481304,
       "holdAng": 0,
       "held": [],
       "axle": {
-        "__ref": 77
+        "__ref": 79
       },
       "vis": {
-        "__ref": 76
+        "__ref": 78
       },
+      "freeIdle": false,
       "constraint": {
-        "__ref": 67
+        "__ref": 47
       }
     },
     {
@@ -665,17 +1035,17 @@
       },
       "name": "Spring 3",
       "line": {
-        "__ref": 79
+        "__ref": 81
       },
       "vis": {
-        "__ref": 78
+        "__ref": 80
       },
       "held": [],
       "constraint": {
-        "__ref": 68
+        "__ref": 48
       },
       "lockConstraint": {
-        "__ref": 69
+        "__ref": 49
       }
     },
     {
@@ -720,20 +1090,21 @@
         "_z": 4.598694340586186e-17,
         "_w": 0.7071067811865476
       },
-      "lastRaw": 0.001634731591300176,
-      "angUnw": 0.001634731591300287,
+      "lastRaw": -0.00018930467822630672,
+      "angUnw": -0.00018930467822630672,
       "holdAng": 0,
       "mActive": 0,
       "name": "axle copy",
       "held": [],
       "axle": {
-        "__ref": 81
+        "__ref": 83
       },
       "vis": {
-        "__ref": 80
+        "__ref": 82
       },
+      "freeIdle": true,
       "constraint": {
-        "__ref": 70
+        "__ref": 50
       }
     },
     {
@@ -778,20 +1149,21 @@
         "_z": 0,
         "_w": 1
       },
-      "lastRaw": -0.010175406240622277,
-      "angUnw": -0.010175406240622277,
+      "lastRaw": -0.004516219474932895,
+      "angUnw": -0.004516219474932895,
       "holdAng": 0,
       "mActive": 0,
       "name": "turn r fwd ",
       "held": [],
       "axle": {
-        "__ref": 83
+        "__ref": 85
       },
       "vis": {
-        "__ref": 82
+        "__ref": 84
       },
+      "freeIdle": false,
       "constraint": {
-        "__ref": 71
+        "__ref": 51
       }
     },
     {
@@ -835,17 +1207,17 @@
       },
       "name": "Spring 3 copy",
       "line": {
-        "__ref": 85
+        "__ref": 87
       },
       "vis": {
-        "__ref": 84
+        "__ref": 86
       },
       "held": [],
       "constraint": {
-        "__ref": 72
+        "__ref": 52
       },
       "lockConstraint": {
-        "__ref": 73
+        "__ref": 53
       }
     },
     {
@@ -890,20 +1262,21 @@
         "_z": 0,
         "_w": 0.7071067811865476
       },
-      "lastRaw": -0.006662446662360993,
-      "angUnw": -0.006662446662361104,
+      "lastRaw": -0.00017394422798221144,
+      "angUnw": -0.00017394422798221014,
       "holdAng": 0,
       "mActive": 0,
       "name": "axle copy",
       "held": [],
       "axle": {
-        "__ref": 87
+        "__ref": 89
       },
       "vis": {
-        "__ref": 86
+        "__ref": 88
       },
+      "freeIdle": true,
       "constraint": {
-        "__ref": 74
+        "__ref": 54
       }
     },
     {
@@ -948,20 +1321,21 @@
         "_z": 4.598694340586186e-17,
         "_w": 0.7071067811865476
       },
-      "lastRaw": 0.006930131145187407,
-      "angUnw": -6.276255176034379,
+      "lastRaw": 0.00045927693553691394,
+      "angUnw": 0.0004592769355369122,
       "holdAng": 0,
       "mActive": 0,
       "name": "axle copy copy",
       "held": [],
       "axle": {
-        "__ref": 89
+        "__ref": 91
       },
       "vis": {
-        "__ref": 88
+        "__ref": 90
       },
+      "freeIdle": true,
       "constraint": {
-        "__ref": 75
+        "__ref": 55
       }
     },
     {
@@ -1005,17 +1379,17 @@
       },
       "name": "Spring 9",
       "line": {
-        "__ref": 91
+        "__ref": 93
       },
       "vis": {
-        "__ref": 90
+        "__ref": 92
       },
       "held": [],
       "constraint": {
-        "__ref": 76
+        "__ref": 56
       },
       "lockConstraint": {
-        "__ref": 77
+        "__ref": 57
       }
     },
     {
@@ -1059,17 +1433,17 @@
       },
       "name": "Spring 10",
       "line": {
-        "__ref": 93
+        "__ref": 95
       },
       "vis": {
-        "__ref": 92
+        "__ref": 94
       },
       "held": [],
       "constraint": {
-        "__ref": 78
+        "__ref": 58
       },
       "lockConstraint": {
-        "__ref": 79
+        "__ref": 59
       }
     },
     {
@@ -1097,14 +1471,14 @@
       "len": 9,
       "name": "Rope 11",
       "line": {
-        "__ref": 95
+        "__ref": 97
       },
       "vis": {
-        "__ref": 94
+        "__ref": 96
       },
       "held": [],
       "constraint": {
-        "__ref": 80
+        "__ref": 60
       }
     },
     {
@@ -1132,14 +1506,14 @@
       "len": 6,
       "name": "Rope 12",
       "line": {
-        "__ref": 97
+        "__ref": 99
       },
       "vis": {
-        "__ref": 96
+        "__ref": 98
       },
       "held": [],
       "constraint": {
-        "__ref": 81
+        "__ref": 61
       }
     },
     {
@@ -1166,15 +1540,16 @@
       },
       "len": 5,
       "name": "Rope 13",
-      "constraint": {
-        "__ref": 82
-      },
       "line": {
-        "__ref": 99
+        "__ref": 101
       },
       "vis": {
-        "__ref": 98
-      }
+        "__ref": 100
+      },
+      "constraint": {
+        "__ref": 62
+      },
+      "held": []
     },
     {
       "id": "joint_1792702987420416",
@@ -1216,15 +1591,16 @@
         "z": -0.317999364001908
       },
       "name": "Spring 14",
-      "constraint": {
-        "__ref": 83
-      },
       "line": {
         "__ref": 103
       },
       "vis": {
         "__ref": 102
-      }
+      },
+      "constraint": {
+        "__ref": 63
+      },
+      "held": []
     }
   ],
   "glues": [],
