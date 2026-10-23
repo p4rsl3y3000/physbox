@@ -507,29 +507,6 @@
       "color": 3900150
     },
     {
-      "id": "part_1792734631862_720",
-      "name": "Block 23",
-      "type": "block",
-      "dimensions": {
-        "x": 2,
-        "y": 2,
-        "z": 2
-      },
-      "position": {
-        "x": 11.5,
-        "y": 15,
-        "z": 1
-      },
-      "quaternion": {
-        "x": 0,
-        "y": 0,
-        "z": 0,
-        "w": 1
-      },
-      "isAnchored": false,
-      "color": 3900150
-    },
-    {
       "id": "part_1792734636299_85",
       "name": "Block 23 copy",
       "type": "block",
@@ -550,7 +527,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 4674921
     },
     {
       "id": "part_1792734640859_71",
@@ -573,7 +550,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 16347926
     },
     {
       "id": "part_1792734640860_273",
@@ -596,7 +573,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 11032055
     },
     {
       "id": "part_1792734656467_187",
@@ -619,7 +596,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 15680580
     },
     {
       "id": "part_1792734656468_272",
@@ -642,7 +619,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 14870768
     },
     {
       "id": "part_1792734656469_73",
@@ -665,7 +642,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 4674921
     },
     {
       "id": "part_1792734656469_834",
@@ -688,7 +665,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 2278750
     },
     {
       "id": "part_1792734659651_973",
@@ -734,7 +711,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 15381256
     },
     {
       "id": "part_1792734659653_886",
@@ -780,7 +757,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 2278750
     },
     {
       "id": "part_1792734665245_914",
@@ -803,7 +780,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 14870768
     },
     {
       "id": "part_1792734665245_517",
@@ -826,7 +803,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 11032055
     },
     {
       "id": "part_1792734665246_496",
@@ -849,7 +826,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 15680580
     },
     {
       "id": "part_1792734665247_866",
@@ -872,7 +849,7 @@
         "w": 1
       },
       "isAnchored": false,
-      "color": 3900150
+      "color": 16347926
     }
   ],
   "joints": [
@@ -920,15 +897,15 @@
         "_z": 0,
         "_w": 0.7071067811865476
       },
-      "lastRaw": 0.00014790892544646881,
-      "angUnw": 0.00014790892544646795,
+      "lastRaw": 0.05169246704071129,
+      "angUnw": -6.231492840138916,
       "holdAng": 0,
       "held": [],
       "axle": {
-        "__ref": 77
+        "__ref": 109
       },
       "vis": {
-        "__ref": 76
+        "__ref": 108
       },
       "freeIdle": true,
       "constraint": {
@@ -979,15 +956,15 @@
         "_z": 0,
         "_w": 1
       },
-      "lastRaw": 0.0033365202588481304,
-      "angUnw": 0.0033365202588481304,
-      "holdAng": 0,
+      "lastRaw": -0.9978793686473676,
+      "angUnw": -0.9978793686473676,
+      "holdAng": -0.9742151478647982,
       "held": [],
       "axle": {
-        "__ref": 79
+        "__ref": 111
       },
       "vis": {
-        "__ref": 78
+        "__ref": 110
       },
       "freeIdle": false,
       "constraint": {
@@ -1035,10 +1012,10 @@
       },
       "name": "Spring 3",
       "line": {
-        "__ref": 81
+        "__ref": 113
       },
       "vis": {
-        "__ref": 80
+        "__ref": 112
       },
       "held": [],
       "constraint": {
@@ -1090,17 +1067,17 @@
         "_z": 4.598694340586186e-17,
         "_w": 0.7071067811865476
       },
-      "lastRaw": -0.00018930467822630672,
-      "angUnw": -0.00018930467822630672,
+      "lastRaw": -0.009874290131065916,
+      "angUnw": 18.839681631407633,
       "holdAng": 0,
       "mActive": 0,
       "name": "axle copy",
       "held": [],
       "axle": {
-        "__ref": 83
+        "__ref": 115
       },
       "vis": {
-        "__ref": 82
+        "__ref": 114
       },
       "freeIdle": true,
       "constraint": {
@@ -1149,17 +1126,17 @@
         "_z": 0,
         "_w": 1
       },
-      "lastRaw": -0.004516219474932895,
-      "angUnw": -0.004516219474932895,
-      "holdAng": 0,
+      "lastRaw": -0.254474094499044,
+      "angUnw": -0.254474094499044,
+      "holdAng": -0.3188041051027837,
       "mActive": 0,
       "name": "turn r fwd ",
       "held": [],
       "axle": {
-        "__ref": 85
+        "__ref": 117
       },
       "vis": {
-        "__ref": 84
+        "__ref": 116
       },
       "freeIdle": false,
       "constraint": {
@@ -1207,10 +1184,10 @@
       },
       "name": "Spring 3 copy",
       "line": {
-        "__ref": 87
+        "__ref": 119
       },
       "vis": {
-        "__ref": 86
+        "__ref": 118
       },
       "held": [],
       "constraint": {
@@ -1262,17 +1239,17 @@
         "_z": 0,
         "_w": 0.7071067811865476
       },
-      "lastRaw": -0.00017394422798221144,
-      "angUnw": -0.00017394422798221014,
+      "lastRaw": -0.005403497914272809,
+      "angUnw": -0.005403497914275917,
       "holdAng": 0,
       "mActive": 0,
       "name": "axle copy",
       "held": [],
       "axle": {
-        "__ref": 89
+        "__ref": 121
       },
       "vis": {
-        "__ref": 88
+        "__ref": 120
       },
       "freeIdle": true,
       "constraint": {
@@ -1321,17 +1298,17 @@
         "_z": 4.598694340586186e-17,
         "_w": 0.7071067811865476
       },
-      "lastRaw": 0.00045927693553691394,
-      "angUnw": 0.0004592769355369122,
+      "lastRaw": 0.0059669481630249144,
+      "angUnw": -37.69314489491433,
       "holdAng": 0,
       "mActive": 0,
       "name": "axle copy copy",
       "held": [],
       "axle": {
-        "__ref": 91
+        "__ref": 123
       },
       "vis": {
-        "__ref": 90
+        "__ref": 122
       },
       "freeIdle": true,
       "constraint": {
@@ -1379,10 +1356,10 @@
       },
       "name": "Spring 9",
       "line": {
-        "__ref": 93
+        "__ref": 125
       },
       "vis": {
-        "__ref": 92
+        "__ref": 124
       },
       "held": [],
       "constraint": {
@@ -1433,10 +1410,10 @@
       },
       "name": "Spring 10",
       "line": {
-        "__ref": 95
+        "__ref": 127
       },
       "vis": {
-        "__ref": 94
+        "__ref": 126
       },
       "held": [],
       "constraint": {
@@ -1471,10 +1448,10 @@
       "len": 9,
       "name": "Rope 11",
       "line": {
-        "__ref": 97
+        "__ref": 129
       },
       "vis": {
-        "__ref": 96
+        "__ref": 128
       },
       "held": [],
       "constraint": {
@@ -1506,10 +1483,10 @@
       "len": 6,
       "name": "Rope 12",
       "line": {
-        "__ref": 99
+        "__ref": 131
       },
       "vis": {
-        "__ref": 98
+        "__ref": 130
       },
       "held": [],
       "constraint": {
@@ -1541,15 +1518,15 @@
       "len": 5,
       "name": "Rope 13",
       "line": {
-        "__ref": 101
+        "__ref": 133
       },
       "vis": {
-        "__ref": 100
+        "__ref": 132
       },
+      "held": [],
       "constraint": {
         "__ref": 62
-      },
-      "held": []
+      }
     },
     {
       "id": "joint_1792702987420416",
@@ -1592,15 +1569,15 @@
       },
       "name": "Spring 14",
       "line": {
-        "__ref": 103
+        "__ref": 135
       },
       "vis": {
-        "__ref": 102
+        "__ref": 134
       },
+      "held": [],
       "constraint": {
         "__ref": 63
-      },
-      "held": []
+      }
     }
   ],
   "glues": [],
