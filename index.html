@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>physBox</title>
-    <!-- Tailwind CSS (precompiled, no CDN) -->
-    <style id="tailwind-compiled">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.pointer-events-auto{pointer-events:auto}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.bottom-4{bottom:1rem}.left-1{left:.25rem}.left-1\/2{left:50%}.left-4{left:1rem}.top-4{top:1rem}.z-10{z-index:10}.z-50{z-index:50}.m-3{margin:.75rem}.mx-1{margin-left:.25rem;margin-right:.25rem}.my-1{margin-top:.25rem}.mb-1,.my-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.ml-auto{margin-left:auto}.mr-1{margin-right:.25rem}.mr-2{margin-right:.5rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-2\.5{margin-top:.625rem}.block{display:block}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-4{height:1rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-px{height:1px}.h-screen{height:100vh}.max-h-\[220px\]{max-height:220px}.min-h-\[140px\]{min-height:140px}.w-10{width:2.5rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-52{width:13rem}.w-64{width:16rem}.w-80{width:20rem}.w-full{width:100%}.w-px{width:1px}.w-screen{width:100vw}.flex-1{flex:1 1 0%}.-translate-x-1{--tw-translate-x:-0.25rem}.-translate-x-1,.-translate-x-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-x-1\/2{--tw-translate-x:-50%}.translate-y-2{--tw-translate-y:0.5rem}.-rotate-90,.translate-y-2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-90{--tw-rotate:-90deg}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-1\.5>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.375rem*var(--tw-space-x-reverse));margin-left:calc(.375rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem*var(--tw-space-x-reverse));margin-left:calc(.75rem*(1 - var(--tw-space-x-reverse)))}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:.5rem}.rounded-md{border-radius:.375rem}.rounded-xl{border-radius:.75rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-blue-500{--tw-border-opacity:1;border-color:rgb(59 130 246/var(--tw-border-opacity,1))}.border-blue-500\/50{border-color:rgba(59,130,246,.5)}.border-emerald-500{--tw-border-opacity:1;border-color:rgb(16 185 129/var(--tw-border-opacity,1))}.border-emerald-500\/50{border-color:rgba(16,185,129,.5)}.border-red-500{--tw-border-opacity:1;border-color:rgb(239 68 68/var(--tw-border-opacity,1))}.border-red-500\/30{border-color:rgba(239,68,68,.3)}.border-slate-600{--tw-border-opacity:1;border-color:rgb(71 85 105/var(--tw-border-opacity,1))}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85/var(--tw-border-opacity,1))}.border-slate-700\/50{border-color:rgba(51,65,85,.5)}.border-slate-700\/80{border-color:rgba(51,65,85,.8)}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59/var(--tw-border-opacity,1))}.bg-amber-600{--tw-bg-opacity:1;background-color:rgb(217 119 6/var(--tw-bg-opacity,1))}.bg-blue-600{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.bg-blue-600\/30{background-color:rgba(37,99,235,.3)}.bg-emerald-600{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.bg-emerald-600\/30{background-color:rgba(5,150,105,.3)}.bg-red-600{--tw-bg-opacity:1;background-color:rgb(220 38 38/var(--tw-bg-opacity,1))}.bg-red-600\/20{background-color:rgba(220,38,38,.2)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.bg-slate-800\/60{background-color:rgba(30,41,59,.6)}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42/var(--tw-bg-opacity,1))}.bg-slate-900\/85{background-color:rgba(15,23,42,.85)}.bg-slate-900\/90{background-color:rgba(15,23,42,.9)}.bg-slate-900\/95{background-color:rgba(15,23,42,.95)}.bg-slate-950{--tw-bg-opacity:1;background-color:rgb(2 6 23/var(--tw-bg-opacity,1))}.bg-slate-950\/40{background-color:rgba(2,6,23,.4)}.bg-slate-950\/60{background-color:rgba(2,6,23,.6)}.bg-transparent{background-color:transparent}.p-0{padding:0}.p-1{padding:.25rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0{padding-top:0;padding-bottom:0}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:.5rem}.pt-2{padding-top:.5rem}.text-left{text-align:left}.text-center{text-align:center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem}.text-lg,.text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-wider{letter-spacing:.05em}.text-blue-300{--tw-text-opacity:1;color:rgb(147 197 253/var(--tw-text-opacity,1))}.text-blue-400{--tw-text-opacity:1;color:rgb(96 165 250/var(--tw-text-opacity,1))}.text-blue-500{--tw-text-opacity:1;color:rgb(59 130 246/var(--tw-text-opacity,1))}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153/var(--tw-text-opacity,1))}.text-emerald-500{--tw-text-opacity:1;color:rgb(16 185 129/var(--tw-text-opacity,1))}.text-emerald-500\/80{color:rgba(16,185,129,.8)}.text-red-300{--tw-text-opacity:1;color:rgb(252 165 165/var(--tw-text-opacity,1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240/var(--tw-text-opacity,1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225/var(--tw-text-opacity,1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184/var(--tw-text-opacity,1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139/var(--tw-text-opacity,1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}.accent-blue-600{accent-color:#2563eb}.accent-emerald-600{accent-color:#059669}.opacity-0{opacity:0}.shadow{--tw-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color),0 1px 2px -1px var(--tw-shadow-color)}.shadow,.shadow-2xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgba(0,0,0,.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color),0 4px 6px -4px var(--tw-shadow-color)}.shadow-lg,.shadow-xl{box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color),0 8px 10px -6px var(--tw-shadow-color)}.outline{outline-style:solid}.blur{--tw-blur:blur(8px)}.blur,.invert{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.invert{--tw-invert:invert(100%)}.filter{filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,-webkit-backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke,opacity,box-shadow,transform,filter,backdrop-filter,-webkit-backdrop-filter;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}.hover\:border-red-500:hover{--tw-border-opacity:1;border-color:rgb(239 68 68/var(--tw-border-opacity,1))}.hover\:bg-amber-500:hover{--tw-bg-opacity:1;background-color:rgb(245 158 11/var(--tw-bg-opacity,1))}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235/var(--tw-bg-opacity,1))}.hover\:bg-emerald-500:hover{--tw-bg-opacity:1;background-color:rgb(16 185 129/var(--tw-bg-opacity,1))}.hover\:bg-emerald-600:hover{--tw-bg-opacity:1;background-color:rgb(5 150 105/var(--tw-bg-opacity,1))}.hover\:bg-red-600:hover{--tw-bg-opacity:1;background-color:rgb(220 38 38/var(--tw-bg-opacity,1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85/var(--tw-bg-opacity,1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59/var(--tw-bg-opacity,1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255/var(--tw-text-opacity,1))}</style>
+    <!-- Tailwind CSS (precompiled) -->
+    <style id="tailwind-compiled">*,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgba(59,130,246,.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/*! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com*/*,:after,:before{box-sizing:border-box;border:0 solid #e5e7eb}:after,:before{--tw-content:""}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;-o-tab-size:4;tab-size:4;font-family:ui-sans-serif,system-ui,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0}fieldset,legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::-moz-placeholder,textarea::-moz-placeholder{opacity:1;color:#9ca3af}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width:640px){.container{max-width:640px}}@media (min-width:768px){.container{max-width:768px}}@media (min-width:1024px){.container{max-width:1024px}}@media (min-width:1280px){.container{max-width:1280px}}@media (min-width:1536px){.container{max-width:1536px}}.pointer-events-none{pointer-events:none}.pointer-events-auto{pointer-events:auto}.visible{visibility:visible}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.bottom-4{bottom:1rem}.left-1{left:.25rem}.left-1\/2{left:50%}.left-4{left:1rem}.top-4{top:1rem}.z-10{z-index:10}.z-50{z-index:50}.m-3{margin:.75rem}.mx-1{margin-left:.25rem;margin-right:.25rem}.my-1{margin-top:.25rem}.mb-1,.my-1{margin-bottom:.25rem}.mb-2{margin-bottom:.5rem}.ml-auto{margin-left:auto}.mr-1{margin-right:.25rem}.mr-2{margin-right:.5rem}.mt-1{margin-top:.25rem}.mt-2{margin-top:.5rem}.mt-2\.5{margin-top:.625rem}.block{display:block}.flex{display:flex}.table{display:table}.grid{display:grid}.hidden{display:none}.h-4{height:1rem}.h-5{height:1.25rem}.h-7{height:1.75rem}.h-px{height:1px}.h-screen{height:100vh}.max-h-\[220px\]{max-height:220px}.min-h-\[140px\]{min-height:140px}.w-10{width:2.5rem}.w-4{width:1rem}.w-5{width:1.25rem}.w-52{width:13rem}.w-64{width:16rem}.w-80{width:20rem}.w-full{width:100%}.w-px{width:1px}.w-screen{width:100vw}.flex-1{flex:1 1 0%}.-translate-x-1{--tw-translate-x:-0.25rem}.-translate-x-1,.-translate-x-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-translate-x-1\/2{--tw-translate-x:-50%}.translate-y-2{--tw-translate-y:0.5rem}.-rotate-90,.translate-y-2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.-rotate-90{--tw-rotate:-90deg}.transform{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;-moz-user-select:none;user-select:none}.resize{resize:both}.grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:.25rem}.space-x-1>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.25rem*var(--tw-space-x-reverse));margin-left:calc(.25rem*(1 - var(--tw-space-x-reverse)))}.space-x-1\.5>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.375rem*var(--tw-space-x-reverse));margin-left:calc(.375rem*(1 - var(--tw-space-x-reverse)))}.space-x-2>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.5rem*var(--tw-space-x-reverse));margin-left:calc(.5rem*(1 - var(--tw-space-x-reverse)))}.space-x-3>:not([hidden])~:not([hidden]){--tw-space-x-reverse:0;margin-right:calc(.75rem*var(--tw-space-x-reverse));margin-left:calc(.75rem*(1 - var(--tw-space-x-reverse)))}.space-y-1>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.25rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.25rem*var(--tw-space-y-reverse))}.space-y-2>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.5rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.5rem*var(--tw-space-y-reverse))}.space-y-3>:not([hidden])~:not([hidden]){--tw-space-y-reverse:0;margin-top:calc(.75rem*(1 - var(--tw-space-y-reverse)));margin-bottom:calc(.75rem*var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.bg-transparent{background-color:transparent}.p-0{padding:0}.p-1{padding:.25rem}.p-2{padding:.5rem}.p-3{padding:.75rem}.px-1{padding-left:.25rem;padding-right:.25rem}.px-1\.5{padding-left:.375rem;padding-right:.375rem}.px-2{padding-left:.5rem;padding-right:.5rem}.px-2\.5{padding-left:.625rem;padding-right:.625rem}.px-3{padding-left:.75rem;padding-right:.75rem}.px-3\.5{padding-left:.875rem;padding-right:.875rem}.px-4{padding-left:1rem;padding-right:1rem}.py-0{padding-top:0;padding-bottom:0}.py-0\.5{padding-top:.125rem;padding-bottom:.125rem}.py-1{padding-top:.25rem;padding-bottom:.25rem}.py-1\.5{padding-top:.375rem;padding-bottom:.375rem}.py-2{padding-top:.5rem;padding-bottom:.5rem}.py-2\.5{padding-top:.625rem;padding-bottom:.625rem}.py-4{padding-top:1.5rem;padding-bottom:1.5rem}.py-6{padding-top:1.5rem;padding-bottom:1.5rem}.pb-2{padding-bottom:.5rem}.pt-2{padding-top:.5rem}.text-left{text-align:left}.text-center{text-center}.font-mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-\[9px\]{font-size:9px}.text-lg{font-size:1.125rem}.text-lg,.
+text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem;line-height:1rem}.font-black{font-weight:900}.font-bold{font-weight:700}.font-light{font-weight:300}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.tracking-wider{letter-spacing:.05em}.text-white{color:#ffffff}.opacity-0{opacity:0}.transition{transition-property:color,background-color,border-color;transition-timing-function:cubic-bezier(.4,0,.2,1);transition-duration:.15s}.duration-300{transition-duration:.3s}</style>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Three.js -->
@@ -14,17 +15,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
     <style>
     /* ==========================================
-       CLASSIC STEAM UI THEME & ACCENTS
+       STRICT CLASSIC STEAM UI THEME OVERRIDES
        ========================================== */
     :root {
         --steam-bg: #4c5844;
         --steam-panel: #3a4335;
-        --steam-dark: #232920;
-        --steam-light: #75836c;
-        --steam-input-bg: #384233;
+        --steam-header: #2b3327;
+        --steam-dark: #20261d;
+        --steam-light: #6a7960;
+        --steam-input-bg: #2e362a;
         --steam-text: #d8ded0;
+        --steam-text-dim: #98a590;
         --steam-yellow: #f3e5ab; /* Classic Steam Gold/Yellow Accent */
-        --steam-yellow-dark: #b89728;
+        --steam-active: #58674f;
+    }
+
+    *, *:before, *:after {
+        border-radius: 0 !important; /* Force ALL elements to sharp square corners */
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
     }
 
     body {
@@ -46,14 +56,27 @@
         z-index: 0;
     }
 
-    /* Target structural panels only (explicitly excluding inline color swatches) */
-    div.bg-slate-900, div.bg-slate-800, div[class*="bg-[#0f172a]"], div[class*="bg-[#1e1e24]"] {
+    /* Opaque Solid Panels */
+    header, aside, #add-menu, #transform-hud, #grab-badge, .steam-panel, .toast-notification {
         background-color: var(--steam-panel) !important;
+        border: 1px solid var(--steam-dark) !important;
+        border-top: 1px solid var(--steam-light) !important;
+        border-left: 1px solid var(--steam-light) !important;
+        opacity: 1 !important;
     }
 
-    /* Restore Blue Text / Accents to Classic Steam Yellow */
-    .text-blue-400, .text-blue-500, .text-blue-600, [class*="text-blue-"] {
+    .steam-header-bar {
+        background-color: var(--steam-header) !important;
+        border-bottom: 1px solid var(--steam-dark) !important;
         color: var(--steam-yellow) !important;
+    }
+
+    .steam-text-gold {
+        color: var(--steam-yellow) !important;
+    }
+
+    .steam-text-dim {
+        color: var(--steam-text-dim) !important;
     }
 
     /* Retro Steam Blocky Scrollbars */
@@ -79,45 +102,67 @@
     /* Inputs & Selects */
     input, select, textarea, .blender-input {
         background-color: var(--steam-input-bg) !important;
-        border-top: 1px solid #20261d !important;
-        border-left: 1px solid #20261d !important;
-        border-bottom: 1px solid #63715a !important;
-        border-right: 1px solid #63715a !important;
+        border-top: 1px solid #1a2018 !important;
+        border-left: 1px solid #1a2018 !important;
+        border-bottom: 1px solid #5a6850 !important;
+        border-right: 1px solid #5a6850 !important;
         color: #e1e7d9 !important;
-        border-radius: 0 !important;
         padding: 2px 4px !important;
         font-family: 'Tahoma', sans-serif !important;
+        font-size: 11px !important;
         outline: none !important;
     }
 
     input:focus, select:focus, textarea:focus {
         border-color: var(--steam-yellow) !important;
-        background-color: #2b3327 !important;
+        background-color: #232a20 !important;
         color: #ffffff !important;
     }
 
     /* Buttons */
-    button, .btn {
+    button:not([style*="background"]):not(.btn-raw), .btn {
         background-color: #48543f !important;
         border-top: 1px solid #697a5d !important;
         border-left: 1px solid #697a5d !important;
         border-right: 1px solid #282f23 !important;
         border-bottom: 1px solid #282f23 !important;
-        border-radius: 0 !important;
         color: #e1e7d9 !important;
         font-family: 'Tahoma', sans-serif !important;
         font-size: 11px !important;
         padding: 3px 8px !important;
+        cursor: pointer;
     }
 
-    button:hover {
-        background-color: #536148 !important;
+    button:not([style*="background"]):not(.btn-raw):hover, .btn:hover {
+        background-color: #55634b !important;
         color: var(--steam-yellow) !important;
     }
 
-    button:active {
-        border: 1px inset #282f23 !important;
+    button:not([style*="background"]):not(.btn-raw):active, .btn:active {
+        border-top: 1px solid #282f23 !important;
+        border-left: 1px solid #282f23 !important;
+        border-right: 1px solid #697a5d !important;
+        border-bottom: 1px solid #697a5d !important;
         background-color: #3b4433 !important;
+    }
+
+    .btn-active {
+        background-color: var(--steam-active) !important;
+        color: var(--steam-yellow) !important;
+        border-top: 1px solid #282f23 !important;
+        border-left: 1px solid #282f23 !important;
+        border-right: 1px solid #697a5d !important;
+        border-bottom: 1px solid #697a5d !important;
+    }
+
+    /* Add Menu Custom Hover Styling */
+    .menu-item {
+        color: var(--steam-text) !important;
+        background-color: transparent;
+    }
+    .menu-item:hover {
+        background-color: var(--steam-light) !important;
+        color: #ffffff !important;
     }
 
     .gizmo-container {
@@ -155,163 +200,163 @@
     <div id="gizmo-container" class="gizmo-container"></div>
 
     <!-- Top Toolbar -->
-    <header class="relative z-10 flex items-center justify-between px-4 py-2.5 bg-slate-900/90 backdrop-blur-md border-b border-slate-800 shadow-lg">
+    <header class="relative z-10 flex items-center justify-between px-4 py-2 steam-panel">
         <div class="flex items-center space-x-3">
-            <div class="flex items-center space-x-2 text-blue-500 font-black text-lg tracking-wider">
+            <div class="flex items-center space-x-2 steam-text-gold font-black text-lg tracking-wider">
                 <i class="fa-solid fa-cube text-xl"></i>
                 <span>phys<span class="text-white font-light">Box</span></span>
             </div>
-            <button id="controls-toggle-btn" onclick="toggleControlsPanel()" title="Show / hide controls panel" class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:bg-slate-800 border border-slate-800 transition flex items-center space-x-1.5">
+            <button id="controls-toggle-btn" onclick="toggleControlsPanel()" title="Show / hide controls panel" class="flex items-center space-x-1.5">
                 <i class="fa-solid fa-keyboard"></i><span>Controls</span>
             </button>
         </div>
 
         <!-- Mode & Simulation Controls -->
-        <div class="flex items-center space-x-2 bg-slate-950/60 p-1 rounded-lg border border-slate-800">
-            <button id="mode-obj-btn" onclick="setInteractionMode('object')" class="px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 bg-blue-600 text-white shadow">
+        <div class="flex items-center space-x-2 p-1" style="background: var(--steam-dark);">
+            <button id="mode-obj-btn" onclick="setInteractionMode('object')" class="btn-active flex items-center space-x-1.5">
                 <i class="fa-solid fa-shapes"></i>
                 <span>Object Mode [Tab]</span>
             </button>
-            <button id="mode-face-btn" onclick="setInteractionMode('face')" class="px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white hover:bg-slate-800">
+            <button id="mode-face-btn" onclick="setInteractionMode('face')" class="flex items-center space-x-1.5">
                 <i class="fa-solid fa-vector-square"></i>
                 <span>Face Mode [Tab]</span>
             </button>
 
-            <div class="h-4 w-px bg-slate-800 mx-1"></div>
+            <div class="h-4 w-px mx-1" style="background: var(--steam-light);"></div>
 
-            <button id="sim-play-btn" onclick="toggleSimulation()" class="px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow">
+            <button id="sim-play-btn" onclick="toggleSimulation()" class="flex items-center space-x-1.5">
                 <i class="fa-solid fa-play" id="sim-play-icon"></i>
                 <span id="sim-play-text">Simulate [Space]</span>
             </button>
-            <button onclick="resetPhysics()" class="px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center space-x-1.5">
+            <button onclick="resetPhysics()" class="flex items-center space-x-1.5">
                 <i class="fa-solid fa-rotate-left"></i>
                 <span>Reset</span>
             </button>
 
-            <div class="h-4 w-px bg-slate-800 mx-1"></div>
+            <div class="h-4 w-px mx-1" style="background: var(--steam-light);"></div>
 
-            <button onclick="exportBuild()" class="px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center space-x-1.5" title="Export build to .txt">
+            <button onclick="exportBuild()" class="flex items-center space-x-1.5" title="Export build to .txt">
                 <i class="fa-solid fa-download"></i>
                 <span>Export</span>
             </button>
-            <button onclick="document.getElementById('import-file').click()" class="px-3 py-1.5 rounded-md text-xs font-semibold text-slate-300 hover:bg-slate-800 transition flex items-center space-x-1.5" title="Import build from .txt">
+            <button onclick="document.getElementById('import-file').click()" class="flex items-center space-x-1.5" title="Import build from .txt">
                 <i class="fa-solid fa-upload"></i>
                 <span>Import</span>
             </button>
             <input type="file" id="import-file" accept=".txt,.json" style="display: none" onchange="importBuild(event)">
-            <div class="h-4 w-px bg-slate-800 mx-1"></div>
-            <div id="grab-badge" title="Simulation: hold Ctrl and drag any part to grab it. Mouse wheel while grabbing changes the force." class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-slate-300 border border-slate-700 flex items-center space-x-1.5 select-none">
-                <i class="fa-solid fa-hand"></i><span>Grab force</span><span id="grab-force-val" class="font-mono text-blue-300">500</span>
+            
+            <div class="h-4 w-px mx-1" style="background: var(--steam-light);"></div>
+            <div id="grab-badge" title="Simulation: hold Ctrl and drag any part to grab it. Mouse wheel while grabbing changes the force." class="px-2.5 py-1 text-xs font-semibold flex items-center space-x-1.5 select-none" style="background: var(--steam-panel); border: 1px solid var(--steam-dark);">
+                <i class="fa-solid fa-hand"></i><span>Grab force</span><span id="grab-force-val" class="font-mono steam-text-gold">500</span>
             </div>
         </div>
-
     </header>
 
     <!-- Main Overlay Grid -->
     <div class="relative flex-1 flex pointer-events-none z-10">
 
         <!-- Left Panel: Controls Cheat Sheet -->
-        <aside id="controls-panel" class="w-64 m-3 p-3 bg-slate-900/85 backdrop-blur-md border border-slate-800 rounded-xl shadow-2xl pointer-events-auto flex flex-col justify-between text-xs space-y-3">
+        <aside id="controls-panel" class="w-64 m-3 p-3 steam-panel pointer-events-auto flex flex-col justify-between text-xs space-y-3">
             <div>
-                <div class="flex items-center justify-between pb-2 border-b border-slate-800 text-slate-400 font-bold uppercase tracking-wider text-[10px]">
+                <div class="flex items-center justify-between pb-1.5 mb-2 steam-header-bar px-2 py-1 font-bold uppercase tracking-wider text-[10px]">
                     <span>Controls & Shortcuts</span>
-                    <button onclick="toggleControlsPanel()" title="Hide panel" class="text-slate-400 hover:text-white"><i class="fa-solid fa-eye-slash"></i></button>
+                    <button onclick="toggleControlsPanel()" title="Hide panel" class="text-white hover:text-yellow-200"><i class="fa-solid fa-eye-slash"></i></button>
                 </div>
-                <div class="mt-2.5 space-y-2 text-slate-300">
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Orbit View</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">MMB Drag</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Pan View</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Shift + MMB</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Zoom</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Scroll</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Duplicate</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Shift + D</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Add Menu</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Shift + A</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Move / Extrude</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">G</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Lock Axis / Plane</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">X/Y/Z / Shift+X/Y/Z</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Toggle Grid Snap</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Shift + Tab</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">90° Rotate</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">R then X/Y/Z</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Toggle Mode</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Tab</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Drag Objects in Sim</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Ctrl</kbd></div>
-                    <div class="flex justify-between items-center"><span class="text-slate-400">Delete Selected</span> <kbd class="px-1.5 py-0.5 bg-slate-800 border border-slate-700 rounded text-[10px] text-blue-300">Del / X</kbd></div>
+                <div class="space-y-1.5 text-slate-200">
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Orbit View</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">MMB Drag</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Pan View</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Shift + MMB</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Zoom</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Scroll</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Duplicate</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Shift + D</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Add Menu</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Shift + A</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Move / Extrude</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">G</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Lock Axis / Plane</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">X/Y/Z / Shift+X/Y/Z</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Toggle Grid Snap</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Shift + Tab</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">90° Rotate</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">R then X/Y/Z</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Toggle Mode</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Tab</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Drag Objects in Sim</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Ctrl</kbd></div>
+                    <div class="flex justify-between items-center"><span class="steam-text-dim">Delete Selected</span> <kbd class="px-1 py-0.5 steam-text-gold" style="background: var(--steam-dark); border: 1px solid var(--steam-light);">Del / X</kbd></div>
                 </div>
             </div>
 
             <div>
-                <div class="pb-2 border-b border-slate-800 text-slate-400 font-bold uppercase tracking-wider text-[10px] mb-2">
+                <div class="steam-header-bar px-2 py-1 font-bold uppercase tracking-wider text-[10px] mb-1.5">
                     <span>Numpad Views</span>
                 </div>
                 <div class="grid grid-cols-2 gap-1 text-[11px]">
-                    <button onclick="alignCameraView('front')" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 1: Front</button>
-                    <button onclick="alignCameraView('right')" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 3: Right</button>
-                    <button onclick="alignCameraView('top')" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 7: Top</button>
-                    <button onclick="resetCameraFocus()" class="p-1 bg-slate-800/60 hover:bg-slate-800 rounded border border-slate-700/50 text-slate-300 text-center">Numpad 0: Focus</button>
+                    <button onclick="alignCameraView('front')" class="p-1 text-center">Numpad 1: Front</button>
+                    <button onclick="alignCameraView('right')" class="p-1 text-center">Numpad 3: Right</button>
+                    <button onclick="alignCameraView('top')" class="p-1 text-center">Numpad 7: Top</button>
+                    <button onclick="resetCameraFocus()" class="p-1 text-center">Numpad 0: Focus</button>
                 </div>
             </div>
         </aside>
 
         <!-- Center Notification Overlay -->
-        <div id="transform-hud" class="hidden absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 bg-slate-900/90 border border-blue-500/50 text-blue-300 rounded-full shadow-2xl text-xs font-mono flex items-center space-x-3 backdrop-blur-md">
-            <span id="transform-hud-text">TRANSFORM MODE ACTIVE</span>
-            <span class="text-slate-500">|</span>
-            <span class="text-slate-400 text-[11px]">Left-Click / Enter to Confirm, Right-Click / Esc to Cancel</span>
+        <div id="transform-hud" class="hidden absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 steam-panel text-xs font-mono flex items-center space-x-3">
+            <span id="transform-hud-text" class="steam-text-gold font-bold">TRANSFORM MODE ACTIVE</span>
+            <span class="steam-text-dim">|</span>
+            <span class="text-slate-200 text-[11px]">Left-Click / Enter to Confirm, Right-Click / Esc to Cancel</span>
         </div>
 
         <!-- Right Panel: Outliner & Properties -->
-        <aside class="w-80 m-3 ml-auto bg-slate-900/85 backdrop-blur-md border border-slate-800 rounded-xl shadow-2xl pointer-events-auto flex flex-col overflow-hidden">
+        <aside class="w-80 m-3 ml-auto steam-panel pointer-events-auto flex flex-col overflow-hidden">
             <!-- Outliner Header -->
-            <div class="px-3 py-2 bg-slate-950/60 border-b border-slate-800 font-bold text-xs text-slate-400 uppercase tracking-wider flex justify-between items-center">
+            <div class="px-3 py-1.5 steam-header-bar font-bold text-xs uppercase tracking-wider flex justify-between items-center">
                 <span>Scene Outliner</span>
                 <i class="fa-solid fa-layer-group"></i>
             </div>
 
             <!-- Outliner Item List -->
-            <div id="outliner-list" class="flex-1 overflow-y-auto p-2 space-y-1 text-xs border-b border-slate-800 min-h-[140px] max-h-[220px]">
-                <div class="text-slate-500 italic text-center py-4">No objects in scene</div>
+            <div id="outliner-list" class="flex-1 overflow-y-auto p-2 space-y-1 text-xs border-b border-slate-800 min-h-[140px] max-h-[220px]" style="background: var(--steam-dark);">
+                <div class="steam-text-dim italic text-center py-4">No objects in scene</div>
             </div>
 
             <!-- Inspector Header -->
-            <div class="px-3 py-2 bg-slate-950/60 border-b border-slate-800 font-bold text-xs text-slate-400 uppercase tracking-wider flex justify-between items-center">
+            <div class="px-3 py-1.5 steam-header-bar font-bold text-xs uppercase tracking-wider flex justify-between items-center">
                 <span>Properties Inspector</span>
                 <i class="fa-solid fa-sliders"></i>
             </div>
 
             <!-- Inspector Details -->
-            <div id="inspector-content" class="flex-1 overflow-y-auto p-3 space-y-3 text-xs text-slate-300">
-                <div class="text-slate-500 italic text-center py-6">Select an object to inspect properties</div>
+            <div id="inspector-content" class="flex-1 overflow-y-auto p-3 space-y-3 text-xs">
+                <div class="steam-text-dim italic text-center py-6">Select an object to inspect properties</div>
             </div>
         </aside>
     </div>
 
     <!-- Context Add Menu (Shift + A) -->
-    <div id="add-menu" class="hidden fixed z-50 w-52 bg-slate-900/95 border border-slate-700/80 rounded-xl shadow-2xl backdrop-blur-md py-1.5 text-xs text-slate-200">
-        <div class="px-3 py-1 font-bold text-[10px] text-slate-400 uppercase tracking-wider border-b border-slate-800 mb-1 flex items-center justify-between">
+    <div id="add-menu" class="hidden fixed z-50 w-52 steam-panel py-1 text-xs">
+        <div class="px-3 py-1 font-bold text-[10px] steam-header-bar uppercase tracking-wider mb-1 flex items-center justify-between">
             <span>Add Menu</span>
-            <span class="text-[9px] text-slate-500">Shift + A</span>
+            <span class="text-[9px] steam-text-gold">Shift + A</span>
         </div>
         
         <!-- Primitives Category -->
-        <div class="px-3 py-1 text-[10px] font-bold text-blue-400 uppercase tracking-wider">Mesh Primitives</div>
-        <button onclick="createPrimitive('block')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+        <div class="px-3 py-1 text-[10px] font-bold steam-text-gold uppercase tracking-wider">Mesh Primitives</div>
+        <button onclick="createPrimitive('block')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-cube w-4 text-center mr-2"></i> Block</span>
         </button>
-        <button onclick="createPrimitive('wedge')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+        <button onclick="createPrimitive('wedge')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-play -rotate-90 w-4 text-center mr-2"></i> Wedge (Ramp)</span>
         </button>
-        <button onclick="createPrimitive('sphere')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+        <button onclick="createPrimitive('sphere')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-globe w-4 text-center mr-2"></i> Sphere</span>
         </button>
-        <button onclick="createPrimitive('cylinder')" class="w-full text-left px-4 py-1.5 hover:bg-blue-600 hover:text-white flex items-center justify-between transition">
+        <button onclick="createPrimitive('cylinder')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-database w-4 text-center mr-2"></i> Cylinder</span>
         </button>
 
-        <div class="h-px bg-slate-800 my-1"></div>
+        <div class="h-px my-1" style="background: var(--steam-dark);"></div>
 
         <!-- Mechanical Joints Category -->
-        <div class="px-3 py-1 text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Mechanical Joints</div>
-        <button onclick="createJoint('bearing')" class="w-full text-left px-4 py-1.5 hover:bg-emerald-600 hover:text-white flex items-center justify-between transition">
+        <div class="px-3 py-1 text-[10px] font-bold steam-text-gold uppercase tracking-wider">Mechanical Joints</div>
+        <button onclick="createJoint('bearing')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-arrows-spin w-4 text-center mr-2"></i> Bearing (2 parts)</span>
         </button>
-        <button onclick="createJoint('spring')" class="w-full text-left px-4 py-1.5 hover:bg-emerald-600 hover:text-white flex items-center justify-between transition">
+        <button onclick="createJoint('spring')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-coil-spring w-4 text-center mr-2"></i> Spring (2 parts)</span>
         </button>
-        <button onclick="createJoint('rope')" class="w-full text-left px-4 py-1.5 hover:bg-emerald-600 hover:text-white flex items-center justify-between transition">
+        <button onclick="createJoint('rope')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-link w-4 text-center mr-2"></i> Rope (2 parts)</span>
         </button>
     </div>
@@ -371,7 +416,7 @@
         function updateGrabBadge() {
             const el = document.getElementById('grab-force-val'), b = document.getElementById('grab-badge');
             if (el) el.textContent = Math.round(grabForce);
-            if (b) { b.style.borderColor = grab ? '#3b82f6' : ''; b.style.background = grab ? 'rgba(37,99,235,.3)' : ''; }
+            if (b) { b.style.borderColor = grab ? '#f3e5ab' : ''; b.style.background = grab ? '#232920' : ''; }
         }
         function setGrabMouse(e) {
             grabMouse.set(e.clientX / window.innerWidth * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1);
@@ -391,9 +436,9 @@
             if (part.body.mass <= 0) { showToast("Anchored parts can't be grabbed."); return true; }
             const local = part.body.pointToLocalFrame(new CANNON.Vec3(h.point.x, h.point.y, h.point.z));
             grab = { part, local, depth: h.distance, target: h.point.clone() };
-            grabLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints([h.point, h.point]), new THREE.LineBasicMaterial({ color: 0xfacc15, depthTest: false }));
+            grabLine = new THREE.Line(new THREE.BufferGeometry().setFromPoints([h.point, h.point]), new THREE.LineBasicMaterial({ color: 0xf3e5ab, depthTest: false }));
             grabLine.renderOrder = 999; grabLine.frustumCulled = false;
-            grabDot = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 12), new THREE.MeshBasicMaterial({ color: 0xfacc15, depthTest: false }));
+            grabDot = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 12), new THREE.MeshBasicMaterial({ color: 0xf3e5ab, depthTest: false }));
             grabDot.renderOrder = 999;
             scene.add(grabLine); scene.add(grabDot);
             updateGrabBadge();
@@ -413,7 +458,6 @@
             grabDot.position.copy(p);
             grabLine.geometry.setFromPoints([p, grab.target]);
         }
-        // spring-damper pulling the grabbed surface point toward the cursor, capped at grabForce
         function applyGrabForce() {
             if (!grab || !isSimulating) return;
             const b = grab.part.body;
@@ -422,7 +466,7 @@
             const dx = new CANNON.Vec3(grab.target.x - pw.x, grab.target.y - pw.y, grab.target.z - pw.z);
             const vp = b.velocity.vadd(b.angularVelocity.cross(r));
             const m = Math.max(b.mass, 0.1);
-            const k = Math.min(grabForce / 1.5, m * Math.pow(0.5 / SUB_DT, 2));   // keep the explicit spring stable
+            const k = Math.min(grabForce / 1.5, m * Math.pow(0.5 / SUB_DT, 2));   
             const c = 2 * Math.sqrt(k * m) * 0.7;
             const F = dx.mult(k).vsub(vp.mult(c));
             const n = F.norm();
@@ -434,7 +478,7 @@
             CANNON.Constraint.call(this, a, b);
             this.la = la; this.lb = lb; this.L = L;
             const e = this.eq = new CANNON.ContactEquation(a, b);
-            e.minForce = -1e6; e.maxForce = 0; // only pulls (never pushes) -> rope behaviour
+            e.minForce = -1e6; e.maxForce = 0; 
             this.equations.push(e);
             this.rA = new CANNON.Vec3(); this.rB = new CANNON.Vec3(); this.n = new CANNON.Vec3();
         }
@@ -449,16 +493,11 @@
             n.mult(-this.L / 2, e.rj); e.rj.vadd(this.rB, e.rj);
         };
 
-        // Prismatic-style lock: keeps anchor B on the line through anchor A along a direction fixed
-        // in A's frame (so it follows A when A moves/tilts). Two two-sided equations, solved
-        // together with every other joint instead of fighting them by teleporting.
         function AxisLock(a, b, la, lb, localDir, q0) {
             CANNON.Constraint.call(this, a, b);
             this.la = la; this.lb = lb; this.localDir = localDir; this.q0 = q0;
             this.e1 = new CANNON.ContactEquation(a, b); this.e2 = new CANNON.ContactEquation(a, b);
             [this.e1, this.e2].forEach(e => { e.minForce = -1e6; e.maxForce = 1e6; e.restitution = 0; this.equations.push(e); });
-            // 3 rotational equations (same scheme as CANNON.LockConstraint) keep B's orientation
-            // fixed relative to A, so the weight can slide along the axis but never twist or tilt.
             this.r1 = new CANNON.RotationalEquation(a, b); this.r2 = new CANNON.RotationalEquation(a, b); this.r3 = new CANNON.RotationalEquation(a, b);
             this.equations.push(this.r1, this.r2, this.r3);
         }
@@ -484,7 +523,7 @@
             createFloorGrid();
             setupEventListeners();
             
-            const defaultBlock = createPrimitive('block', new THREE.Vector3(0, 0, 1), new THREE.Vector3(2, 2, 2), 0x3b82f6, true);
+            const defaultBlock = createPrimitive('block', new THREE.Vector3(0, 0, 1), new THREE.Vector3(2, 2, 2), 0x4c5844, true);
             selectObject(defaultBlock);
 
             animate();
@@ -520,7 +559,7 @@
             const container = document.getElementById('canvas-container');
             
             scene = new THREE.Scene();
-            scene.background = new THREE.Color(0x2d303b);
+            scene.background = new THREE.Color(0x3a4335);
 
             camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
             camera.up.set(0, 0, 1);
@@ -552,7 +591,7 @@
             dirLight.shadow.camera.bottom = -d;
             scene.add(dirLight);
 
-            const lineMat = new THREE.LineBasicMaterial({ color: 0xffff00, linewidth: 2 });
+            const lineMat = new THREE.LineBasicMaterial({ color: 0xf3e5ab, linewidth: 2 });
             const lineGeom = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0), new THREE.Vector3(0,0,0)]);
             guideLineMesh = new THREE.Line(lineGeom, lineMat);
             guideLineMesh.visible = false;
@@ -560,8 +599,8 @@
 
             const faceGroup = new THREE.Group();
             const mkGeom = () => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(3 * 400), 3)); g.setDrawRange(0, 0); return g; };
-            const fm = new THREE.Mesh(mkGeom(), new THREE.MeshBasicMaterial({ color: 0x38bdf8, side: THREE.DoubleSide, transparent: true, opacity: 0.45, depthTest: false }));
-            const fl = new THREE.LineLoop(mkGeom(), new THREE.LineBasicMaterial({ color: 0x7dd3fc, depthTest: false }));
+            const fm = new THREE.Mesh(mkGeom(), new THREE.MeshBasicMaterial({ color: 0xf3e5ab, side: THREE.DoubleSide, transparent: true, opacity: 0.45, depthTest: false }));
+            const fl = new THREE.LineLoop(mkGeom(), new THREE.LineBasicMaterial({ color: 0xfff2a3, depthTest: false }));
             [fm, fl].forEach(o => { o.frustumCulled = false; o.renderOrder = 11; faceGroup.add(o); });
             faceHighlightMesh = faceGroup;
             faceHighlightMesh.visible = false;
@@ -574,8 +613,6 @@
             world.broadphase = new CANNON.NaiveBroadphase();
             world.solver.iterations = 40;
             world.addEventListener('preStep', () => {
-                // cannon bakes the timestep into each equation's SPOOK params (default 1/60), so
-                // re-tune joint/weld equations for the real substep and make them very stiff.
                 world.constraints.forEach(c => {
                     if (c instanceof OffsetDistance) { c.equations.forEach(eq => eq.setSpookParams(1e7, 4, SUB_DT)); return; }
                     c.equations.forEach(eq => eq.setSpookParams(eq === c.motorEquation ? 1e7 : 1e9, eq === c.motorEquation ? 4 : 4, SUB_DT));
@@ -584,20 +621,20 @@
             world.addEventListener('preStep', applyGrabForce);
             world.addEventListener('preStep', () => joints.forEach(j => {
                 if (j.type === 'bearing' && j.constraint) servoStep(j);
-            if (j.type === 'bearing' && j.mode === 'motor' && j.constraint) {
-                const c = j.constraint;
-                const max = Math.max(Math.abs(j.rpm), Math.abs(j.mSpeed1 || 0), Math.abs(j.mSpeed2 || 0)) * Math.PI / 30;
-                let rpm = j.rpm;
-                if (j.mActive === 1 && j.mSpeed1) rpm = j.mSpeed1;
-                else if (j.mActive === 2 && j.mSpeed2) rpm = j.mSpeed2;
-                if (j.freeIdle && !rpm) {
-                    if (c.motorEquation.enabled) c.disableMotor();   // nothing is driving it: let it spin freely
-                } else {
-                    if (!c.motorEquation.enabled) c.enableMotor();
-                    c.setMotorMaxForce(j.torque);
-                    c.setMotorSpeed(-Math.max(-max, Math.min(max, rpm * Math.PI / 30)));
+                if (j.type === 'bearing' && j.mode === 'motor' && j.constraint) {
+                    const c = j.constraint;
+                    const max = Math.max(Math.abs(j.rpm), Math.abs(j.mSpeed1 || 0), Math.abs(j.mSpeed2 || 0)) * Math.PI / 30;
+                    let rpm = j.rpm;
+                    if (j.mActive === 1 && j.mSpeed1) rpm = j.mSpeed1;
+                    else if (j.mActive === 2 && j.mSpeed2) rpm = j.mSpeed2;
+                    if (j.freeIdle && !rpm) {
+                        if (c.motorEquation.enabled) c.disableMotor();
+                    } else {
+                        if (!c.motorEquation.enabled) c.enableMotor();
+                        c.setMotorMaxForce(j.torque);
+                        c.setMotorSpeed(-Math.max(-max, Math.min(max, rpm * Math.PI / 30)));
+                    }
                 }
-            }
                 if (j.type !== 'spring') return;
                 const A = j.a.body, B = j.b.body, rA = A.quaternion.vmult(j.la), rB = B.quaternion.vmult(j.lb);
                 const pA = A.position.vadd(rA), pB = B.position.vadd(rB), d = pB.vsub(pA), L = d.norm();
@@ -626,9 +663,9 @@
             world.addBody(groundBody);
         }
 
-        const SUB_DT = 1 / 360;   // physics substep: 6 per 60fps frame keeps hinges rigid
+        const SUB_DT = 1 / 360;
         const MAX_BEARING_MASS_RATIO = 8;
-        const MAX_BODY_SPEED = 80;  // safety cap (units/s, rad/s) so one bad contact can't launch the scene
+        const MAX_BODY_SPEED = 80;
 
         function initGizmo() {
             const container = document.getElementById('gizmo-container');
@@ -646,7 +683,7 @@
 
         function createFloorGrid() {
             const gridGroup = new THREE.Group();
-            const gridHelper = new THREE.GridHelper(40, 40, 0x475569, 0x334155);
+            const gridHelper = new THREE.GridHelper(40, 40, 0xf3e5ab, 0xf3e5ab);
             gridHelper.rotation.x = Math.PI / 2;
             gridGroup.add(gridHelper);
 
@@ -715,7 +752,7 @@
             return new CANNON.Box(V(hx, hy, hz));
         }
 
-        function createPrimitive(type, position = new THREE.Vector3(0,0,1), dimensions = new THREE.Vector3(2,2,2), color = 0x3b82f6, isAnchored = false) {
+        function createPrimitive(type, position = new THREE.Vector3(0,0,1), dimensions = new THREE.Vector3(2,2,2), color = 0x4c5844, isAnchored = false) {
             let geometry, shape;
 
             if (type === 'block') {
@@ -751,7 +788,7 @@
             mesh.receiveShadow = true;
             scene.add(mesh);
 
-            const boxHelper = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)), new THREE.LineBasicMaterial({ color: 0x94a3b8 }));
+            const boxHelper = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)), new THREE.LineBasicMaterial({ color: 0xf3e5ab }));
             boxHelper.visible = false; boxHelper.update = () => {};
             mesh.add(boxHelper);
 
@@ -768,7 +805,6 @@
                 name: type.charAt(0).toUpperCase() + type.slice(1) + ' ' + (parts.length + 1),
                 type: type,
                 mesh: mesh,
-                
                 body: body,
                 dimensions: dimensions.clone(),
                 color: color,
@@ -825,13 +861,12 @@
         }
 
         function restoreState(snap) {
-            // a rebuilt scene is a fresh edit-mode scene: leave any running/paused simulation
             if (isSimulating || simStarted) {
                 isSimulating = false; simStarted = false;
                 const pi = document.getElementById('sim-play-icon'), pt = document.getElementById('sim-play-text'), pb = document.getElementById('sim-play-btn');
                 if (pi) pi.className = "fa-solid fa-play";
                 if (pt) pt.innerText = "Simulate [Space]";
-                if (pb) pb.className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow";
+                if (pb) pb.className = "flex items-center space-x-1.5";
             }
             joints.forEach(j => { if (j.constraint) world.removeConstraint(j.constraint); removeAxisLock(j); if (j.vis) scene.remove(j.vis); });
             welds.forEach(w => world.removeConstraint(w.c));
@@ -854,7 +889,7 @@
                 const mesh = new THREE.Mesh(geometry, material);
                 mesh.position.copy(position); mesh.quaternion.copy(quat);
                 mesh.castShadow = true; mesh.receiveShadow = true; scene.add(mesh);
-                const boxHelper = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)), new THREE.LineBasicMaterial({ color: 0x94a3b8 }));
+                const boxHelper = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)), new THREE.LineBasicMaterial({ color: 0xf3e5ab }));
                 boxHelper.visible = false; boxHelper.update = () => {}; mesh.add(boxHelper);
                 const mass = pData.isAnchored ? 0 : dimensions.x * dimensions.y * dimensions.z;
                 const body = new CANNON.Body({ mass: mass, position: new CANNON.Vec3(position.x, position.y, position.z) });
@@ -916,7 +951,6 @@
             reader.onload = (e) => {
                 try {
                     const snap = JSON.parse(e.target.result);
-                    // Basic validation
                     if (!snap.parts || !Array.isArray(snap.parts)) throw new Error('Invalid build file');
                     restoreState(snap);
                     showToast('Build imported successfully');
@@ -924,12 +958,11 @@
                     showToast('Import failed: ' + err.message);
                     console.error(err);
                 }
-                event.target.value = ''; // reset input
+                event.target.value = '';
             };
             reader.readAsText(file);
         }
 
-        // Enter two-click joint placement mode. The user then clicks part A, then part B.
         function createJoint(type) {
             jointPlacementMode = type;
             jointPlacementPartA = null;
@@ -937,7 +970,6 @@
             showToast(`Joint placement: click the anchor part (A), then the other part (B). Press Escape to cancel.`);
         }
 
-        // Create a joint between two already-existing parts (without moving them).
         function createJointBetween(type, partA, partB) {
             pushUndo();
             const j = { id: 'joint_' + Date.now() + Math.floor(Math.random() * 999), type, axis: 'z', la: new CANNON.Vec3(), lb: new CANNON.Vec3(), a: partA, b: partB };
@@ -948,10 +980,7 @@
             } else if (type === 'rope') {
                 j.len = 3;
             } else {
-                // spring
                 Object.assign(j, { rest: 2, max: 4, k: 150, damp: 4, lockAxis: false });
-                // Record the original world axis from anchor (A) to weight (B) so the weight
-                // can be constrained to travel only along this line.
                 const origin = partA.body.position.clone();
                 const dir = partB.body.position.clone().vsub(origin);
                 if (dir.norm() > 1e-6) dir.normalize();
@@ -988,8 +1017,6 @@
         }
 
         function removeAxisLock(j) { if (j.lockConstraint) { world.removeConstraint(j.lockConstraint); j.lockConstraint = null; } }
-        // (Re)creates the spring's "lock weight to axis" constraint from the current layout:
-        // the axis is the line from anchor A to the weight B, stored in A's frame.
         function syncAxisLock(j) {
             removeAxisLock(j);
             if (j.type !== 'spring' || !j.lockAxis) return;
@@ -1019,11 +1046,11 @@
         function makeJointVisual(j) {
             const g = new THREE.Group();
             if (j.type === 'bearing') {
-                j.axle = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0x10b981, depthTest: false }));
+                j.axle = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0xf3e5ab, depthTest: false }));
                 j.axle.renderOrder = 10; g.add(j.axle);
             } else {
                 const pts = []; for (let i = 0; i < 42; i++) pts.push(new THREE.Vector3());
-                j.line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: j.type === 'rope' ? 0xfbbf24 : 0x34d399, depthTest: false }));
+                j.line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xf3e5ab, depthTest: false }));
                 j.line.frustumCulled = false; j.line.renderOrder = 10; g.add(j.line);
             }
             scene.add(g); j.vis = g;
@@ -1050,7 +1077,7 @@
                     arr.setXYZ(i, p.x, p.y, p.z);
                 }
                 arr.needsUpdate = true;
-                if (j.type === 'rope') j.line.material.color.setHex(L >= j.len - 0.02 ? 0xf97316 : 0xfbbf24);
+                if (j.type === 'rope') j.line.material.color.setHex(L >= j.len - 0.02 ? 0xf97316 : 0xf3e5ab);
             });
         }
 
@@ -1078,7 +1105,6 @@
             if (p.type === 'sphere') for (let i = 0; i < 200; i++) { const y = 1 - 2 * (i + 0.5) / 200, r = Math.sqrt(1 - y * y), a = i * 2.399963; pts.push(new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r).multiply(new THREE.Vector3(h.x / 2, h.y / 2, h.z / 2))); }
             return pts;
         }
-        // true if two parts' surfaces touch (within eps) or one is inside the other
         function touching(a, b, eps = 0.04) {
             a.mesh.updateMatrixWorld(true); b.mesh.updateMatrixWorld(true);
             if (a.type === 'sphere' || b.type === 'sphere') {
@@ -1108,7 +1134,6 @@
         }
         function jointLinked(a, b) { return joints.some(j => (j.a === a && j.b === b) || (j.a === b && j.b === a)); }
         function hasGlue(a, b) { return glues.some(g => (g.a === a && g.b === b) || (g.a === b && g.b === a)); }
-        // every part attached (directly or through a chain) to p, plus bearing partners
         function groupOf(p) {
             const seen = new Set([p]), stack = [p];
             while (stack.length) {
@@ -1119,7 +1144,6 @@
             }
             return [...seen];
         }
-        // attachment is NOT applied while building (parts move independently); it is worked out when Simulate starts
         function refreshGlue() {}
         function detectGlues() {
             glues = [];
@@ -1134,7 +1158,6 @@
         }
 
         function bodyQuat(b) { return new THREE.Quaternion(b.quaternion.x, b.quaternion.y, b.quaternion.z, b.quaternion.w); }
-        // every bearing tracks its angle; a locked bearing is held rigid, a servo drives toward its target
         function servoStep(j) {
             const rel = bodyQuat(j.a.body).invert().multiply(bodyQuat(j.b.body));
             const d = j.refRel.clone().invert().multiply(rel);
@@ -1145,14 +1168,14 @@
             if (j.mode !== 'servo') return;
             const c = j.constraint, max = Math.abs(j.rpm) * Math.PI / 30, active = j.held.length ? j.held[j.held.length - 1] : 0;
             if (active) {
-                const err = (active === 1 ? j.a1 : j.a2) * Math.PI / 180 - j.angUnw;   // slows down smoothly, stops at the angle
+                const err = (active === 1 ? j.a1 : j.a2) * Math.PI / 180 - j.angUnw;
                 c.setMotorMaxForce(j.torque);
                 c.setMotorSpeed(-Math.max(-max, Math.min(max, 6 * err)));
                 j.holdAng = j.angUnw;
-            } else if (j.lock) {                                                       // idle + lock option: rigid hold
+            } else if (j.lock) {
                 c.setMotorMaxForce(1e5);
                 c.setMotorSpeed(-6 * (j.holdAng - j.angUnw));
-            } else {                                                                   // idle: just stops turning
+            } else {
                 c.setMotorMaxForce(j.torque);
                 c.setMotorSpeed(0);
             }
@@ -1181,7 +1204,7 @@
         function setJAxis(v) { if (selectedJoint) { selectedJoint.axis = v; buildJoint(selectedJoint); } }
 
         function jointInspectorHTML(j) {
-            const lbl = 'text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1';
+            const lbl = 'text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1';
             const num = (l, k, s) => `<div><label class="${lbl}">${l}</label><input type="number" step="${s}" value="${j[k]}" onchange="setJ('${k}', this.value)" class="w-full blender-input" /></div>`;
             let body = '';
             if (j.type === 'bearing') {
@@ -1191,25 +1214,25 @@
                     + `<div><label class="${lbl}">Rotation axis (on base)</label><select onchange="setJAxis(this.value)" class="w-full blender-input">${['x','y','z'].map(a => `<option ${j.axis === a ? 'selected' : ''}>${a}</option>`).join('')}</select></div>`;
                 if (j.mode === 'motor') body += num('Rotation speed (RPM, negative = reverse)', 'rpm', 5) + num('Motor max torque', 'torque', 10)
                 + keyBtn('Motor hotkey 1', 'mKey1') + num('Speed 1 (RPM)', 'mSpeed1', 5) + keyBtn('Motor hotkey 2', 'mKey2') + num('Speed 2 (RPM)', 'mSpeed2', 5)
-                + `<div class="flex items-center justify-between"><span>Spin freely when idle</span><input type="checkbox" ${j.freeIdle ? 'checked' : ''} onchange="setJBool('freeIdle', this.checked)" class="h-4 w-4 accent-emerald-600" /></div>`
-                + `<div class="text-[10px] text-slate-500">While simulating, hold a motor hotkey to override speed. With "Spin freely when idle" on, the motor lets go (no braking) whenever the speed is 0 and no hotkey is held.</div>`;
+                + `<div class="flex items-center justify-between"><span>Spin freely when idle</span><input type="checkbox" ${j.freeIdle ? 'checked' : ''} onchange="setJBool('freeIdle', this.checked)" class="h-4 w-4" /></div>`
+                + `<div class="text-[10px] steam-text-dim">While simulating, hold a motor hotkey to override speed. With "Spin freely when idle" on, the motor lets go (no braking) whenever the speed is 0 and no hotkey is held.</div>`;
                 else if (j.mode === 'servo') body += keyBtn('Key 1 (hold to turn)', 'k1') + num('Key 1 angle (deg)', 'a1', 5) + keyBtn('Key 2 (hold to turn)', 'k2') + num('Key 2 angle (deg)', 'a2', 5)
                     + num('Max turn speed (RPM)', 'rpm', 5) + num('Servo max torque', 'torque', 10)
-                    + `<div class="flex items-center justify-between"><span>Lock when idle (rigid hold)</span><input type="checkbox" ${j.lock ? 'checked' : ''} onchange="setJBool('lock', this.checked)" class="h-4 w-4 accent-emerald-600" /></div>`
-                    + `<div class="text-[10px] text-slate-500">While simulating, hold a key to turn toward its angle; release to stop.</div>`;
-                else body += `<div class="text-[10px] text-slate-500">Spins freely - nothing drives it.</div>`;
+                    + `<div class="flex items-center justify-between"><span>Lock when idle (rigid hold)</span><input type="checkbox" ${j.lock ? 'checked' : ''} onchange="setJBool('lock', this.checked)" class="h-4 w-4" /></div>`
+                    + `<div class="text-[10px] steam-text-dim">While simulating, hold a key to turn toward its angle; release to stop.</div>`;
+                else body += `<div class="text-[10px] steam-text-dim">Spins freely - nothing drives it.</div>`;
             } else if (j.type === 'rope') {
                 body = num('Rope length', 'len', 0.5);
             } else {
                 body = num('Desired length', 'rest', 0.5) + num('Max length', 'max', 0.5) + num('Pull force (stiffness)', 'k', 10) + num('Damping', 'damp', 1)
-                    + `<div class="flex items-center justify-between"><span>Lock weight to axis</span><input type="checkbox" ${j.lockAxis ? 'checked' : ''} onchange="setJBool('lockAxis', this.checked)" class="h-4 w-4 accent-emerald-600" /></div>`;
+                    + `<div class="flex items-center justify-between"><span>Lock weight to axis</span><input type="checkbox" ${j.lockAxis ? 'checked' : ''} onchange="setJBool('lockAxis', this.checked)" class="h-4 w-4" /></div>`;
             }
             return `<div class="space-y-3"><div><label class="${lbl}">Joint Name</label><input type="text" value="${escAttr(j.name)}" onchange="selectedJoint.name=this.value; updateOutliner();" class="w-full blender-input" /></div>${body}
                 <div class="grid grid-cols-2 gap-1">
-                    <button onclick="selectObjectById('${j.a.id}')" class="py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700">Select ${j.a.name}</button>
-                    <button onclick="selectObjectById('${j.b.id}')" class="py-1 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700">Select ${j.b.name}</button>
+                    <button onclick="selectObjectById('${j.a.id}')" class="py-1">Select ${j.a.name}</button>
+                    <button onclick="selectObjectById('${j.b.id}')" class="py-1">Select ${j.b.name}</button>
                 </div>
-                <button onclick="removeJoint(selectedJoint)" class="w-full py-1.5 rounded bg-red-600/20 hover:bg-red-600 border border-red-500/30 text-red-300 hover:text-white font-semibold">Remove joint (keeps parts)</button></div>`;
+                <button onclick="removeJoint(selectedJoint)" class="w-full py-1.5 font-semibold">Remove joint (keeps parts)</button></div>`;
         }
 
         function alignCameraView(view) {
@@ -1230,12 +1253,8 @@
 
         function setInteractionMode(mode) {
             interactionMode = mode;
-            document.getElementById('mode-obj-btn').className = mode === 'object' ? 
-                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 bg-blue-600 text-white shadow" : 
-                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
-            document.getElementById('mode-face-btn').className = mode === 'face' ? 
-                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 bg-blue-600 text-white shadow" : 
-                "px-3 py-1.5 rounded-md text-xs font-semibold transition flex items-center space-x-1.5 text-slate-400 hover:text-white hover:bg-slate-800";
+            document.getElementById('mode-obj-btn').className = mode === 'object' ? "btn-active flex items-center space-x-1.5" : "flex items-center space-x-1.5";
+            document.getElementById('mode-face-btn').className = mode === 'face' ? "btn-active flex items-center space-x-1.5" : "flex items-center space-x-1.5";
             
             if (mode === 'object' && faceHighlightMesh) faceHighlightMesh.visible = false;
             showToast(`Switched to ${mode.toUpperCase()} Mode`);
@@ -1315,16 +1334,13 @@
             return Math.round(val / step) * step;
         }
 
-        // Plane used to project the mouse while moving. For a single-axis lock the plane
-        // contains the axis and is turned as much as possible toward the camera, so it never
-        // goes edge-on (which broke Z-moves when looking along Y).
         function getLockPlaneNormal(axis) {
             const camDir = camera.getWorldDirection(new THREE.Vector3()).negate();
             const planeAxes = { shiftX: [1, 0, 0], shiftY: [0, 1, 0], shiftZ: [0, 0, 1] };
             if (planeAxes[axis]) return new THREE.Vector3(...planeAxes[axis]);
             const a = new THREE.Vector3(axis === 'x' ? 1 : 0, axis === 'y' ? 1 : 0, axis === 'z' ? 1 : 0);
             const n = camDir.clone().addScaledVector(a, -camDir.dot(a));
-            if (n.lengthSq() < 1e-6) n.copy(camDir); // looking straight down the axis
+            if (n.lengthSq() < 1e-6) n.copy(camDir);
             return n.normalize();
         }
 
@@ -1342,8 +1358,8 @@
                 points.push(new THREE.Vector3(currentPos.x, currentPos.y - 100, currentPos.z), new THREE.Vector3(currentPos.x, currentPos.y + 100, currentPos.z));
                 guideLineMesh.material.color.setHex(0x22c55e);
             } else if (axis === 'z') {
-                points.push(new THREE.Vector3(currentPos.x, currentPos.y, currentPos.z - 100), new THREE.Vector3(currentPos.x, currentPos.y, currentPos.z + 100));
-                guideLineMesh.material.color.setHex(0x3b82f6);
+                points.push(new THREE.Vector3(currentPos.x, currentPos.y - 100, currentPos.z), new THREE.Vector3(currentPos.x, currentPos.y + 100, currentPos.z));
+                guideLineMesh.material.color.setHex(0xf3e5ab);
             } else {
                 guideLineMesh.visible = false;
             }
@@ -1406,10 +1422,6 @@
 
                 if (snapToGrid) {
                     const d = selectedObject.dimensions;
-                    // Snap so the object stays face-aligned to the grid even when its
-                    // scale (dimensions) is fractional on an axis. We snap the near-face
-                    // position (pos - half) to the grid, then restore the half offset.
-                    // Whole-number dimensions that are multiples of gridSize are unaffected.
                     newPos.x = snapValue(newPos.x - d.x / 2) + d.x / 2;
                     newPos.y = snapValue(newPos.y - d.y / 2) + d.y / 2;
                     newPos.z = snapValue(newPos.z - d.z / 2) + d.z / 2;
@@ -1445,7 +1457,6 @@
             updateInspector();
         }
 
-        // Closest point on the face's normal axis to the mouse ray (distance along the outward normal).
         function axisParam(f) {
             const o = raycaster.ray.origin, r = raycaster.ray.direction, d = f.worldNormal, w = f.facePoint.clone().sub(o);
             const b = d.dot(r), den = 1 - b * b;
@@ -1513,7 +1524,6 @@
                 return;
             }
 
-            // Joint two-click placement: click part A, then part B
             if (jointPlacementMode) {
                 mousePos.x = (e.clientX / window.innerWidth) * 2 - 1;
                 mousePos.y = -(e.clientY / window.innerHeight) * 2 + 1;
@@ -1524,11 +1534,9 @@
                 if (intersects.length > 0) {
                     const hitPart = intersects[0].object.userData.partObj;
                     if (!jointPlacementPartA) {
-                        // First click: anchor part (A)
                         jointPlacementPartA = hitPart;
                         showToast(`Part A selected: "${hitPart.name}". Now click part B.`);
                     } else if (hitPart !== jointPlacementPartA) {
-                        // Second click: other part (B) — create the joint
                         createJointBetween(jointPlacementMode, jointPlacementPartA, hitPart);
                         jointPlacementMode = null;
                         jointPlacementPartA = null;
@@ -1554,8 +1562,6 @@
             }
         }
 
-        // parts that move together: glued parts only. Bearing partners are NOT dragged
-        // along, so each half of a bearing can be selected and moved independently.
         function moveSet() {
             const list = selectionList();
             const s = new Set(list);
@@ -1574,7 +1580,7 @@
         function setSelection(list) {
             selectObject(list.length ? list[list.length - 1] : null);
             extraSel = list.slice(0, -1);
-            extraSel.forEach(p => { p.mesh.material.emissive.setHex(0x1e293b); if (p.boxHelper) p.boxHelper.visible = true; });
+            extraSel.forEach(p => { p.mesh.material.emissive.setHex(0x232920); if (p.boxHelper) p.boxHelper.visible = true; });
             if (list.length > 1) showToast(`${list.length} parts selected - move/rotate/delete act on all`);
             updateOutliner(); updateInspector();
         }
@@ -1596,7 +1602,7 @@
             selectedObject = partObj;
 
             if (selectedObject) {
-                selectedObject.mesh.material.emissive.setHex(0x1e293b);
+                selectedObject.mesh.material.emissive.setHex(0x232920);
                 if (selectedObject.boxHelper) {
                     selectedObject.boxHelper.visible = true;
                     selectedObject.boxHelper.update();
@@ -1607,14 +1613,11 @@
             updateInspector();
         }
 
-        // Drag-select (marquee) state
         let isMarquee = false;
         let marqueeStart = { x: 0, y: 0 };
         let marqueeCurrent = { x: 0, y: 0 };
         const MARQUEE_THRESHOLD = 5;
 
-        // Marquee selection: project each part's world-space bounding box to screen and
-        // select the parts whose entire bounding box falls inside the drag rectangle.
         function doMarqueeSelect(start, current, shiftKey) {
             const x1 = Math.min(start.x, current.x);
             const y1 = Math.min(start.y, current.y);
@@ -1626,10 +1629,9 @@
             const camInverse = new THREE.Matrix4().copy(camera.matrixWorld).invert();
             const W = window.innerWidth, H = window.innerHeight;
             const v = new THREE.Vector3();
-            // screen position of a world point, or null if it is behind the camera
             const toScreen = (wp) => {
                 v.copy(wp).applyMatrix4(camInverse);
-                if (v.z >= -camera.near) return null;       // view space looks down -Z
+                if (v.z >= -camera.near) return null;
                 v.copy(wp).project(camera);
                 return { x: (v.x * 0.5 + 0.5) * W, y: (-v.y * 0.5 + 0.5) * H };
             };
@@ -1640,9 +1642,6 @@
                 p.mesh.updateMatrixWorld();
                 const d = p.dimensions, hx = d.x / 2, hy = d.y / 2, hz = d.z / 2;
 
-                // Selected when the object's centre is inside the box, or the whole object is
-                // inside it. (Centre test is what makes drag-select work at close range, where
-                // big objects stick out past the box / the screen.)
                 const centre = toScreen(p.mesh.position);
                 let hit = !!(centre && inRect(centre));
 
@@ -1681,11 +1680,8 @@
                         return;
                     }
                     if (isTransforming) {
-                        // Left-click during a transform confirms the change (same as before marquee was added)
                         handleLeftClickSelect(e);
                     } else {
-                        // Start a potential marquee drag; the actual selection happens on mouseup
-                        // so we can distinguish a click from a drag.
                         isMarquee = true;
                         marqueeStart = { x: e.clientX, y: e.clientY };
                         marqueeCurrent = { x: e.clientX, y: e.clientY };
@@ -1720,7 +1716,6 @@
 
             window.addEventListener('mousemove', (e) => {
                 if (grab) { setGrabMouse(e); updateGrabTarget(); }
-                // Update the live marquee box while dragging with LMB.
                 if (isMarquee) {
                     marqueeCurrent = { x: e.clientX, y: e.clientY };
                     const mb = document.getElementById('marquee-box');
@@ -1743,8 +1738,6 @@
                     updateCameraPosition();
                 } else if (isPanning) {
                     const panSpeed = 0.015;
-                    // pan strictly in the screen plane (camera right / camera up), so moving the
-                    // mouse up/down never changes the distance to the target
                     const dir = camera.getWorldDirection(new THREE.Vector3());
                     const rightTrue = new THREE.Vector3().crossVectors(dir, camera.up).normalize();
                     const upTrue = new THREE.Vector3().crossVectors(rightTrue, dir).normalize();
@@ -1805,9 +1798,9 @@
                         if (j.type === 'bearing' && j.mode === 'servo') [[j.k1, 1], [j.k2, 2]].forEach(([k, n]) => {
                             if (k && key === k) { hit = true; if (!j.held.includes(n)) j.held.push(n); }
                         });
-                            if (j.type === 'bearing' && j.mode === 'motor') [[j.mKey1, 1], [j.mKey2, 2]].forEach(([k, n]) => {
-                                if (k && key === k) { hit = true; j.mActive = n; }
-                            });
+                        if (j.type === 'bearing' && j.mode === 'motor') [[j.mKey1, 1], [j.mKey2, 2]].forEach(([k, n]) => {
+                            if (k && key === k) { hit = true; j.mActive = n; }
+                        });
                     });
                     if (hit) { e.preventDefault(); return; }
                 }
@@ -1946,7 +1939,6 @@
             menu.classList.remove('hidden');
         }
 
-        // Shift+D: duplicate the selection (and any joint whose both ends are selected), then grab it
         function duplicateSelection() {
             const list = selectionList();
             if (!list.length || isTransforming) return;
@@ -1987,9 +1979,6 @@
             openAddMenuAtMouse();
         }
 
-        // Gauss-Seidel solvers go soft when a very heavy body hangs off a very light one.
-        // While simulating, the lighter side of every bearing is given at least 1/N of the
-        // heavier side's mass (restored on Reset) so the hinge stays rigid.
         function clampBearingMasses() {
             const links = [];
             joints.forEach(j => { if (j.type === 'bearing' || j.lockConstraint) links.push([j.a, j.b]); });
@@ -2036,7 +2025,7 @@
                 }
                 playIcon.className = "fa-solid fa-pause";
                 playText.innerText = "Pause [Space]";
-                playBtn.className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-amber-600 hover:bg-amber-500 text-white shadow";
+                playBtn.className = "btn-active flex items-center space-x-1.5";
                 
                 parts.forEach(p => {
                     if (!p.isAnchored) p.body.type = CANNON.Body.DYNAMIC;
@@ -2044,7 +2033,7 @@
             } else {
                 playIcon.className = "fa-solid fa-play";
                 playText.innerText = simStarted ? "Resume [Space] | R = Reset" : "Simulate [Space]";
-                playBtn.className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow";
+                playBtn.className = "flex items-center space-x-1.5";
             }
         }
 
@@ -2057,7 +2046,7 @@
             clearWelds(); glues = [];
             document.getElementById('sim-play-icon').className = "fa-solid fa-play";
             document.getElementById('sim-play-text').innerText = "Simulate [Space]";
-            document.getElementById('sim-play-btn').className = "px-4 py-1.5 rounded-md text-xs font-bold transition flex items-center space-x-1.5 bg-emerald-600 hover:bg-emerald-500 text-white shadow";
+            document.getElementById('sim-play-btn').className = "flex items-center space-x-1.5";
 
             parts.forEach(p => {
                 p.body.velocity.set(0, 0, 0);
@@ -2100,7 +2089,7 @@
         function updateOutliner() {
             const container = document.getElementById('outliner-list');
             if (parts.length === 0 && joints.length === 0) {
-                container.innerHTML = `<div class="text-slate-500 italic text-center py-4">No objects in scene</div>`;
+                container.innerHTML = `<div class="steam-text-dim italic text-center py-4">No objects in scene</div>`;
                 return;
             }
 
@@ -2109,24 +2098,25 @@
             parts.forEach(p => {
                 const isSel = selectedObject === p || extraSel.includes(p);
                 html += `
-                    <div onclick="selectObjectById('${p.id}', event)" ondblclick="renameItem('part','${p.id}')" title="Double-click to rename" class="flex items-center justify-between px-2.5 py-1.5 rounded cursor-pointer transition ${isSel ? 'bg-blue-600/30 border border-blue-500/50 text-white' : 'hover:bg-slate-800 text-slate-300'}">
+                    <div onclick="selectObjectById('${p.id}', event)" ondblclick="renameItem('part','${p.id}')" title="Double-click to rename" class="flex items-center justify-between px-2.5 py-1.5 cursor-pointer ${isSel ? 'btn-active' : 'menu-item'}">
                         <div class="flex items-center space-x-2 truncate">
                             <i class="fa-solid fa-cube text-xs" style="color:#${new THREE.Color(p.color).getHexString()}"></i>
                             <span class="truncate">${p.name}</span>
                         </div>
-                        <span class="text-[10px] text-slate-500 uppercase">${p.type}</span>
+                        <span class="text-[10px] steam-text-dim uppercase">${p.type}</span>
                     </div>
                 `;
             });
 
             joints.forEach(j => {
+                const isSel = selectedJoint === j;
                 html += `
-                    <div onclick="selectJointById('${j.id}')" ondblclick="renameItem('joint','${j.id}')" title="Double-click to rename" class="flex items-center justify-between px-2.5 py-1.5 rounded cursor-pointer border ${selectedJoint === j ? 'bg-emerald-600/30 border-emerald-500/50 text-white' : 'text-slate-400 bg-slate-950/40 border-slate-800'}">
+                    <div onclick="selectJointById('${j.id}')" ondblclick="renameItem('joint','${j.id}')" title="Double-click to rename" class="flex items-center justify-between px-2.5 py-1.5 cursor-pointer ${isSel ? 'btn-active' : 'menu-item'}">
                         <div class="flex items-center space-x-2 truncate">
-                            <i class="fa-solid fa-link text-emerald-400 text-xs"></i>
+                            <i class="fa-solid fa-link steam-text-gold text-xs"></i>
                             <span class="truncate">${j.name}</span>
                         </div>
-                        <span class="text-[10px] text-emerald-500/80 uppercase">Joint</span>
+                        <span class="text-[10px] steam-text-gold uppercase">Joint</span>
                     </div>
                 `;
             });
@@ -2152,7 +2142,7 @@
             if (selectedJoint) { container.innerHTML = jointInspectorHTML(selectedJoint); return; }
 
             if (!selectedObject) {
-                container.innerHTML = `<div class="text-slate-500 italic text-center py-6">Select an object to inspect properties</div>`;
+                container.innerHTML = `<div class="steam-text-dim italic text-center py-6">Select an object to inspect properties</div>`;
                 return;
             }
 
@@ -2163,12 +2153,12 @@
             container.innerHTML = `
                 <div class="space-y-3">
                     <div>
-                        <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Object Name</label>
+                        <label class="text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1">Object Name</label>
                         <input type="text" value="${escAttr(p.name)}" onchange="selectedObject.name=this.value; updateOutliner();" class="w-full blender-input" />
                     </div>
 
                     <div>
-                        <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Position (X, Y, Z)</label>
+                        <label class="text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1">Position (X, Y, Z)</label>
                         <div class="grid grid-cols-3 gap-1">
                             <input type="number" step="0.5" value="${pos.x.toFixed(2)}" onchange="updatePos('x', this.value)" class="blender-input text-center" />
                             <input type="number" step="0.5" value="${pos.y.toFixed(2)}" onchange="updatePos('y', this.value)" class="blender-input text-center" />
@@ -2177,7 +2167,7 @@
                     </div>
 
                     <div>
-                        <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Dimensions (W, L, H)</label>
+                        <label class="text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1">Dimensions (W, L, H)</label>
                         <div class="grid grid-cols-3 gap-1">
                             <input type="number" step="0.5" min="0.1" value="${dim.x.toFixed(2)}" onchange="updateDim('x', this.value)" class="blender-input text-center" />
                             <input type="number" step="0.5" min="0.1" value="${dim.y.toFixed(2)}" onchange="updateDim('y', this.value)" class="blender-input text-center" />
@@ -2186,27 +2176,27 @@
                     </div>
 
                     <div>
-                        <button onclick="toggleFollow()" class="w-full px-3 py-1.5 rounded-md text-xs font-semibold border transition ${followPart === p ? 'bg-blue-600/30 border-blue-500/50 text-blue-300' : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-slate-700'}">
+                        <button onclick="toggleFollow()" class="w-full px-3 py-1.5 text-xs font-semibold ${followPart === p ? 'btn-active' : ''}">
                             <i class="fa-solid fa-video mr-1"></i>${followPart === p ? 'Stop following' : 'Follow'}
                         </button>
-                        <div class="text-[10px] text-slate-500 mt-1">Camera moves along with this part while simulating (not saved).</div>
+                        <div class="text-[10px] steam-text-dim mt-1">Camera moves along with this part while simulating (not saved).</div>
                     </div>
 
                     <div>
-                        <label class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Color</label>
+                        <label class="text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1">Color</label>
                         <div class="flex items-center space-x-2">
-                            <input type="color" value="#${new THREE.Color(p.color).getHexString()}" oninput="recolorSelection(this.value)" onchange="colorUndoPushed=false" class="h-7 w-10 p-0 bg-transparent border border-slate-700 rounded cursor-pointer" />
-                            <div class="flex flex-wrap gap-1">${['#3b82f6','#ef4444','#22c55e','#eab308','#a855f7','#f97316','#e2e8f0','#475569'].map(c => `<button onclick="recolorSelection('${c}', true)" title="${c}" class="h-5 w-5 rounded border border-slate-600" style="background:${c}"></button>`).join('')}</div>
+                            <input type="color" value="#${new THREE.Color(p.color).getHexString()}" oninput="recolorSelection(this.value)" onchange="colorUndoPushed=false" class="h-7 w-10 p-0 bg-transparent btn-raw border cursor-pointer" style="border-color: var(--steam-dark);" />
+                            <div class="flex flex-wrap gap-1">${['#4c5844','#3b82f6','#ef4444','#22c55e','#eab308','#a855f7','#f97316','#e2e8f0','#475569'].map(c => `<button onclick="recolorSelection('${c}', true)" title="${c}" class="btn-raw h-5 w-5" style="background:${c}; border:1px solid var(--steam-dark);"></button>`).join('')}</div>
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-between pt-2 border-t border-slate-800">
-                        <span class="text-xs font-medium text-slate-300">Anchor In Physics World</span>
-                        <input type="checkbox" ${p.isAnchored ? 'checked' : ''} onchange="toggleAnchor(this.checked)" class="h-4 w-4 rounded accent-blue-600 bg-slate-900 border-slate-700" />
+                    <div class="flex items-center justify-between pt-2 border-t" style="border-color: var(--steam-dark);">
+                        <span class="text-xs font-medium text-slate-200">Anchor In Physics World</span>
+                        <input type="checkbox" ${p.isAnchored ? 'checked' : ''} onchange="toggleAnchor(this.checked)" class="h-4 w-4" />
                     </div>
 
-                    ${glues.some(g => g.a === p || g.b === p) ? `<button onclick="detachSelected()" class="w-full mt-2 py-1.5 rounded bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 transition font-semibold text-xs"><i class="fa-solid fa-link-slash mr-1"></i>Detach from attached parts</button>` : ''}
-                    <button onclick="deleteSelectedObject()" class="w-full mt-2 py-1.5 rounded bg-red-600/20 hover:bg-red-600 border border-red-500/30 hover:border-red-500 text-red-300 hover:text-white transition font-semibold text-xs flex items-center justify-center space-x-1">
+                    ${glues.some(g => g.a === p || g.b === p) ? `<button onclick="detachSelected()" class="w-full mt-2 py-1.5 font-semibold text-xs"><i class="fa-solid fa-link-slash mr-1"></i>Detach from attached parts</button>` : ''}
+                    <button onclick="deleteSelectedObject()" class="w-full mt-2 py-1.5 font-semibold text-xs flex items-center justify-center space-x-1">
                         <i class="fa-solid fa-trash-can"></i>
                         <span>Delete Object</span>
                     </button>
@@ -2230,7 +2220,6 @@
             refreshGlue([selectedObject]);
         }
 
-        // Simulation-only camera follow (never saved)
         let followPart = null, followLast = null;
         function toggleFollow() {
             if (!selectedObject) return;
@@ -2272,7 +2261,7 @@
 
         function showToast(msg) {
             const toast = document.createElement('div');
-            toast.className = "fixed bottom-4 left-4 z-50 bg-slate-900/90 text-slate-200 border border-slate-700 px-3.5 py-2 rounded-lg shadow-xl text-xs backdrop-blur-md transition-all duration-300 opacity-0 transform translate-y-2";
+            toast.className = "toast-notification fixed bottom-4 left-4 z-50 px-3.5 py-2 text-xs transition-all duration-300 opacity-0 transform translate-y-2";
             toast.innerText = msg;
             document.body.appendChild(toast);
 
