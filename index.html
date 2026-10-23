@@ -13,15 +13,26 @@
     <!-- Cannon.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
     <style>
+    /* Global Retro Steam Theme Overrides */
+    :root {
+        --steam-bg: #4c5844;
+        --steam-panel: #3a4335;
+        --steam-dark: #232920;
+        --steam-light: #75836c;
+        --steam-input-bg: #384233;
+        --steam-text: #d8ded0;
+    }
+
     body {
         margin: 0;
         overflow: hidden;
         user-select: none;
-        background-color: #4c5844; /* Classic Steam Green UI background */
-        color: #d8ded0;
-        font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+        background-color: var(--steam-bg) !important;
+        color: var(--steam-text) !important;
+        font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif !important;
         font-size: 11px;
     }
+
     #canvas-container {
         width: 100vw;
         height: 100vh;
@@ -30,6 +41,12 @@
         left: 0;
         z-index: 0;
     }
+
+    /* Force panels and containers using modern dark backgrounds to use Steam olive */
+    [class*="bg-slate-"], [class*="bg-[#"], div {
+        /* Optional: if you want script-generated elements to match */
+    }
+
     /* Retro Steam Blocky Scrollbars */
     ::-webkit-scrollbar {
         width: 13px;
@@ -52,28 +69,53 @@
     ::-webkit-scrollbar-corner {
         background: #3a4335;
     }
+
     /* Inset bevelled input fields typical of mid-2000s Steam */
-    .blender-input {
-        background-color: #384233;
-        border-top: 1px solid #20261d;
-        border-left: 1px solid #20261d;
-        border-bottom: 1px solid #63715a;
-        border-right: 1px solid #63715a;
-        color: #e1e7d9;
-        border-radius: 0;
+    .blender-input, input[type="text"], input[type="number"], select {
+        background-color: var(--steam-input-bg) !important;
+        border-top: 1px solid #20261d !important;
+        border-left: 1px solid #20261d !important;
+        border-bottom: 1px solid #63715a !important;
+        border-right: 1px solid #63715a !important;
+        color: #e1e7d9 !important;
+        border-radius: 0 !important;
         padding: 2px 4px;
         font-size: 11px;
-        font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+        font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif !important;
         outline: none;
     }
-    .blender-input:focus {
-        border-top: 1px solid #758a60;
-        border-left: 1px solid #758a60;
-        border-bottom: 1px solid #b1ca96;
-        border-right: 1px solid #b1ca96;
-        background-color: #2b3327;
-        color: #ffffff;
+    
+    .blender-input:focus, input:focus {
+        border-top: 1px solid #758a60 !important;
+        border-left: 1px solid #758a60 !important;
+        border-bottom: 1px solid #b1ca96 !important;
+        border-right: 1px solid #b1ca96 !important;
+        background-color: #2b3327 !important;
+        color: #ffffff !important;
     }
+
+    /* Classic Steam Buttons (Outlined with 3D bevels) */
+    button, .btn {
+        background-color: #48543f !important;
+        border-top: 1px solid #697a5d !important;
+        border-left: 1px solid #697a5d !important;
+        border-right: 1px solid #282f23 !important;
+        border-bottom: 1px solid #282f23 !important;
+        border-radius: 0 !important;
+        color: #e1e7d9 !important;
+        font-family: 'Tahoma', sans-serif !important;
+        font-size: 11px !important;
+        padding: 3px 8px !important;
+    }
+
+    button:active {
+        border-top: 1px solid #282f23 !important;
+        border-left: 1px solid #282f23 !important;
+        border-right: 1px solid #697a5d !important;
+        border-bottom: 1px solid #697a5d !important;
+        background-color: #3b4433 !important;
+    }
+
     .gizmo-container {
         position: absolute;
         top: 70px;
@@ -83,7 +125,8 @@
         z-index: 10;
         pointer-events: auto;
     }
-    /* Steam-style dashed/solid selection box */
+
+    /* Steam-style dashed selection box */
     .marquee-box {
         position: absolute;
         top: 0;
