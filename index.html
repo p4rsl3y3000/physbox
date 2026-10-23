@@ -188,9 +188,78 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
         display: none;
         box-sizing: border-box;
     }
+
+    /* ---- Steam checkboxes ---- */
+    input[type="checkbox"] {
+        -webkit-appearance: none; appearance: none;
+        width: 14px !important; height: 14px !important; min-width: 14px; flex: none;
+        padding: 0 !important; margin: 0; cursor: pointer; vertical-align: middle;
+        background-color: var(--steam-input-bg) !important;
+        border-top: 1px solid #1a2018 !important; border-left: 1px solid #1a2018 !important;
+        border-bottom: 1px solid #6a7960 !important; border-right: 1px solid #6a7960 !important;
+    }
+    input[type="checkbox"]:hover { background-color: #36402f !important; }
+    input[type="checkbox"]:checked {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M1.5 5.2 L4 7.8 L8.6 2.2' fill='none' stroke='%23f3e5ab' stroke-width='1.8' stroke-linecap='square'/%3E%3C/svg%3E");
+        background-repeat: no-repeat; background-position: center; background-size: 10px 10px;
+    }
+
+    /* ---- Steam number spinners ---- */
+    input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+    input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; display: none; }
+    .steam-spin { display: flex; align-items: stretch; width: 100%; }
+    .steam-spin > input { flex: 1 1 0; min-width: 0; width: 100% !important; }
+    .steam-spin-btns { display: flex; flex-direction: column; width: 14px; flex: none; margin-left: 1px; }
+    .steam-spin-btn {
+        flex: 1 1 0; min-height: 0; padding: 0; display: flex; align-items: center; justify-content: center;
+        background-color: #48543f;
+        border-top: 1px solid #697a5d; border-left: 1px solid #697a5d; border-right: 1px solid #282f23; border-bottom: 1px solid #282f23;
+    }
+    .steam-spin-btn::before { content: ""; width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; }
+    .steam-spin-btn.up::before { border-bottom: 4px solid var(--steam-text); }
+    .steam-spin-btn.down::before { border-top: 4px solid var(--steam-text); }
+    .steam-spin-btn:hover { background-color: #55634b; }
+    .steam-spin-btn:hover.up::before { border-bottom-color: var(--steam-yellow); }
+    .steam-spin-btn:hover.down::before { border-top-color: var(--steam-yellow); }
+    .steam-spin-btn:active {
+        background-color: #3b4433;
+        border-top: 1px solid #282f23; border-left: 1px solid #282f23; border-right: 1px solid #697a5d; border-bottom: 1px solid #697a5d;
+    }
+
+    /* ---- Hotkey cards ---- */
+    .hk-card { background: var(--steam-dark); border: 1px solid #1a2018; border-bottom-color: #5a6850; border-right-color: #5a6850; padding: 4px 6px 6px; }
+    .hk-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+    button.hk-mini:not([style*="background"]):not(.btn-raw) { padding: 0 6px !important; min-width: 22px; height: 16px; line-height: 14px; font-size: 10px !important; }
+
+    /* ---- Start menu ---- */
+    #start-menu { position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center; background: var(--steam-bg); }
+    .start-panel { width: 440px; background: var(--steam-panel); border: 1px solid var(--steam-dark); border-top-color: var(--steam-light); border-left-color: var(--steam-light); }
+    #start-menu button.start-btn:not([style*="background"]):not(.btn-raw) { display: block; width: 100%; text-align: left; padding: 10px 12px !important; margin-top: 8px; }
+    .start-btn .st-title { color: var(--steam-yellow); font-weight: bold; font-size: 13px; }
+    .start-btn .st-desc { color: var(--steam-text-dim); margin-top: 3px; font-size: 11px; }
 </style>
 </head>
 <body class="flex flex-col h-screen w-screen overflow-hidden select-none">
+
+    <!-- Start-up menu -->
+    <div id="start-menu">
+        <div class="start-panel">
+            <div class="steam-header-bar" style="padding: 8px 12px; font-size: 16px; font-weight: 900; letter-spacing: .05em;">
+                <i class="fa-solid fa-cube"></i> phys<span style="color:#fff; font-weight:300;">Box</span>
+            </div>
+            <div style="padding: 12px;">
+                <div class="steam-text-dim">Choose how to start:</div>
+                <button class="start-btn" onclick="startScene('cube')">
+                    <div class="st-title"><i class="fa-solid fa-cube" style="margin-right:6px"></i>Spawn the cube</div>
+                    <div class="st-desc">Start with a single cube on an empty floor.</div>
+                </button>
+                <button class="start-btn" onclick="startScene('sample')">
+                    <div class="st-title"><i class="fa-solid fa-gears" style="margin-right:6px"></i>Sample scene</div>
+                    <div class="st-desc">A tilt table driven by two synced servos (Q / E) and a motor wheel with three hotkeys (W / S / F). Press Simulate to try it.</div>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Canvas Wrapper -->
     <div id="canvas-container"></div>
@@ -359,6 +428,9 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
         <button onclick="createJoint('rope')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
             <span><i class="fa-solid fa-link w-4 text-center mr-2"></i> Rope (2 parts)</span>
         </button>
+        <button onclick="createJoint('thruster')" class="w-full text-left px-4 py-1.5 menu-item flex items-center justify-between">
+            <span><i class="fa-solid fa-rocket w-4 text-center mr-2"></i> Thruster (1 part)</span>
+        </button>
     </div>
 
     <script>
@@ -373,6 +445,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
         let selectedObject = null;
         let interactionMode = 'object';
         let isSimulating = false;
+        let pressedKeys = [], startMenuOpen = true;
         let snapToGrid = true;
         let gridSize = 0.5;
         // Joint two-click placement state
@@ -523,8 +596,8 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             createFloorGrid();
             setupEventListeners();
             
-            const defaultBlock = createPrimitive('block', new THREE.Vector3(0, 0, 1), new THREE.Vector3(2, 2, 2), 0x4c5844, true);
-            selectObject(defaultBlock);
+            new MutationObserver(() => enhanceSpinners(document.getElementById('inspector-content')))
+                .observe(document.getElementById('inspector-content'), { childList: true, subtree: true });
 
             animate();
         };
@@ -611,11 +684,13 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             world = new CANNON.World();
             world.gravity.set(0, 0, -9.82);
             world.broadphase = new CANNON.NaiveBroadphase();
-            world.solver.iterations = 40;
+            world.solver.iterations = 60;
+            world.narrowphase.enableFrictionReduction = true;   // one friction per touching pair, not one per contact point (was 4x+ too grippy)
             world.addEventListener('preStep', () => {
                 world.constraints.forEach(c => {
                     if (c instanceof OffsetDistance) { c.equations.forEach(eq => eq.setSpookParams(1e7, 4, SUB_DT)); return; }
-                    c.equations.forEach(eq => eq.setSpookParams(eq === c.motorEquation ? 1e7 : 1e9, eq === c.motorEquation ? 4 : 4, SUB_DT));
+                    const hinge = c instanceof CANNON.HingeConstraint;
+                    c.equations.forEach(eq => { const m = eq === c.motorEquation; eq.setSpookParams(m ? 1e7 : hinge ? 1e11 : 1e9, hinge && !m ? 3 : 4, SUB_DT); if (hinge && !m) { eq.minForce = -1e9; eq.maxForce = 1e9; } });
                 });
             });
             world.addEventListener('preStep', applyGrabForce);
@@ -623,10 +698,9 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                 if (j.type === 'bearing' && j.constraint) servoStep(j);
                 if (j.type === 'bearing' && j.mode === 'motor' && j.constraint) {
                     const c = j.constraint;
-                    const max = Math.max(Math.abs(j.rpm), Math.abs(j.mSpeed1 || 0), Math.abs(j.mSpeed2 || 0)) * Math.PI / 30;
+                    const max = Math.max(Math.abs(j.rpm), ...(j.mKeys || []).map(k => Math.abs(k.rpm))) * Math.PI / 30;
                     let rpm = j.rpm;
-                    if (j.mActive === 1 && j.mSpeed1) rpm = j.mSpeed1;
-                    else if (j.mActive === 2 && j.mSpeed2) rpm = j.mSpeed2;
+                    const mk = lastActive(j.mKeys); if (mk) rpm = mk.rpm;
                     if (j.freeIdle && !rpm) {
                         if (c.motorEquation.enabled) c.disableMotor();
                     } else {
@@ -635,6 +709,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                         c.setMotorSpeed(-Math.max(-max, Math.min(max, rpm * Math.PI / 30)));
                     }
                 }
+                if (j.type === 'thruster') { applyThrust(j); return; }
                 if (j.type !== 'spring') return;
                 const A = j.a.body, B = j.b.body, rA = A.quaternion.vmult(j.la), rB = B.quaternion.vmult(j.lb);
                 const pA = A.position.vadd(rA), pB = B.position.vadd(rB), d = pB.vsub(pA), L = d.norm();
@@ -658,7 +733,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             });
 
             const groundShape = new CANNON.Plane();
-            const groundBody = new CANNON.Body({ mass: 0 });
+            const groundBody = new CANNON.Body({ mass: 0, material: frictionMaterial(1) });   // floor never limits grip: the part's own friction decides
             groundBody.addShape(groundShape);
             world.addBody(groundBody);
         }
@@ -718,12 +793,93 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             return g;
         }
 
-        function makeGeometry(type, d) {
-            if (type === 'sphere') { const g = new THREE.SphereGeometry(0.5, 32, 24); g.scale(d.x, d.y, d.z); return g; }
-            if (type === 'cylinder') { const g = new THREE.CylinderGeometry(0.5, 0.5, 1, 32); g.rotateX(Math.PI / 2); g.scale(d.x, d.y, d.z); return g; }
-            if (type === 'wedge') return createWedgeGeometry(d);
-            return new THREE.BoxGeometry(d.x, d.y, d.z);
+        function tileUVs(g) {
+            const p = g.attributes.position, n = g.attributes.normal, uv = [];
+            for (let i = 0; i < p.count; i++) {
+                const ax = Math.abs(n.getX(i)), ay = Math.abs(n.getY(i)), az = Math.abs(n.getZ(i));
+                uv.push(...(ax >= ay && ax >= az ? [p.getY(i), p.getZ(i)] : ay >= az ? [p.getX(i), p.getZ(i)] : [p.getX(i), p.getY(i)]));
+            }
+            g.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+            return g;
         }
+        function makeGeometry(type, d) {
+            if (type === 'sphere') { const g = new THREE.SphereGeometry(0.5, 32, 24); g.scale(d.x, d.y, d.z); return tileUVs(g); }
+            if (type === 'cylinder') { const g = new THREE.CylinderGeometry(0.5, 0.5, 1, 32); g.rotateX(Math.PI / 2); g.scale(d.x, d.y, d.z); return tileUVs(g); }
+            if (type === 'wedge') return createWedgeGeometry(d);
+            return tileUVs(new THREE.BoxGeometry(d.x, d.y, d.z));
+        }
+
+        // ---- per-part friction & density ----
+        const frictionMats = new Map();
+        function frictionMaterial(f) {
+            f = Math.max(0, f);
+            if (frictionMats.has(f)) return frictionMats.get(f);
+            const m = new CANNON.Material('f' + f);
+            frictionMats.forEach((o, of) => world.addContactMaterial(new CANNON.ContactMaterial(m, o, { friction: Math.min(f, of), restitution: world.defaultContactMaterial.restitution })));
+            world.addContactMaterial(new CANNON.ContactMaterial(m, m, { friction: f, restitution: world.defaultContactMaterial.restitution }));
+            frictionMats.set(f, m);
+            return m;
+        }
+        function partMass(p) { return p.isAnchored ? 0 : p.dimensions.x * p.dimensions.y * p.dimensions.z * (p.density !== undefined ? p.density : 1); }
+        function applyPartPhysics(p) {
+            if (p.friction === undefined) p.friction = 0.3;
+            if (p.density === undefined) p.density = 1;
+            p.body.material = frictionMaterial(p.friction);
+            p.body.mass = partMass(p); p.body.updateMassProperties();
+        }
+        function setPartProp(k, v) {
+            const val = Math.max(k === 'density' ? 0.01 : 0, parseFloat(v) || 0);
+            selectionList().forEach(p => { p[k] = val; applyPartPhysics(p); });
+            updateInspector();
+        }
+
+        // ---- auto bearing axis / pivot, auto rope & spring length ----
+        function hkActive(hk) { return !!hk.key && (hk.toggle ? !!hk.on : pressedKeys.includes(hk.key)); }
+        function lastActive(list) { let b = null; for (const hk of (list || [])) if (hkActive(hk) && (!b || (hk.t || 0) >= (b.t || 0))) b = hk; return b; }
+        function jointKeyList(j) { return j.type === 'thruster' ? j.tKeys : j.type === 'bearing' ? (j.mode === 'servo' ? j.sKeys : j.mode === 'motor' ? j.mKeys : null) : null; }
+        function setHotkeyToggle(list, id, on) {
+            const hk = selectedJoint && (selectedJoint[list] || []).find(k => k.id === id);
+            if (hk) { hk.toggle = on; hk.on = false; }
+        }
+        function thrustDir(j, q) {
+            const sg = j.dirKey[0] === '-' ? -1 : 1, ax = j.dirKey[1];
+            return q.vmult(new CANNON.Vec3(ax === 'x' ? sg : 0, ax === 'y' ? sg : 0, ax === 'z' ? sg : 0));
+        }
+        function applyThrust(j) {
+            const A = j.a.body; if (A.mass <= 0) return;
+            let t = j.base || 0;
+            const th = lastActive(j.tKeys); if (th) t = th.thrust;
+            j.thrustNow = t;
+            if (t) A.applyForce(thrustDir(j, A.quaternion).scale(t), A.position.vadd(A.quaternion.vmult(j.la)));
+        }
+        function normalizeThruster(j) {
+            j.dirKey = j.dirKey || '+z'; j.base = j.base || 0;
+            j.tKeys = (Array.isArray(j.tKeys) ? j.tKeys : []).map(k => ({ id: k.id || newHotkeyId(), key: k.key || '', thrust: Number(k.thrust) || 0, toggle: !!k.toggle }));
+        }
+        function setThruster(k, v) { if (selectedJoint) { selectedJoint[k] = v; updateInspector(); } }
+        function setThrusterOffset(a, v) { if (selectedJoint) { selectedJoint.la[a] = parseFloat(v) || 0; updateInspector(); } }
+        function autoBearing(j) {
+            const A = j.a.body, B = j.b.body, inv = A.quaternion.inverse(), d = j.a.dimensions;
+            const cl = (v, h) => Math.max(-h, Math.min(h, v));
+            const loc = inv.vmult(B.position.vsub(A.position));
+            const near = new CANNON.Vec3(cl(loc.x, d.x / 2), cl(loc.y, d.y / 2), cl(loc.z, d.z / 2));
+            const cyl = j.b.type === 'cylinder' ? j.b : (j.a.type === 'cylinder' ? j.a : null);
+            const t = cyl ? inv.vmult(cyl.body.quaternion.vmult(new CANNON.Vec3(0, 0, 1))) : loc;
+            const ax = Math.abs(t.x), ay = Math.abs(t.y), az = Math.abs(t.z);
+            j.axis = ax >= ay && ax >= az ? 'x' : ay >= az ? 'y' : 'z';
+            const wa = A.quaternion.vmult(new CANNON.Vec3(j.axis === 'x' ? 1 : 0, j.axis === 'y' ? 1 : 0, j.axis === 'z' ? 1 : 0));
+            const pn = A.position.vadd(A.quaternion.vmult(near));
+            const pivot = B.position.vadd(wa.scale(pn.vsub(B.position).dot(wa)));
+            j.la.copy(inv.vmult(pivot.vsub(A.position)));
+        }
+        function autoBearingNow() { const j = selectedJoint; if (!j) return; pushUndo(); autoBearing(j); buildJoint(j); updateInspector(); showToast('Axis set to ' + j.axis.toUpperCase() + ', pivot placed at the anchor.'); }
+        function jointDistance(j) { return Math.max(0.1, Math.round(j.a.body.position.distanceTo(j.b.body.position) * 100) / 100); }
+        function autoLength(j) {
+            const dist = jointDistance(j);
+            if (j.type === 'rope') j.len = dist; else { j.rest = dist; j.max = Math.round(dist * 200) / 100; }
+            applyJointParams(j);
+        }
+        function autoLengthNow() { const j = selectedJoint; if (!j) return; pushUndo(); autoLength(j); updateInspector(); showToast('Length set from the current distance between the parts.'); }
 
         function makeShape(type, d) {
             const hx = d.x / 2, hy = d.y / 2, hz = d.z / 2, V = (x, y, z) => new CANNON.Vec3(x, y, z), eq = (a, b) => Math.abs(a - b) < 1e-3;
@@ -793,7 +949,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             mesh.add(boxHelper);
 
             const mass = isAnchored ? 0 : dimensions.x * dimensions.y * dimensions.z;
-            const body = new CANNON.Body({
+            const body = new CANNON.Body({ material: frictionMaterial(0.3),
                 mass: mass,
                 position: new CANNON.Vec3(position.x, position.y, position.z)
             });
@@ -808,7 +964,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                 body: body,
                 dimensions: dimensions.clone(),
                 color: color,
-                isAnchored: isAnchored,
+                isAnchored: isAnchored, friction: 0.3, density: 1,
                 boxHelper: boxHelper,
                 initialPos: position.clone(),
                 initialQuat: mesh.quaternion.clone(),
@@ -834,13 +990,14 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                     dimensions: { x: p.dimensions.x, y: p.dimensions.y, z: p.dimensions.z },
                     position: { x: p.mesh.position.x, y: p.mesh.position.y, z: p.mesh.position.z },
                     quaternion: { x: p.mesh.quaternion.x, y: p.mesh.quaternion.y, z: p.mesh.quaternion.z, w: p.mesh.quaternion.w },
-                    isAnchored: p.isAnchored, color: p.color
+                    isAnchored: p.isAnchored, color: p.color, friction: p.friction, density: p.density
                 })),
                 joints: joints.map(j => {
                     const copy = {};
                     for (const key of Object.keys(j)) {
                         const val = j[key];
-                        if (val instanceof CANNON.Vec3) copy[key] = { __vec3: true, x: val.x, y: val.y, z: val.z };
+                        if (Array.isArray(val)) copy[key] = JSON.parse(JSON.stringify(val));
+                        else if (val instanceof CANNON.Vec3) copy[key] = { __vec3: true, x: val.x, y: val.y, z: val.z };
                         else if (val instanceof CANNON.Quaternion) copy[key] = { __quat: true, x: val.x, y: val.y, z: val.z, w: val.w };
                         else if (val && typeof val === 'object' && val.id) copy[key] = { __ref: val.id };
                         else copy[key] = val;
@@ -891,11 +1048,12 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                 mesh.castShadow = true; mesh.receiveShadow = true; scene.add(mesh);
                 const boxHelper = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(dimensions.x, dimensions.y, dimensions.z)), new THREE.LineBasicMaterial({ color: 0xf3e5ab }));
                 boxHelper.visible = false; boxHelper.update = () => {}; mesh.add(boxHelper);
-                const mass = pData.isAnchored ? 0 : dimensions.x * dimensions.y * dimensions.z;
-                const body = new CANNON.Body({ mass: mass, position: new CANNON.Vec3(position.x, position.y, position.z) });
+                const fr = pData.friction !== undefined ? pData.friction : 0.3, dn = pData.density !== undefined ? pData.density : 1;
+                const mass = pData.isAnchored ? 0 : dimensions.x * dimensions.y * dimensions.z * dn;
+                const body = new CANNON.Body({ material: frictionMaterial(fr), mass: mass, position: new CANNON.Vec3(position.x, position.y, position.z) });
                 body.quaternion.copy(new CANNON.Quaternion(quat.x, quat.y, quat.z, quat.w));
                 body.addShape(shape); world.addBody(body);
-                const partObj = { id: pData.id, name: pData.name, type: pData.type, mesh, body, dimensions: dimensions.clone(), color: pData.color, isAnchored: pData.isAnchored, boxHelper, initialPos: position.clone(), initialQuat: quat.clone(), initialDim: dimensions.clone() };
+                const partObj = { id: pData.id, name: pData.name, type: pData.type, mesh, body, dimensions: dimensions.clone(), color: pData.color, isAnchored: pData.isAnchored, friction: fr, density: dn, boxHelper, initialPos: position.clone(), initialQuat: quat.clone(), initialDim: dimensions.clone() };
                 mesh.userData.partObj = partObj; body.part = partObj; parts.push(partObj); partMap.set(pData.id, partObj);
             });
             refreshGlue(parts);
@@ -912,7 +1070,8 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                     else if (val && val.__ref) j[key] = partMap.get(val.__ref);
                     else j[key] = val;
                 }
-                if (j.type === 'bearing') Object.assign(j, { mode: j.mode || 'motor', rpm: j.rpm !== undefined ? j.rpm : 30, torque: j.torque !== undefined ? j.torque : 20000, a0: j.a0 !== undefined ? j.a0 : 0, k1: j.k1 || '', a1: j.a1 !== undefined ? j.a1 : 90, k2: j.k2 || '', a2: j.a2 !== undefined ? j.a2 : -90, target: j.target !== undefined ? j.target : 0, lock: j.lock !== undefined ? j.lock : false, mKey1: j.mKey1 || '', mSpeed1: j.mSpeed1 !== undefined ? j.mSpeed1 : 0, mKey2: j.mKey2 || '', mSpeed2: j.mSpeed2 !== undefined ? j.mSpeed2 : 0, mActive: 0, freeIdle: j.freeIdle || false });
+                if (j.type === 'bearing') normalizeBearing(j);
+                else if (j.type === 'thruster') normalizeThruster(j);
                 else if (j.type === 'rope') { j.len = j.len !== undefined ? j.len : 3; }
                 else { j.rest = j.rest !== undefined ? j.rest : 2; j.max = j.max !== undefined ? j.max : 4; j.k = j.k !== undefined ? j.k : 150; j.damp = j.damp !== undefined ? j.damp : 4; j.lockAxis = j.lockAxis !== undefined ? j.lockAxis : false; }
                 j.name = jData.name || (j.type.charAt(0).toUpperCase() + j.type.slice(1) + ' ' + (joints.length + 1));
@@ -967,20 +1126,29 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             jointPlacementMode = type;
             jointPlacementPartA = null;
             document.getElementById('add-menu').classList.add('hidden');
-            showToast(`Joint placement: click the anchor part (A), then the other part (B). Press Escape to cancel.`);
+            showToast(type === 'thruster' ? 'Thruster: click the surface of the part to mount it on. Press Escape to cancel.' : `Joint placement: click the anchor part (A), then the other part (B). Press Escape to cancel.`);
         }
 
-        function createJointBetween(type, partA, partB) {
+        function createJointBetween(type, partA, partB, hit) {
             pushUndo();
             const j = { id: 'joint_' + Date.now() + Math.floor(Math.random() * 999), type, axis: 'z', la: new CANNON.Vec3(), lb: new CANNON.Vec3(), a: partA, b: partB };
-            if (type === 'bearing') {
+            if (type === 'thruster') {
+                let n = new THREE.Vector3(0, 0, 1);
+                if (hit) { j.la.copy(partA.mesh.worldToLocal(hit.point.clone())); n = hit.face.normal.clone(); }
+                const ax = Math.abs(n.x) >= Math.abs(n.y) && Math.abs(n.x) >= Math.abs(n.z) ? 'x' : Math.abs(n.y) >= Math.abs(n.z) ? 'y' : 'z';
+                if (hit) { const surf = j.la[ax]; j.la.set(0, 0, 0); j.la[ax] = surf; }   // centre of the clicked face
+                j.dirKey = (n[ax] > 0 ? '-' : '+') + ax;   // thrust pushes against the outward surface normal; the plume goes out of the surface
+                Object.assign(j, { base: 0, tKeys: [{ id: newHotkeyId(), key: 't', thrust: 100 }, { id: newHotkeyId(), key: 'y', thrust: 300 }] });
+            } else if (type === 'bearing') {
                 j.la.set(0, 0, 0);
                 j.lb.set(0, 0, 0);
-                Object.assign(j, { mode: 'motor', rpm: 30, torque: 20000, a0: 0, k1: 'q', a1: 90, k2: 'e', a2: -90, target: 0, lock: false, mKey1: '', mSpeed1: 0, mKey2: '', mSpeed2: 0, mActive: 0, freeIdle: false });
+                Object.assign(j, { mode: 'motor', rpm: 30, torque: 20000, a0: 0, minAng: -90, maxAng: 90, lock: false, freeIdle: false, sKeys: [{ id: newHotkeyId(), key: 'q', rate: 90 }, { id: newHotkeyId(), key: 'e', rate: -90 }], mKeys: [] });
+                autoBearing(j);
             } else if (type === 'rope') {
-                j.len = 3;
+                j.len = jointDistance(j);
             } else {
-                Object.assign(j, { rest: 2, max: 4, k: 150, damp: 4, lockAxis: false });
+                const dist = jointDistance(j);
+                Object.assign(j, { rest: dist, max: Math.round(dist * 200) / 100, k: 150, damp: 4, lockAxis: false });
                 const origin = partA.body.position.clone();
                 const dir = partB.body.position.clone().vsub(origin);
                 if (dir.norm() > 1e-6) dir.normalize();
@@ -991,12 +1159,14 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             buildJoint(j); makeJointVisual(j); joints.push(j);
             glues = glues.filter(g => !jointLinked(g.a, g.b));
             selectJoint(j);
-            showToast(`Added ${type} between "${partA.name}" and "${partB.name}".`);
+            if (type === 'thruster') showToast(`Added thruster on "${partA.name}".`); else showToast(`Added ${type} between "${partA.name}" and "${partB.name}".`);
         }
 
         function buildJoint(j) {
             if (j.constraint) { world.removeConstraint(j.constraint); j.constraint = null; }
             removeAxisLock(j);
+            ['sKeys', 'mKeys', 'tKeys'].forEach(l => (j[l] || []).forEach(k => { k.on = false; }));
+            if (j.type === 'thruster') return;
             if (j.constraint) world.removeConstraint(j.constraint);
             const A = j.a.body, B = j.b.body;
             if (j.type === 'bearing') {
@@ -1007,7 +1177,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                     pivotB: invB.vmult(pA.vsub(B.position)), axisB: invB.vmult(A.quaternion.vmult(ax))
                 });
                 j.constraint.collideConnected = false;
-                j.refRel = bodyQuat(A).invert().multiply(bodyQuat(B)); j.lastRaw = 0; j.angUnw = 0; j.holdAng = 0; j.held = []; j.mActive = 0;
+                j.refRel = bodyQuat(A).invert().multiply(bodyQuat(B)); j.lastRaw = 0; j.angUnw = 0; j.holdAng = 0; j.tgt = clampTarget(j, j.a0 || 0);
             } else {
                 j.constraint = new OffsetDistance(A, B, j.la, j.lb, 1);
             }
@@ -1048,6 +1218,9 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             if (j.type === 'bearing') {
                 j.axle = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 1.2, 12), new THREE.MeshBasicMaterial({ color: 0xf3e5ab, depthTest: false }));
                 j.axle.renderOrder = 10; g.add(j.axle);
+            } else if (j.type === 'thruster') {
+                j.line = new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.Float32BufferAttribute(new Float32Array(14 * 6), 3)), new THREE.LineBasicMaterial({ color: 0xf3e5ab, depthTest: false }));
+                j.line.frustumCulled = false; j.line.renderOrder = 10; g.add(j.line);
             } else {
                 const pts = []; for (let i = 0; i < 42; i++) pts.push(new THREE.Vector3());
                 j.line = new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({ color: 0xf3e5ab, depthTest: false }));
@@ -1059,8 +1232,24 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
         function updateJointVisuals() {
             joints.forEach(j => {
                 const A = j.a.body, B = j.b.body, pA = A.position.vadd(A.quaternion.vmult(j.la));
+                const sel = selectedJoint === j;
+                if (j.type === 'thruster') {
+                    j.line.material.color.setHex(sel ? 0xffffff : 0xf3e5ab);
+                    const th = thrustDir(j, A.quaternion), ex = new THREE.Vector3(-th.x, -th.y, -th.z);
+                    const t = simStarted ? (j.thrustNow || 0) : 0, len = simStarted ? (t ? Math.min(7, 0.6 + Math.abs(t) * 0.012) : 0.12) : 1.4, tm = performance.now() / 1000;
+                    const pa = new THREE.Vector3().crossVectors(ex, Math.abs(ex.z) > 0.9 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 0, 1)).normalize(), pb = new THREE.Vector3().crossVectors(ex, pa);
+                    const arr = j.line.geometry.attributes.position, fr = x => x - Math.floor(x);
+                    for (let i = 0; i < 14; i++) {
+                        const ang = i / 14 * Math.PI * 2, L = len * (1 + (simStarted && t ? 0.06 * Math.sin(tm * 30) : 0)), r = L * 0.35;   // even wireframe cone, no base ring
+                        arr.setXYZ(i * 2, pA.x, pA.y, pA.z);
+                        arr.setXYZ(i * 2 + 1, pA.x + ex.x * L + (pa.x * Math.cos(ang) + pb.x * Math.sin(ang)) * r, pA.y + ex.y * L + (pa.y * Math.cos(ang) + pb.y * Math.sin(ang)) * r, pA.z + ex.z * L + (pa.z * Math.cos(ang) + pb.z * Math.sin(ang)) * r);
+                    }
+                    arr.needsUpdate = true;
+                    return;
+                }
                 if (j.type === 'bearing') {
                     const ax = A.quaternion.vmult(new CANNON.Vec3(j.axis === 'x' ? 1 : 0, j.axis === 'y' ? 1 : 0, j.axis === 'z' ? 1 : 0));
+                    j.axle.material.color.setHex(sel ? 0xffffff : 0xf3e5ab);
                     j.axle.position.set(pA.x, pA.y, pA.z);
                     j.axle.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(ax.x, ax.y, ax.z));
                     return;
@@ -1077,7 +1266,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                     arr.setXYZ(i, p.x, p.y, p.z);
                 }
                 arr.needsUpdate = true;
-                if (j.type === 'rope') j.line.material.color.setHex(L >= j.len - 0.02 ? 0xf97316 : 0xf3e5ab);
+                j.line.material.color.setHex(sel ? 0xffffff : (j.type === 'rope' && L >= j.len - 0.02) ? 0xf97316 : 0xf3e5ab);
             });
         }
 
@@ -1157,6 +1346,70 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             updateInspector(); showToast('Detached from neighbouring parts');
         }
 
+        function startScene(kind) {
+            document.getElementById('start-menu').style.display = 'none';
+            startMenuOpen = false;
+            if (kind === 'sample') loadSampleScene();
+            else selectObject(createPrimitive('block', new THREE.Vector3(0, 0, 1), new THREE.Vector3(2, 2, 2), 0x4c5844, true));
+        }
+
+        function loadSampleScene() {
+            const P = (id, name, type, pos, dim, anch, color, quat) => ({ id, name, type, dimensions: { x: dim[0], y: dim[1], z: dim[2] }, position: { x: pos[0], y: pos[1], z: pos[2] }, quaternion: quat || { x: 0, y: 0, z: 0, w: 1 }, isAnchored: anch, color });
+            const V = (x, y, z) => ({ __vec3: true, x, y, z });
+            const tiltServo = (id, name, post, la) => ({ id, type: 'bearing', name, axis: 'x', la: V(...la), lb: V(0, 0, 0), a: { __ref: post }, b: { __ref: 'plank' },
+                mode: 'servo', rpm: 20, torque: 20000, a0: 0, minAng: -30, maxAng: 30, lock: false, freeIdle: false,
+                sKeys: [{ id: newHotkeyId(), key: 'q', rate: 40 }, { id: newHotkeyId(), key: 'e', rate: -40 }], mKeys: [] });
+            const h = Math.SQRT1_2;
+            const snap = {
+                parts: [
+                    P('postL', 'Servo Post L', 'block', [-3.4, -3, 1.5], [0.6, 0.8, 3], true, 0x6a7960),
+                    P('postR', 'Servo Post R', 'block', [3.4, -3, 1.5], [0.6, 0.8, 3], true, 0x6a7960),
+                    P('plank', 'Tilt Plank', 'block', [0, -3, 3], [6, 4, 0.3], false, 0xc9b873),
+                    P('ball1', 'Ball 1', 'sphere', [-1.6, -3, 3.9], [0.8, 0.8, 0.8], false, 0xb85c4a),
+                    P('ball2', 'Ball 2', 'sphere', [0, -2.5, 3.9], [0.8, 0.8, 0.8], false, 0x5a8fb8),
+                    P('box1', 'Crate', 'block', [1.6, -3.3, 3.75], [0.7, 0.7, 0.7], false, 0xd8ded0),
+                    P('motorPost', 'Motor Post', 'block', [0, 5, 2], [0.6, 0.8, 4], true, 0x6a7960),
+                    P('wheel', 'Motor Wheel', 'cylinder', [0, 5.8, 4], [4, 4, 0.6], false, 0xc9b873, { x: h, y: 0, z: 0, w: h }),
+                    P('bar', 'Wheel Bar', 'block', [0, 6.25, 4], [4.6, 0.3, 0.4], false, 0xb85c4a)
+                ],
+                joints: [
+                    tiltServo('servoL', 'Tilt Servo L', 'postL', [0.3, 0, 1.5]),
+                    tiltServo('servoR', 'Tilt Servo R', 'postR', [-0.3, 0, 1.5]),
+                    { id: 'motor1', type: 'bearing', name: 'Wheel Motor', axis: 'y', la: V(0, 0, 2), lb: V(0, 0, 0), a: { __ref: 'motorPost' }, b: { __ref: 'wheel' },
+                      mode: 'motor', rpm: 0, torque: 20000, a0: 0, minAng: -90, maxAng: 90, lock: false, freeIdle: false,
+                      sKeys: [], mKeys: [{ id: newHotkeyId(), key: 'w', rpm: 30 }, { id: newHotkeyId(), key: 's', rpm: -30 }, { id: newHotkeyId(), key: 'f', rpm: 90 }] }
+                ],
+                glues: [], welds: [], selectedObjectId: null, selectedJointId: null, extraSel: []
+            };
+            restoreState(snap);
+            cameraTarget.set(0, 1, 2.5); cameraRadius = 22; cameraTheta = Math.PI / 4; cameraPhi = Math.PI / 3.5;
+            updateCameraPosition();
+        }
+
+        function enhanceSpinners(root) {
+            root.querySelectorAll('input[type="number"]').forEach(inp => {
+                if (inp.parentElement && inp.parentElement.classList.contains('steam-spin')) return;
+                const wrap = document.createElement('div'); wrap.className = 'steam-spin';
+                inp.parentNode.insertBefore(wrap, inp); wrap.appendChild(inp);
+                const btns = document.createElement('div'); btns.className = 'steam-spin-btns';
+                const mk = dir => {
+                    const b = document.createElement('button'); b.type = 'button'; b.tabIndex = -1;
+                    b.className = 'btn-raw steam-spin-btn ' + (dir > 0 ? 'up' : 'down');
+                    b.addEventListener('mousedown', e => e.preventDefault());
+                    b.addEventListener('click', () => {
+                        const step = parseFloat(inp.step) || 1;
+                        let v = (parseFloat(inp.value) || 0) + dir * step;
+                        if (inp.min !== '') v = Math.max(v, parseFloat(inp.min));
+                        if (inp.max !== '') v = Math.min(v, parseFloat(inp.max));
+                        inp.value = Math.round(v * 1000) / 1000;
+                        inp.dispatchEvent(new Event('change', { bubbles: true }));
+                    });
+                    return b;
+                };
+                btns.append(mk(1), mk(-1)); wrap.appendChild(btns);
+            });
+        }
+
         function bodyQuat(b) { return new THREE.Quaternion(b.quaternion.x, b.quaternion.y, b.quaternion.z, b.quaternion.w); }
         function servoStep(j) {
             const rel = bodyQuat(j.a.body).invert().multiply(bodyQuat(j.b.body));
@@ -1166,19 +1419,57 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             let dl = raw - j.lastRaw; dl = Math.atan2(Math.sin(dl), Math.cos(dl));
             j.angUnw += dl; j.lastRaw = raw;
             if (j.mode !== 'servo') return;
-            const c = j.constraint, max = Math.abs(j.rpm) * Math.PI / 30, active = j.held.length ? j.held[j.held.length - 1] : 0;
-            if (active) {
-                const err = (active === 1 ? j.a1 : j.a2) * Math.PI / 180 - j.angUnw;
-                c.setMotorMaxForce(j.torque);
-                c.setMotorSpeed(-Math.max(-max, Math.min(max, 6 * err)));
-                j.holdAng = j.angUnw;
-            } else if (j.lock) {
-                c.setMotorMaxForce(1e5);
-                c.setMotorSpeed(-6 * (j.holdAng - j.angUnw));
-            } else {
-                c.setMotorMaxForce(j.torque);
-                c.setMotorSpeed(0);
+            const c = j.constraint, max = Math.abs(j.rpm) * Math.PI / 30;
+            // Held hotkeys only move the TARGET angle; the servo always drives toward it.
+            let rate = 0;
+            for (const hk of (j.sKeys || [])) if (hkActive(hk)) rate += hk.rate;
+            const keyed = (j.sKeys || []).some(k => k.key);
+            j.tgt = keyed ? clampTarget(j, (j.tgt || 0) + rate * SUB_DT) : clampTarget(j, j.a0 || 0);   // no hotkeys: sit at the set angle
+            const err = j.tgt * Math.PI / 180 - j.angUnw;
+            c.setMotorMaxForce((j.lock || !keyed) && Math.abs(err) < 0.02 ? 1e5 : j.torque);
+            c.setMotorSpeed(-Math.max(-max, Math.min(max, 6 * err)));
+        }
+        function clampTarget(j, v) { return Math.max(Math.min(j.minAng, j.maxAng), Math.min(Math.max(j.minAng, j.maxAng), v)); }
+        function newHotkeyId() { return 'hk' + Date.now().toString(36) + Math.floor(Math.random() * 1e6).toString(36); }
+        function normalizeBearing(j) {
+            const d = (v, x) => (v !== undefined && v !== null) ? v : x;
+            j.mode = j.mode || 'motor'; j.rpm = d(j.rpm, 30); j.torque = d(j.torque, 20000); j.a0 = d(j.a0, 0);
+            j.lock = !!j.lock; j.freeIdle = !!j.freeIdle;
+            if (!Array.isArray(j.sKeys)) {   // migrate old 2-key servo
+                const a1 = d(j.a1, 90), a2 = d(j.a2, -90);
+                j.minAng = Math.min(a1, a2); j.maxAng = Math.max(a1, a2);
+                if (j.maxAng - j.minAng < 1) { j.minAng -= 90; j.maxAng += 90; }
+                j.sKeys = [];
+                if (j.k1) j.sKeys.push({ key: j.k1, rate: a1 >= a2 ? 90 : -90 });
+                if (j.k2) j.sKeys.push({ key: j.k2, rate: a2 > a1 ? 90 : -90 });
             }
+            j.minAng = d(j.minAng, -90); j.maxAng = d(j.maxAng, 90);
+            if (!Array.isArray(j.mKeys)) {   // migrate old 2-key motor
+                j.mKeys = [];
+                if (j.mKey1) j.mKeys.push({ key: j.mKey1, rpm: d(j.mSpeed1, 0) });
+                if (j.mKey2) j.mKeys.push({ key: j.mKey2, rpm: d(j.mSpeed2, 0) });
+            }
+            j.sKeys = j.sKeys.map(k => ({ id: k.id || newHotkeyId(), key: k.key || '', rate: Number(k.rate) || 0, toggle: !!k.toggle }));
+            j.mKeys = j.mKeys.map(k => ({ id: k.id || newHotkeyId(), key: k.key || '', rpm: Number(k.rpm) || 0, toggle: !!k.toggle }));
+            ['k1', 'k2', 'a1', 'a2', 'mKey1', 'mKey2', 'mSpeed1', 'mSpeed2', 'held', 'mActive'].forEach(k => delete j[k]);
+        }
+        function addHotkey(list) {
+            const j = selectedJoint; if (!j) return;
+            pushUndo();
+            const hk = list === 'sKeys' ? { id: newHotkeyId(), key: '', rate: 90 } : list === 'tKeys' ? { id: newHotkeyId(), key: '', thrust: 100 } : { id: newHotkeyId(), key: '', rpm: 60 };
+            (j[list] = j[list] || []).push(hk);
+            keyCaptureField = hk.id; updateInspector();
+        }
+        function removeHotkey(list, id) {
+            const j = selectedJoint; if (!j) return;
+            pushUndo();
+            j[list] = (j[list] || []).filter(k => k.id !== id);
+            if (keyCaptureField === id) keyCaptureField = null;
+            updateInspector();
+        }
+        function setHotkey(list, id, field, v) {
+            const hk = selectedJoint && (selectedJoint[list] || []).find(k => k.id === id);
+            if (hk) { hk[field] = parseFloat(v) || 0; updateInspector(); }
         }
         function setJBool(k, v) { if (selectedJoint) { selectedJoint[k] = v; if (k === 'lockAxis') syncAxisLock(selectedJoint); updateInspector(); } }
         function captureKey(field) { keyCaptureField = field; updateInspector(); }
@@ -1207,24 +1498,42 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             const lbl = 'text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1';
             const num = (l, k, s) => `<div><label class="${lbl}">${l}</label><input type="number" step="${s}" value="${j[k]}" onchange="setJ('${k}', this.value)" class="w-full blender-input" /></div>`;
             let body = '';
+                const hkList = (list, valLabel, valKey, step) => `<div class="space-y-2">`
+                    + ((j[list] || []).length ? '' : `<div class="text-[10px] steam-text-dim italic">No hotkeys yet.</div>`)
+                    + (j[list] || []).map((hk, i) => `<div class="hk-card">
+                        <div class="hk-head"><span class="steam-text-gold font-bold uppercase tracking-wider text-[10px]">Hotkey ${i + 1}</span>
+                            <button class="hk-mini" title="Remove this hotkey" onclick="removeHotkey('${list}','${hk.id}')"><i class="fa-solid fa-minus"></i></button></div>
+                        <div class="grid grid-cols-2 gap-1">
+                            <div><label class="${lbl}">Key</label><button onclick="captureKey('${hk.id}')" class="w-full blender-input text-left">${keyCaptureField === hk.id ? 'Press a key... (Esc = none)' : (hk.key || 'none').toUpperCase()}</button></div>
+                            <div><label class="${lbl}">${valLabel}</label><input type="number" step="${step}" value="${hk[valKey]}" onchange="setHotkey('${list}','${hk.id}','${valKey}', this.value)" class="w-full blender-input" /></div>
+                        </div>
+                        <div class="flex items-center justify-between mt-1"><span class="steam-text-dim">Toggle (press on / press off)</span><input type="checkbox" ${hk.toggle ? 'checked' : ''} onchange="setHotkeyToggle('${list}','${hk.id}', this.checked)" /></div></div>`).join('')
+                    + `<button onclick="addHotkey('${list}')" class="w-full py-1 font-semibold"><i class="fa-solid fa-plus mr-1"></i>Add hotkey</button></div>`;
             if (j.type === 'bearing') {
-                const keyBtn = (l, f) => `<div><label class="${lbl}">${l}</label><button onclick="captureKey('${f}')" class="w-full blender-input text-left">${keyCaptureField === f ? 'Press a key... (Esc = none)' : (j[f] || 'none').toUpperCase()}</button></div>`;
                 body = `<div><label class="${lbl}">Mode</label><select onchange="setJMode(this.value)" class="w-full blender-input">`
-                    + [['motor', 'Motor (constant speed)'], ['free', 'Free spin'], ['servo', 'Servo (keys, smooth angle)']].map(([v, t]) => `<option value="${v}" ${j.mode === v ? 'selected' : ''}>${t}</option>`).join('') + `</select></div>`
-                    + `<div><label class="${lbl}">Rotation axis (on base)</label><select onchange="setJAxis(this.value)" class="w-full blender-input">${['x','y','z'].map(a => `<option ${j.axis === a ? 'selected' : ''}>${a}</option>`).join('')}</select></div>`;
+                    + [['motor', 'Motor (constant speed)'], ['free', 'Free spin'], ['servo', 'Servo (hotkeys move a target angle)']].map(([v, t]) => `<option value="${v}" ${j.mode === v ? 'selected' : ''}>${t}</option>`).join('') + `</select></div>`
+                    + `<div><label class="${lbl}">Rotation axis (on base)</label><select onchange="setJAxis(this.value)" class="w-full blender-input">${['x','y','z'].map(a => `<option ${j.axis === a ? 'selected' : ''}>${a}</option>`).join('')}</select></div>`
+                    + `<button onclick="autoBearingNow()" class="w-full py-1">Auto axis &amp; pivot (from anchor and mass)</button>`;
                 if (j.mode === 'motor') body += num('Rotation speed (RPM, negative = reverse)', 'rpm', 5) + num('Motor max torque', 'torque', 10)
-                + keyBtn('Motor hotkey 1', 'mKey1') + num('Speed 1 (RPM)', 'mSpeed1', 5) + keyBtn('Motor hotkey 2', 'mKey2') + num('Speed 2 (RPM)', 'mSpeed2', 5)
-                + `<div class="flex items-center justify-between"><span>Spin freely when idle</span><input type="checkbox" ${j.freeIdle ? 'checked' : ''} onchange="setJBool('freeIdle', this.checked)" class="h-4 w-4" /></div>`
-                + `<div class="text-[10px] steam-text-dim">While simulating, hold a motor hotkey to override speed. With "Spin freely when idle" on, the motor lets go (no braking) whenever the speed is 0 and no hotkey is held.</div>`;
-                else if (j.mode === 'servo') body += keyBtn('Key 1 (hold to turn)', 'k1') + num('Key 1 angle (deg)', 'a1', 5) + keyBtn('Key 2 (hold to turn)', 'k2') + num('Key 2 angle (deg)', 'a2', 5)
+                    + `<div class="${lbl}">Motor hotkeys (hold = override speed)</div>` + hkList('mKeys', 'Speed (RPM)', 'rpm', 5)
+                    + `<div class="flex items-center justify-between"><span>Spin freely when idle</span><input type="checkbox" ${j.freeIdle ? 'checked' : ''} onchange="setJBool('freeIdle', this.checked)" /></div>`
+                    + `<div class="text-[10px] steam-text-dim">While simulating, hold a hotkey to override the speed (last pressed wins). With "Spin freely when idle" on, the motor lets go (no braking) whenever the speed is 0 and no hotkey is held.</div>`;
+                else if (j.mode === 'servo') body += num('Set / start angle (deg)', 'a0', 5) + num('Min angle (deg)', 'minAng', 5) + num('Max angle (deg)', 'maxAng', 5)
                     + num('Max turn speed (RPM)', 'rpm', 5) + num('Servo max torque', 'torque', 10)
-                    + `<div class="flex items-center justify-between"><span>Lock when idle (rigid hold)</span><input type="checkbox" ${j.lock ? 'checked' : ''} onchange="setJBool('lock', this.checked)" class="h-4 w-4" /></div>`
-                    + `<div class="text-[10px] steam-text-dim">While simulating, hold a key to turn toward its angle; release to stop.</div>`;
+                    + `<div class="${lbl}">Servo hotkeys (hold = move target)</div>` + hkList('sKeys', 'Turn rate (deg/s)', 'rate', 5)
+                    + `<div class="flex items-center justify-between"><span>Rigid hold at target</span><input type="checkbox" ${j.lock ? 'checked' : ''} onchange="setJBool('lock', this.checked)" /></div>`
+                    + `<div class="text-[10px] steam-text-dim">Holding a hotkey adds (or, if negative, subtracts) its rate to the servo's target angle, clamped to min/max. The servo always drives toward that target, so servos with identical settings can never drift apart. With no hotkeys bound, the servo simply holds the set angle (editable live).</div>`;
                 else body += `<div class="text-[10px] steam-text-dim">Spins freely - nothing drives it.</div>`;
+            } else if (j.type === 'thruster') {
+                body = `<div><label class="${lbl}">Thrust direction (on part)</label><select onchange="setThruster('dirKey', this.value)" class="w-full blender-input">${['+x','-x','+y','-y','+z','-z'].map(o => `<option ${j.dirKey === o ? 'selected' : ''}>${o}</option>`).join('')}</select></div>`
+                    + `<div><label class="${lbl}">Offset on part (x, y, z)</label><div class="grid grid-cols-3 gap-1">${['x','y','z'].map(a => `<input type="number" step="0.25" value="${(+j.la[a]).toFixed(2)}" onchange="setThrusterOffset('${a}', this.value)" class="blender-input text-center" />`).join('')}</div></div>`
+                    + num('Idle thrust (force)', 'base', 10)
+                    + `<div class="${lbl}">Thrust hotkeys (hold = set thrust)</div>` + hkList('tKeys', 'Thrust (force)', 'thrust', 10)
+                    + `<div class="text-[10px] steam-text-dim">While simulating, holding a hotkey sets the thrust to its value (last pressed wins). The plume grows with thrust and the force pushes the part opposite to it; off-center thrusters also spin the part.</div>`;
             } else if (j.type === 'rope') {
-                body = num('Rope length', 'len', 0.5);
+                body = num('Rope length', 'len', 0.5) + `<button onclick="autoLengthNow()" class="w-full py-1">Auto length (from current distance)</button>`;
             } else {
-                body = num('Desired length', 'rest', 0.5) + num('Max length', 'max', 0.5) + num('Pull force (stiffness)', 'k', 10) + num('Damping', 'damp', 1)
+                body = `<button onclick="autoLengthNow()" class="w-full py-1">Auto length (from current distance)</button>` + num('Desired length', 'rest', 0.5) + num('Max length', 'max', 0.5) + num('Pull force (stiffness)', 'k', 10) + num('Damping', 'damp', 1)
                     + `<div class="flex items-center justify-between"><span>Lock weight to axis</span><input type="checkbox" ${j.lockAxis ? 'checked' : ''} onchange="setJBool('lockAxis', this.checked)" class="h-4 w-4" /></div>`;
             }
             return `<div class="space-y-3"><div><label class="${lbl}">Joint Name</label><input type="text" value="${escAttr(j.name)}" onchange="selectedJoint.name=this.value; updateOutliner();" class="w-full blender-input" /></div>${body}
@@ -1533,7 +1842,10 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
 
                 if (intersects.length > 0) {
                     const hitPart = intersects[0].object.userData.partObj;
-                    if (!jointPlacementPartA) {
+                    if (jointPlacementMode === 'thruster') {
+                        createJointBetween('thruster', hitPart, hitPart, intersects[0]);
+                        jointPlacementMode = null; jointPlacementPartA = null;
+                    } else if (!jointPlacementPartA) {
                         jointPlacementPartA = hitPart;
                         showToast(`Part A selected: "${hitPart.name}". Now click part B.`);
                     } else if (hitPart !== jointPlacementPartA) {
@@ -1775,9 +2087,11 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
 
                 const key = e.key.toLowerCase();
 
+                if (startMenuOpen) return;
                 if (keyCaptureField && selectedJoint) {
                     e.preventDefault();
-                    selectedJoint[keyCaptureField] = e.key === 'Escape' ? '' : key;
+                    const hk = [...(selectedJoint.sKeys || []), ...(selectedJoint.mKeys || []), ...(selectedJoint.tKeys || [])].find(k => k.id === keyCaptureField);
+                    if (hk) hk.key = e.key === 'Escape' ? '' : key;
                     keyCaptureField = null; updateInspector();
                     return;
                 }
@@ -1795,13 +2109,13 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                 if (isSimulating) {
                     let hit = false;
                     joints.forEach(j => {
-                        if (j.type === 'bearing' && j.mode === 'servo') [[j.k1, 1], [j.k2, 2]].forEach(([k, n]) => {
-                            if (k && key === k) { hit = true; if (!j.held.includes(n)) j.held.push(n); }
-                        });
-                        if (j.type === 'bearing' && j.mode === 'motor') [[j.mKey1, 1], [j.mKey2, 2]].forEach(([k, n]) => {
-                            if (k && key === k) { hit = true; j.mActive = n; }
-                        });
+                        if (j.type === 'thruster') { if ((j.tKeys || []).some(k => k.key && k.key === key)) hit = true; return; }
+                        if (j.type !== 'bearing') return;
+                        const list = j.mode === 'servo' ? j.sKeys : j.mode === 'motor' ? j.mKeys : null;
+                        if (list && list.some(k => k.key && k.key === key)) hit = true;
                     });
+                    if (hit && !e.repeat) joints.forEach(j => (jointKeyList(j) || []).forEach(hk => { if (hk.key === key) { hk.t = performance.now(); if (hk.toggle) hk.on = !hk.on; } }));
+                    if (hit && !pressedKeys.includes(key)) pressedKeys.push(key);
                     if (hit) { e.preventDefault(); return; }
                 }
                 if (key === 'r' && simStarted && !isSimulating && !isTransforming) {
@@ -1864,12 +2178,9 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
 
             window.addEventListener('keyup', (e) => {
                 const key = e.key.toLowerCase();
-                joints.forEach(j => { 
-                    if (j.held) { if (key === j.k1) j.held = j.held.filter(n => n !== 1); if (key === j.k2) j.held = j.held.filter(n => n !== 2); }
-                    if ((j.mKey1 && key === j.mKey1) || (j.mKey2 && key === j.mKey2)) j.mActive = 0;
-                });
+                pressedKeys = pressedKeys.filter(k => k !== key);
             });
-            window.addEventListener('blur', () => joints.forEach(j => { j.held = []; }));
+            window.addEventListener('blur', () => { pressedKeys = []; });
 
             window.addEventListener('click', (e) => {
                 const addMenu = document.getElementById('add-menu');
@@ -1898,6 +2209,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             partObj.body.shapes.length = 0; partObj.body.shapeOffsets.length = 0; partObj.body.shapeOrientations.length = 0;
             partObj.body.addShape(makeShape(partObj.type, newDimensions));
             partObj.body.computeAABB();
+            if (!partObj.isAnchored) { partObj.body.mass = partMass(partObj); partObj.body.updateMassProperties(); }
         }
 
         let rotatePending = false;
@@ -1946,6 +2258,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             const map = new Map();
             const copies = list.map(p => {
                 const c = createPrimitive(p.type, p.mesh.position.clone(), p.dimensions.clone(), p.color, p.isAnchored);
+                c.friction = p.friction; c.density = p.density; applyPartPhysics(c);
                 c.mesh.quaternion.copy(p.mesh.quaternion);
                 c.body.quaternion.set(p.mesh.quaternion.x, p.mesh.quaternion.y, p.mesh.quaternion.z, p.mesh.quaternion.w);
                 c.initialQuat.copy(p.mesh.quaternion);
@@ -1960,7 +2273,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                 for (const key of Object.keys(j)) {
                     if (['id', 'constraint', 'lockConstraint', 'vis', 'axle', 'line', 'held', 'a', 'b', 'name', 'mActive'].includes(key)) continue;
                     const v = j[key];
-                    n[key] = v instanceof CANNON.Vec3 ? v.clone() : v;
+                    n[key] = v instanceof CANNON.Vec3 ? v.clone() : (Array.isArray(v) ? JSON.parse(JSON.stringify(v)) : v);
                 }
                 n.id = 'joint_' + Date.now() + Math.floor(Math.random() * 99999);
                 n.a = map.get(j.a); n.b = map.get(j.b);
@@ -1998,7 +2311,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             parts.forEach(p => {
                 if (!p._massClamped) return;
                 p._massClamped = false;
-                p.body.mass = p.isAnchored ? 0 : p.dimensions.x * p.dimensions.y * p.dimensions.z;
+                p.body.mass = partMass(p);
                 p.body.updateMassProperties();
             });
         }
@@ -2175,11 +2488,19 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
                         </div>
                     </div>
 
+                    <div class="grid grid-cols-2 gap-1">
+                        <div><label class="text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1">Friction</label>
+                            <input type="number" step="0.05" min="0" value="${(p.friction !== undefined ? p.friction : 0.3)}" onchange="setPartProp('friction', this.value)" class="w-full blender-input" /></div>
+                        <div><label class="text-[10px] steam-text-gold font-bold uppercase tracking-wider block mb-1">Weight / cubic unit</label>
+                            <input type="number" step="0.1" min="0.01" value="${(p.density !== undefined ? p.density : 1)}" onchange="setPartProp('density', this.value)" class="w-full blender-input" /></div>
+                    </div>
+
                     <div>
                         <button onclick="toggleFollow()" class="w-full px-3 py-1.5 text-xs font-semibold ${followPart === p ? 'btn-active' : ''}">
                             <i class="fa-solid fa-video mr-1"></i>${followPart === p ? 'Stop following' : 'Follow'}
                         </button>
-                        <div class="text-[10px] steam-text-dim mt-1">Camera moves along with this part while simulating (not saved).</div>
+                        <div class="flex items-center justify-between mt-1"><span>Rotate camera with part</span><input type="checkbox" ${followRotate ? 'checked' : ''} onchange="setFollowRotate(this.checked)" /></div>
+                        <div class="text-[10px] steam-text-dim mt-1">Camera moves along with this part while simulating (not saved). Rotating follows the part's turning (yaw).</div>
                     </div>
 
                     <div>
@@ -2220,11 +2541,12 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             refreshGlue([selectedObject]);
         }
 
-        let followPart = null, followLast = null;
+        let followPart = null, followLast = null, followLastQ = null, followRotate = false;
+        function setFollowRotate(on) { followRotate = on; followLastQ = null; }
         function toggleFollow() {
             if (!selectedObject) return;
             if (followPart === selectedObject) { followPart = null; followLast = null; showToast('Camera follow off.'); }
-            else { followPart = selectedObject; followLast = null; showToast('Camera follows ' + followPart.name + (simStarted ? '.' : ' once the simulation starts.')); }
+            else { followPart = selectedObject; followLast = null; cameraRadius = 15; cameraTheta = Math.PI / 4; cameraPhi = Math.PI / 3.5; cameraTarget.copy(followPart.mesh.position); updateCameraPosition(); showToast('Camera follows ' + followPart.name + (simStarted ? '.' : ' once the simulation starts.')); }
             updateInspector();
         }
         function stopFollow() { if (followPart) { followPart = null; followLast = null; updateInspector(); } }
@@ -2233,9 +2555,17 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             if (!parts.includes(followPart)) { followPart = null; followLast = null; return; }
             if (!simStarted) { followLast = null; return; }
             const pos = followPart.mesh.position;
-            if (followLast) { cameraTarget.add(pos.clone().sub(followLast)); updateCameraPosition(); }
-            else followLast = new THREE.Vector3();
-            followLast.copy(pos);
+            const q = followPart.mesh.quaternion;
+            if (followLast) {
+                cameraTarget.add(pos.clone().sub(followLast));
+                if (followRotate && followLastQ) {   // turn the camera by the part's yaw change
+                    const v = new THREE.Vector3(1, 0, 0).applyQuaternion(q.clone().multiply(followLastQ.clone().invert()));
+                    if (Math.hypot(v.x, v.y) > 1e-6) cameraTheta += Math.atan2(v.y, v.x);
+                }
+                updateCameraPosition();
+            } else followLast = new THREE.Vector3();
+            if (!followLastQ) followLastQ = new THREE.Quaternion();
+            followLast.copy(pos); followLastQ.copy(q);
         }
 
         let colorUndoPushed = false;
@@ -2252,7 +2582,7 @@ text-xl{line-height:1.75rem}.text-xl{font-size:1.25rem}.text-xs{font-size:.75rem
             if (!selectedObject) return;
             selectionList().forEach(p => {
                 p.isAnchored = checked;
-                p.body.mass = checked ? 0 : p.dimensions.x * p.dimensions.y * p.dimensions.z;
+                p.body.mass = checked ? 0 : p.dimensions.x * p.dimensions.y * p.dimensions.z * (p.density !== undefined ? p.density : 1);
                 p.body.updateMassProperties();
                 p.body.type = checked ? CANNON.Body.STATIC : CANNON.Body.DYNAMIC;
                 p.body.velocity.set(0, 0, 0);
