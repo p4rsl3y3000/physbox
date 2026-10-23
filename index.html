@@ -13,7 +13,9 @@
     <!-- Cannon.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cannon.js/0.6.2/cannon.min.js"></script>
     <style>
-    /* Global Retro Steam Theme Overrides */
+    /* ==========================================
+       CLASSIC STEAM UI THEME OVERRIDES FOR TAILWIND
+       ========================================== */
     :root {
         --steam-bg: #4c5844;
         --steam-panel: #3a4335;
@@ -21,8 +23,11 @@
         --steam-light: #75836c;
         --steam-input-bg: #384233;
         --steam-text: #d8ded0;
+        --steam-border-light: #697a5d;
+        --steam-border-dark: #282f23;
     }
 
+    /* Global Body & Layout */
     body {
         margin: 0;
         overflow: hidden;
@@ -30,7 +35,7 @@
         background-color: var(--steam-bg) !important;
         color: var(--steam-text) !important;
         font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif !important;
-        font-size: 11px;
+        font-size: 11px !important;
     }
 
     #canvas-container {
@@ -42,9 +47,15 @@
         z-index: 0;
     }
 
-    /* Force panels and containers using modern dark backgrounds to use Steam olive */
-    [class*="bg-slate-"], [class*="bg-[#"], div {
-        /* Optional: if you want script-generated elements to match */
+    /* Universal Tailwind Dark Background Overrides */
+    [class*="bg-slate-900"], [class*="bg-slate-800"], [class*="bg-[#0f172a]"], [class*="bg-[#1e1e24]"], .bg-slate-900, .bg-slate-800 {
+        background-color: var(--steam-panel) !important;
+    }
+
+    /* Universal Tailwind Border Overrides -> Classic 3D Bevels */
+    [class*="border-slate-"], [class*="border-[#334155]"] {
+        border-color: var(--steam-border-dark) !important;
+        border-radius: 0 !important;
     }
 
     /* Retro Steam Blocky Scrollbars */
@@ -53,25 +64,25 @@
         height: 13px;
     }
     ::-webkit-scrollbar-track {
-        background: #3a4335;
-        border: 1px solid #232920;
+        background: var(--steam-panel);
+        border: 1px solid var(--steam-dark);
     }
     ::-webkit-scrollbar-thumb {
         background: #5a6751;
-        border-top: 1px solid #75836c;
-        border-left: 1px solid #75836c;
-        border-right: 1px solid #232920;
-        border-bottom: 1px solid #232920;
+        border-top: 1px solid var(--steam-light);
+        border-left: 1px solid var(--steam-light);
+        border-right: 1px solid var(--steam-dark);
+        border-bottom: 1px solid var(--steam-dark);
     }
     ::-webkit-scrollbar-thumb:hover {
         background: #68775e;
     }
     ::-webkit-scrollbar-corner {
-        background: #3a4335;
+        background: var(--steam-panel);
     }
 
-    /* Inset bevelled input fields typical of mid-2000s Steam */
-    .blender-input, input[type="text"], input[type="number"], select {
+    /* Inputs, Number fields, and Selects */
+    input, select, textarea, .blender-input {
         background-color: var(--steam-input-bg) !important;
         border-top: 1px solid #20261d !important;
         border-left: 1px solid #20261d !important;
@@ -79,43 +90,63 @@
         border-right: 1px solid #63715a !important;
         color: #e1e7d9 !important;
         border-radius: 0 !important;
-        padding: 2px 4px;
-        font-size: 11px;
+        padding: 2px 4px !important;
+        font-size: 11px !important;
         font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif !important;
-        outline: none;
+        outline: none !important;
+        box-shadow: none !important;
     }
-    
-    .blender-input:focus, input:focus {
+
+    input:focus, select:focus, textarea:focus, .blender-input:focus {
         border-top: 1px solid #758a60 !important;
         border-left: 1px solid #758a60 !important;
         border-bottom: 1px solid #b1ca96 !important;
         border-right: 1px solid #b1ca96 !important;
         background-color: #2b3327 !important;
         color: #ffffff !important;
+        box-shadow: none !important;
     }
 
-    /* Classic Steam Buttons (Outlined with 3D bevels) */
-    button, .btn {
+    /* Buttons & Interactive Elements (Header buttons, toolbars) */
+    button, .btn, [role="button"] {
         background-color: #48543f !important;
-        border-top: 1px solid #697a5d !important;
-        border-left: 1px solid #697a5d !important;
-        border-right: 1px solid #282f23 !important;
-        border-bottom: 1px solid #282f23 !important;
+        border-top: 1px solid var(--steam-border-light) !important;
+        border-left: 1px solid var(--steam-border-light) !important;
+        border-right: 1px solid var(--steam-border-dark) !important;
+        border-bottom: 1px solid var(--steam-border-dark) !important;
         border-radius: 0 !important;
         color: #e1e7d9 !important;
         font-family: 'Tahoma', sans-serif !important;
         font-size: 11px !important;
         padding: 3px 8px !important;
+        box-shadow: none !important;
+        transition: none !important;
     }
 
-    button:active {
-        border-top: 1px solid #282f23 !important;
-        border-left: 1px solid #282f23 !important;
-        border-right: 1px solid #697a5d !important;
-        border-bottom: 1px solid #697a5d !important;
+    button:hover, .btn:hover {
+        background-color: #536148 !important;
+        color: #ffffff !important;
+    }
+
+    button:active, .btn:active {
+        border-top: 1px solid var(--steam-border-dark) !important;
+        border-left: 1px solid var(--steam-border-dark) !important;
+        border-right: 1px solid var(--steam-border-light) !important;
+        border-bottom: 1px solid var(--steam-border-light) !important;
         background-color: #3b4433 !important;
     }
 
+    /* Destructive / Delete Buttons (e.g., Delete Object) */
+    button[class*="red"], .bg-red-600, .bg-red-500 {
+        background-color: #5c3a3a !important;
+        border-top: 1px solid #7d4d4d !important;
+        border-left: 1px solid #7d4d4d !important;
+        border-right: 1px solid #362121 !important;
+        border-bottom: 1px solid #362121 !important;
+        color: #fca5a5 !important;
+    }
+
+    /* Gizmo & Selection Box */
     .gizmo-container {
         position: absolute;
         top: 70px;
@@ -126,15 +157,14 @@
         pointer-events: auto;
     }
 
-    /* Steam-style dashed selection box */
     .marquee-box {
         position: absolute;
         top: 0;
         left: 0;
         width: 0;
         height: 0;
-        border: 1px dashed #a3b594;
-        background: rgba(121, 142, 105, 0.25);
+        border: 1px dashed #a3b594 !important;
+        background: rgba(121, 142, 105, 0.25) !important;
         pointer-events: none;
         z-index: 40;
         display: none;
